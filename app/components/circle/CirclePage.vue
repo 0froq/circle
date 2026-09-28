@@ -32,7 +32,7 @@ useSeoMeta({ description: () => t('circle.copyLead') })
 <template>
   <Sheet :line="false">
     <div class="board-page">
-      <CircleField
+      <CircleBoard
         :center="center"
         :people="people"
         @select="openPerson"
