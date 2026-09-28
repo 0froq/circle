@@ -5,8 +5,8 @@ import { faceRadius, packCircles } from './pack.ts'
 
 function discs(n: number) {
   return Array.from({ length: n }, (_, index) => {
-    const id = `p${index}`
-    return { id, r: faceRadius(id) }
+    const interactions = index === 0 ? 46 : index < 6 ? index : 0
+    return { id: `p${index}`, r: faceRadius(interactions, 46) }
   })
 }
 
@@ -40,11 +40,12 @@ describe('sponsor circle pack', () => {
     assert.ok(Math.abs(width - height) / Math.max(width, height) < 0.18)
   })
 
-  it('ignores score-like fields because radius only uses id', () => {
-    assert.equal(faceRadius('same'), faceRadius('same'))
-    const quiet = packCircles([{ id: 'same', r: faceRadius('same') }, { id: 'other', r: 20 }])
-    const loud = packCircles([{ id: 'same', r: faceRadius('same') }, { id: 'other', r: 20 }])
-    assert.equal(quiet[0]!.x, loud[0]!.x)
-    assert.equal(quiet[0]!.y, loud[0]!.y)
+  it('grows with interactions and keeps zero at the minimum', () => {
+    const peak = 46
+    assert.equal(faceRadius(0, peak), faceRadius(0, 0))
+    assert.ok(faceRadius(1, peak) > faceRadius(0, peak))
+    assert.ok(faceRadius(7, peak) > faceRadius(1, peak))
+    assert.ok(faceRadius(peak, peak) > faceRadius(7, peak))
+    assert.equal(faceRadius(peak, peak), faceRadius(999, peak))
   })
 })

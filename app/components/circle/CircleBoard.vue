@@ -23,7 +23,8 @@ interface Face {
 }
 
 const packed = computed(() => {
-  const discs = props.people.map(person => ({ id: person.userId, r: faceRadius(person.userId) }))
+  const peak = props.people.reduce((max, person) => Math.max(max, person.interactions), 0)
+  const discs = props.people.map(person => ({ id: person.userId, r: faceRadius(person.interactions, peak) }))
   const layout = packCircles(discs)
   const bounds = packBounds(layout)
   const at = new Map(layout.map(disc => [disc.id, disc]))

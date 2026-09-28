@@ -1,5 +1,3 @@
-import { hashString } from './layout.ts'
-
 export interface PackDisc {
   id: string
   r: number
@@ -12,14 +10,18 @@ export interface PackedDisc extends PackDisc {
 
 const GAP = 1.25
 
+const MIN_RADIUS = 14
+const MAX_RADIUS = 62
+
 /**
- * Collage size only. A stable hash of the id, so the same person stays the same
- * size across rebuilds. Not interactions, dates, follow state, or rank.
+ * Face size from interaction count. Zero stays small. The busiest face in this
+ * set is the largest. Log scale, so one very active person does not cover the circle.
  */
-export function faceRadius(id: string): number {
-  const unit = (hashString(`${id}:r`) % 10000) / 10000
-  const bias = (1 - unit) ** 2.1
-  return 13 + bias * 46
+export function faceRadius(interactions: number, peak: number): number {
+  if (interactions <= 0 || peak <= 0)
+    return MIN_RADIUS
+  const t = Math.log1p(interactions) / Math.log1p(peak)
+  return MIN_RADIUS + Math.min(1, t) * (MAX_RADIUS - MIN_RADIUS)
 }
 
 /**
