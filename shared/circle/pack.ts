@@ -12,14 +12,15 @@ export interface PackedDisc extends PackDisc {
 
 const GAP = 1.25
 
-/** Stable size for the collage. Not derived from interactions or dates. */
+/**
+ * Collage size only. A stable hash of the id, so the same person stays the same
+ * size across rebuilds. Not interactions, dates, follow state, or rank.
+ */
 export function faceRadius(id: string): number {
   const unit = (hashString(`${id}:r`) % 10000) / 10000
   const bias = (1 - unit) ** 2.1
   return 13 + bias * 46
 }
-
-export const HOST_RADIUS = 62
 
 /**
  * Pack discs into one tight round cluster, largest near the middle.

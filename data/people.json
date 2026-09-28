@@ -1,1450 +1,1370 @@
 {
   "version": 1,
   "center": {
-    "name": "froQ",
-    "handle": "0froq",
-    "avatar": "/avatars/froq.svg"
+    "name": "froQ 蛙",
+    "handle": "0froQ",
+    "avatar": ""
   },
   "people": [
     {
-      "name": "纸鸢阿七",
-      "handle": "mock_kite_07",
-      "userId": "mock_001",
-      "avatar": "/avatars/mock_001.svg",
-      "status": "mutual",
-      "firstSeen": "2019-03-12",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_kite_07"
-        }
-      ],
-      "impression": "占位印象：和 纸鸢阿七 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2019-03-12",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_kite_07/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 142
-    },
-    {
-      "name": "墨线白川",
-      "handle": "mock_pen_bai",
-      "userId": "mock_002",
-      "avatar": "/avatars/mock_002.svg",
-      "status": "mutual",
-      "firstSeen": "2018-11-02",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_pen_bai"
-        }
-      ],
-      "impression": "占位印象：和 墨线白川 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2018-11-02",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_pen_bai/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 210
-    },
-    {
-      "name": "星图小鹿",
-      "handle": "mock_deer_map",
-      "userId": "mock_003",
-      "avatar": "/avatars/mock_003.svg",
-      "status": "mutual",
-      "firstSeen": "2020-01-18",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_deer_map"
-        }
-      ],
-      "impression": "占位印象：和 星图小鹿 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2020-01-18",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_deer_map/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 88
-    },
-    {
-      "name": "回声拾穗",
-      "handle": "mock_echo_harvest",
-      "userId": "mock_004",
-      "avatar": "/avatars/mock_004.svg",
+      "name": "Jeshika (沉默女王 👑)",
+      "handle": "00Jeshika",
+      "userId": "2085321127182884864",
+      "avatar": "/avatars/2085321127182884864.jpg",
       "status": "followsMe",
-      "firstSeen": "2021-04-09",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_echo_harvest"
-        }
-      ],
-      "impression": "占位印象：和 回声拾穗 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2021-04-09",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_echo_harvest/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 34
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "半糖电台",
-      "handle": "mock_half_sugar",
-      "userId": "mock_005",
-      "avatar": "/avatars/mock_005.svg",
-      "status": "iFollow",
-      "firstSeen": "2022-07-21",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_half_sugar"
-        }
-      ],
-      "impression": "占位印象：和 半糖电台 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2022-07-21",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_half_sugar/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 19
-    },
-    {
-      "name": "夜航罐头",
-      "handle": "mock_night_can",
-      "userId": "mock_006",
-      "avatar": "/avatars/mock_006.svg",
+      "name": "Raco | 玉米须",
+      "handle": "0xraco",
+      "userId": "54918133",
+      "avatar": "/avatars/54918133.jpg",
       "status": "mutual",
-      "firstSeen": "2019-09-30",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_night_can"
-        }
-      ],
-      "impression": "占位印象：和 夜航罐头 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2019-09-30",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_night_can/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 76
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "折纸彗星",
-      "handle": "mock_comet_fold",
-      "userId": "mock_007",
-      "avatar": "/avatars/mock_007.svg",
+      "name": "塔菲是我疊二代機",
+      "handle": "Acetaffyismymom",
+      "userId": "2090037143972593664",
+      "avatar": "/avatars/2090037143972593664.jpg",
       "status": "mutual",
-      "firstSeen": "2020-06-14",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_comet_fold"
-        }
-      ],
-      "impression": "占位印象：和 折纸彗星 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2020-06-14",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_comet_fold/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 55
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "雾都铅笔",
-      "handle": "mock_fog_pencil",
-      "userId": "mock_008",
-      "avatar": "/avatars/mock_008.svg",
+      "name": "Alex Chen",
+      "handle": "AlexChe31659937",
+      "userId": "1313424628900036609",
+      "avatar": "/avatars/1313424628900036609.jpg",
       "status": "mutual",
-      "firstSeen": "2023-02-02",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_fog_pencil"
-        }
-      ],
-      "impression": "占位印象：和 雾都铅笔 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2023-02-02",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_fog_pencil/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 12
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "青柠手账",
-      "handle": "mock_lime_journal",
-      "userId": "mock_009",
-      "avatar": "/avatars/mock_009.svg",
+      "name": "Alexis",
+      "handle": "alexisbchz",
+      "userId": "1811126002749427713",
+      "avatar": "/avatars/1811126002749427713.jpg",
       "status": "mutual",
-      "firstSeen": "2021-12-01",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_lime_journal"
-        }
-      ],
-      "impression": "占位印象：和 青柠手账 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2021-12-01",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_lime_journal/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 41
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "北风邮差",
-      "handle": "mock_north_post",
-      "userId": "mock_010",
-      "avatar": "/avatars/mock_010.svg",
-      "status": "unfollowed",
-      "firstSeen": "2018-05-20",
-      "unfollowedAt": "2025-11-03",
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_north_post"
-        }
-      ],
-      "impression": "占位印象：和 北风邮差 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2018-05-20",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_north_post/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 67
-    },
-    {
-      "name": "云朵焊工",
-      "handle": "mock_cloud_weld",
-      "userId": "mock_011",
-      "avatar": "/avatars/mock_011.svg",
+      "name": "Explore the world",
+      "handle": "Alina_bloom79",
+      "userId": "2046621802432983040",
+      "avatar": "/avatars/2046621802432983040.jpg",
       "status": "mutual",
-      "firstSeen": "2022-03-08",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_cloud_weld"
-        }
-      ],
-      "impression": "占位印象：和 云朵焊工 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2022-03-08",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_cloud_weld/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 28
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "沙洲程序员",
-      "handle": "mock_sand_dev",
-      "userId": "mock_012",
-      "avatar": "/avatars/mock_012.svg",
+      "name": "Andy🌱（薄肌版）",
+      "handle": "AndyMuse5yxy",
+      "userId": "2092993804852948992",
+      "avatar": "/avatars/2092993804852948992.jpg",
       "status": "mutual",
-      "firstSeen": "2020-10-10",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_sand_dev"
-        }
-      ],
-      "impression": "占位印象：和 沙洲程序员 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2020-10-10",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_sand_dev/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 93
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "柚子观测站",
-      "handle": "mock_yuzu_watch",
-      "userId": "mock_013",
-      "avatar": "/avatars/mock_013.svg",
+      "name": "Aron厚玉",
+      "handle": "aronhouyu",
+      "userId": "1554575293264072705",
+      "avatar": "/avatars/1554575293264072705.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Han Cheng e/acc",
+      "handle": "ashfold",
+      "userId": "84791916",
+      "avatar": "/avatars/84791916.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "سما اليمن",
+      "handle": "bentyemenone",
+      "userId": "2072115710260903936",
+      "avatar": "/avatars/2072115710260903936.jpg",
       "status": "followsMe",
-      "firstSeen": "2024-01-15",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_yuzu_watch"
-        }
-      ],
-      "impression": "占位印象：和 柚子观测站 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2024-01-15",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_yuzu_watch/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 8
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "苔原旅人",
-      "handle": "mock_moss_walker",
-      "userId": "mock_014",
-      "avatar": "/avatars/mock_014.svg",
+      "name": "飞",
+      "handle": "bljping",
+      "userId": "2100959825303932928",
+      "avatar": "/avatars/2100959825303932928.jpg",
       "status": "mutual",
-      "firstSeen": "2019-07-07",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_moss_walker"
-        }
-      ],
-      "impression": "占位印象：和 苔原旅人 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2019-07-07",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_moss_walker/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 120
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "像素茶室",
-      "handle": "mock_pixel_tea",
-      "userId": "mock_015",
-      "avatar": "/avatars/mock_015.svg",
+      "name": "Bdark",
+      "handle": "Bryankdark",
+      "userId": "96058727",
+      "avatar": "/avatars/96058727.jpg",
       "status": "mutual",
-      "firstSeen": "2021-08-19",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "小红书",
-          "url": "https://example.com/placeholder/xhs"
-        }
-      ],
-      "impression": "占位印象：和 像素茶室 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2021-08-19",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_pixel_tea/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 47
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "虚构档案员",
-      "handle": "mock_fake_arch",
-      "userId": "mock_016",
-      "avatar": "/avatars/mock_016.svg",
-      "status": "iFollow",
-      "firstSeen": "2023-06-06",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_fake_arch"
-        }
-      ],
-      "impression": "占位印象：和 虚构档案员 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2023-06-06",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_fake_arch/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 15
-    },
-    {
-      "name": "雨声编译器",
-      "handle": "mock_rain_build",
-      "userId": "mock_017",
-      "avatar": "/avatars/mock_017.svg",
+      "name": "BTC_Fahmi",
+      "handle": "btc_fahmi",
+      "userId": "1947522310816337921",
+      "avatar": "/avatars/1947522310816337921.jpg",
       "status": "mutual",
-      "firstSeen": "2018-12-24",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_rain_build"
-        }
-      ],
-      "impression": "占位印象：和 雨声编译器 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2018-12-24",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_rain_build/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 165
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "慢速火箭",
-      "handle": "mock_slow_rocket",
-      "userId": "mock_018",
-      "avatar": "/avatars/mock_018.svg",
-      "status": "mutual",
-      "firstSeen": "2022-11-11",
-      "unfollowedAt": null,
-      "hidden": true,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_slow_rocket"
-        }
-      ],
-      "impression": "占位印象：和 慢速火箭 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2022-11-11",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_slow_rocket/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 22
-    },
-    {
-      "name": "海盐相框",
-      "handle": "mock_salt_frame",
-      "userId": "mock_019",
-      "avatar": "/avatars/mock_019.svg",
-      "status": "mutual",
-      "firstSeen": "2020-04-04",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_salt_frame"
-        }
-      ],
-      "impression": "占位印象：和 海盐相框 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2020-04-04",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_salt_frame/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 61
-    },
-    {
-      "name": "路灯诗人",
-      "handle": "mock_lamp_poet",
-      "userId": "mock_020",
-      "avatar": "/avatars/mock_020.svg",
-      "status": "unfollowed",
-      "firstSeen": "2019-02-14",
-      "unfollowedAt": "2026-01-20",
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_lamp_poet"
-        }
-      ],
-      "impression": "占位印象：和 路灯诗人 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2019-02-14",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_lamp_poet/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 38
-    },
-    {
-      "name": "空白样本",
-      "handle": "mock_blank_sample",
-      "userId": "mock_021",
-      "avatar": "/avatars/mock_021.svg",
-      "status": "mutual",
-      "firstSeen": "2024-08-08",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_blank_sample"
-        }
-      ],
-      "impression": "占位印象：和 空白样本 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2024-08-08",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_blank_sample/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 5
-    },
-    {
-      "name": "胡桃夹子",
-      "handle": "mock_nutcracker",
-      "userId": "mock_022",
-      "avatar": "/avatars/mock_022.svg",
-      "status": "mutual",
-      "firstSeen": "2017-10-31",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_nutcracker"
-        }
-      ],
-      "impression": "占位印象：和 胡桃夹子 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2017-10-31",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_nutcracker/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 188
-    },
-    {
-      "name": "潜水番茄",
-      "handle": "mock_dive_tomato",
-      "userId": "mock_023",
-      "avatar": "/avatars/mock_023.svg",
-      "status": "mutual",
-      "firstSeen": "2021-01-01",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_dive_tomato"
-        }
-      ],
-      "impression": "占位印象：和 潜水番茄 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2021-01-01",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_dive_tomato/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 33
-    },
-    {
-      "name": "纸船调度",
-      "handle": "mock_boat_ops",
-      "userId": "mock_024",
-      "avatar": "/avatars/mock_024.svg",
+      "name": "香港老雷",
+      "handle": "btcmos",
+      "userId": "1865722200185307136",
+      "avatar": "/avatars/1865722200185307136.jpg",
       "status": "followsMe",
-      "firstSeen": "2023-09-09",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_boat_ops"
-        }
-      ],
-      "impression": "占位印象：和 纸船调度 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2023-09-09",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_boat_ops/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 11
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "晨光补丁",
-      "handle": "mock_dawn_patch",
-      "userId": "mock_025",
-      "avatar": "/avatars/mock_025.svg",
+      "name": "Cat tgp",
+      "handle": "Cattgp01",
+      "userId": "2084117736096190464",
+      "avatar": "/avatars/2084117736096190464.jpg",
       "status": "mutual",
-      "firstSeen": "2020-02-29",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_dawn_patch"
-        }
-      ],
-      "impression": "占位印象：和 晨光补丁 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2020-02-29",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_dawn_patch/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 72
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "虚构邻居",
-      "handle": "mock_fake_neighbor",
-      "userId": "mock_026",
-      "avatar": "/avatars/mock_026.svg",
+      "name": "Hardy Chen",
+      "handle": "Chchenhao0129",
+      "userId": "1929526459661721600",
+      "avatar": "/avatars/1929526459661721600.jpg",
       "status": "mutual",
-      "firstSeen": "2022-05-05",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_fake_neighbor"
-        }
-      ],
-      "impression": "占位印象：和 虚构邻居 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2022-05-05",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_fake_neighbor/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 26
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "风铃数据库",
-      "handle": "mock_chime_db",
-      "userId": "mock_027",
-      "avatar": "/avatars/mock_027.svg",
-      "status": "iFollow",
-      "firstSeen": "2024-03-03",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_chime_db"
-        }
-      ],
-      "impression": "占位印象：和 风铃数据库 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2024-03-03",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_chime_db/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 3
-    },
-    {
-      "name": "橡皮宇宙",
-      "handle": "mock_eraser_cosmo",
-      "userId": "mock_028",
-      "avatar": "/avatars/mock_028.svg",
+      "name": "多吃香菜",
+      "handle": "chen20010418",
+      "userId": "1898761780207501312",
+      "avatar": "/avatars/1898761780207501312.jpg",
       "status": "mutual",
-      "firstSeen": "2018-08-08",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_eraser_cosmo"
-        }
-      ],
-      "impression": "占位印象：和 橡皮宇宙 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2018-08-08",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_eraser_cosmo/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 131
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "离线蝴蝶",
-      "handle": "mock_offline_moth",
-      "userId": "mock_029",
-      "avatar": "/avatars/mock_029.svg",
+      "name": "chenke",
+      "handle": "chenke20266",
+      "userId": "1586383785687650304",
+      "avatar": "/avatars/1586383785687650304.jpg",
       "status": "mutual",
-      "firstSeen": "2021-05-15",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_offline_moth"
-        }
-      ],
-      "impression": "占位印象：和 离线蝴蝶 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2021-05-15",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_offline_moth/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 44
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "测试旅客甲",
-      "handle": "mock_traveler_a",
-      "userId": "mock_030",
-      "avatar": "/avatars/mock_030.svg",
-      "status": "mutual",
-      "firstSeen": "2019-04-01",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_traveler_a"
-        }
-      ],
-      "impression": "占位印象：和 测试旅客甲 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2019-04-01",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_traveler_a/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 99
-    },
-    {
-      "name": "测试旅客乙",
-      "handle": "mock_traveler_b",
-      "userId": "mock_031",
-      "avatar": "/avatars/mock_031.svg",
-      "status": "mutual",
-      "firstSeen": "2020-12-12",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_traveler_b"
-        }
-      ],
-      "impression": "占位印象：和 测试旅客乙 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2020-12-12",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_traveler_b/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 58
-    },
-    {
-      "name": "测试旅客丙",
-      "handle": "mock_traveler_c",
-      "userId": "mock_032",
-      "avatar": "/avatars/mock_032.svg",
-      "status": "unfollowed",
-      "firstSeen": "2017-01-01",
-      "unfollowedAt": "2025-06-01",
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_traveler_c"
-        }
-      ],
-      "impression": "占位印象：和 测试旅客丙 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2017-01-01",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_traveler_c/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 24
-    },
-    {
-      "name": "测试旅客丁",
-      "handle": "mock_traveler_d",
-      "userId": "mock_033",
-      "avatar": "/avatars/mock_033.svg",
-      "status": "mutual",
-      "firstSeen": "2023-11-11",
-      "unfollowedAt": null,
-      "hidden": false,
-      "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_traveler_d"
-        }
-      ],
-      "impression": "占位印象：和 测试旅客丁 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2023-11-11",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_traveler_d/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 17
-    },
-    {
-      "name": "测试旅客戊",
-      "handle": "mock_traveler_e",
-      "userId": "mock_034",
-      "avatar": "/avatars/mock_034.svg",
+      "name": "兔牙",
+      "handle": "Choko1302",
+      "userId": "2080146118566944768",
+      "avatar": "/avatars/2080146118566944768.jpg",
       "status": "followsMe",
-      "firstSeen": "2022-08-08",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_traveler_e"
-        }
-      ],
-      "impression": "占位印象：和 测试旅客戊 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2022-08-08",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_traveler_e/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 21
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "测试旅客己",
-      "handle": "mock_traveler_f",
-      "userId": "mock_035",
-      "avatar": "/avatars/mock_035.svg",
+      "name": "初白洛",
+      "handle": "chubailuo",
+      "userId": "2080270067426832384",
+      "avatar": "/avatars/2080270067426832384.jpg",
       "status": "mutual",
-      "firstSeen": "2016-06-06",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_traveler_f"
-        }
-      ],
-      "impression": "占位印象：和 测试旅客己 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2016-06-06",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_traveler_f/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 201
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "测试旅客庚",
-      "handle": "mock_traveler_g",
-      "userId": "mock_036",
-      "avatar": "/avatars/mock_036.svg",
+      "name": "✡春夏风波🇭🇰🌈",
+      "handle": "ChunXiaFb",
+      "userId": "1074838588012052481",
+      "avatar": "/avatars/1074838588012052481.jpg",
       "status": "mutual",
-      "firstSeen": "2024-02-02",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_traveler_g"
-        }
-      ],
-      "impression": "占位印象：和 测试旅客庚 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2024-02-02",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_traveler_g/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 9
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "测试旅客辛",
-      "handle": "mock_traveler_h",
-      "userId": "mock_037",
-      "avatar": "/avatars/mock_037.svg",
-      "status": "iFollow",
-      "firstSeen": "2021-10-10",
+      "name": "3arbiDeluxe",
+      "handle": "claire1babyuyzx",
+      "userId": "1815427488945770497",
+      "avatar": "/avatars/1815427488945770497.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_traveler_h"
-        }
-      ],
-      "impression": "占位印象：和 测试旅客辛 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2021-10-10",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_traveler_h/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 27
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "测试旅客壬",
-      "handle": "mock_traveler_i",
-      "userId": "mock_038",
-      "avatar": "/avatars/mock_038.svg",
+      "name": "CocKtaiL",
+      "handle": "cocktail_o1",
+      "userId": "1571894847610695681",
+      "avatar": "/avatars/1571894847610695681.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Cyrus",
+      "handle": "cyrusss_7",
+      "userId": "1455938770105090051",
+      "avatar": "/avatars/1455938770105090051.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Dasun Tharanga",
+      "handle": "dasundev",
+      "userId": "1248286805134196737",
+      "avatar": "/avatars/1248286805134196737.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Darling",
+      "handle": "dawndarlinwbdn",
+      "userId": "454281254",
+      "avatar": "/avatars/454281254.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "小八, PhD",
+      "handle": "Demetrius250946",
+      "userId": "2034862697150644224",
+      "avatar": "/avatars/2034862697150644224.jpg",
       "status": "mutual",
-      "firstSeen": "2018-03-03",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_traveler_i"
-        }
-      ],
-      "impression": "占位印象：和 测试旅客壬 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2018-03-03",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_traveler_i/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 112
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "测试旅客癸",
-      "handle": "mock_traveler_j",
-      "userId": "mock_039",
-      "avatar": "/avatars/mock_039.svg",
-      "status": "mutual",
-      "firstSeen": "2020-07-07",
+      "name": "★",
+      "handle": "douardo_zx",
+      "userId": "2003750140973305856",
+      "avatar": "/avatars/2003750140973305856.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
       "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_traveler_j"
-        }
-      ],
-      "impression": "占位印象：和 测试旅客癸 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2020-07-07",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_traveler_j/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 63
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     },
     {
-      "name": "占位隐藏人",
-      "handle": "mock_hidden_only",
-      "userId": "mock_040",
-      "avatar": "/avatars/mock_040.svg",
+      "name": "鹿人甲",
+      "handle": "doubllife",
+      "userId": "1449354945900072964",
+      "avatar": "/avatars/1449354945900072964.jpg",
       "status": "mutual",
-      "firstSeen": "2015-01-01",
+      "firstSeen": "2026-09-28",
       "unfollowedAt": null,
-      "hidden": true,
+      "hidden": false,
       "ring": "auto",
-      "platforms": [
-        {
-          "name": "X",
-          "url": "https://x.com/mock_hidden_only"
-        }
-      ],
-      "impression": "占位印象：和 占位隐藏人 在 mock 数据里击掌。",
-      "timeline": [
-        {
-          "date": "2015-01-01",
-          "text": "第一次在快照里出现（假）"
-        },
-        {
-          "date": "2025-01-01",
-          "text": "线下面基（虚构）"
-        }
-      ],
-      "pinnedPosts": [
-        {
-          "url": "https://x.com/mock_hidden_only/status/000000000000000000",
-          "text": "占位帖：一句假引用，不嵌 X 脚本。",
-          "date": "2025-06-01"
-        }
-      ],
-      "interactions": 300
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Emiliao_Weber",
+      "handle": "Emiliao_Weber",
+      "userId": "2871437570",
+      "avatar": "/avatars/2871437570.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Ethan Wang 亦衡",
+      "handle": "EthanWang07X",
+      "userId": "2094811881961844736",
+      "avatar": "/avatars/2094811881961844736.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Aventurero Espacial H_12",
+      "handle": "ExplorastrosH12",
+      "userId": "1263990230916444162",
+      "avatar": "/avatars/1263990230916444162.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "星野ふじ🍔VTber",
+      "handle": "fake_fuji",
+      "userId": "4313176880",
+      "avatar": "/avatars/4313176880.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "World Explorer",
+      "handle": "flower6260",
+      "userId": "1951001334850912256",
+      "avatar": "/avatars/1951001334850912256.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Flynn",
+      "handle": "fly3nn",
+      "userId": "1854066640847298560",
+      "avatar": "/avatars/1854066640847298560.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Orbit Private 🆇",
+      "handle": "futurevault_056",
+      "userId": "380562749",
+      "avatar": "/avatars/380562749.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "阿离啊哩哩",
+      "handle": "gengzishunli",
+      "userId": "918716499254132736",
+      "avatar": "/avatars/918716499254132736.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Gia",
+      "handle": "giadotai",
+      "userId": "1820066784625758208",
+      "avatar": "/avatars/1820066784625758208.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "gKev1n",
+      "handle": "GKev1n",
+      "userId": "1067085110372171779",
+      "avatar": "/avatars/1067085110372171779.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Husan Awan",
+      "handle": "husanmubarak47",
+      "userId": "1833723975375192064",
+      "avatar": "/avatars/1833723975375192064.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Ian (伊恩)",
+      "handle": "ianneo_ai",
+      "userId": "1249322582869852161",
+      "avatar": "/avatars/1249322582869852161.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Jack",
+      "handle": "JacksAISites",
+      "userId": "1169225590077108224",
+      "avatar": "/avatars/1169225590077108224.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Jayati :)",
+      "handle": "jayaticore",
+      "userId": "1870889540510212096",
+      "avatar": "/avatars/1870889540510212096.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "kia",
+      "handle": "jkiesoft",
+      "userId": "1987402138667130881",
+      "avatar": "/avatars/1987402138667130881.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "HaonanPro",
+      "handle": "keke202106",
+      "userId": "3005075238",
+      "avatar": "/avatars/3005075238.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Keng",
+      "handle": "kengdaica",
+      "userId": "1297343586984321024",
+      "avatar": "/avatars/1297343586984321024.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "King of Fitness",
+      "handle": "kingoffitnessuk",
+      "userId": "2391269245",
+      "avatar": "/avatars/2391269245.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Kiruha 2.0",
+      "handle": "Kir4uh",
+      "userId": "2087152708696346624",
+      "avatar": "/avatars/2087152708696346624.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Kory（互fo",
+      "handle": "Kory0bir",
+      "userId": "2095023594594320384",
+      "avatar": "/avatars/2095023594594320384.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Lê Hưng",
+      "handle": "lehunggm",
+      "userId": "849656764312178688",
+      "avatar": "/avatars/849656764312178688.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "赤柰无禽",
+      "handle": "linqin_loveme",
+      "userId": "2085668508915118080",
+      "avatar": "/avatars/2085668508915118080.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "dodge",
+      "handle": "littlelion_love",
+      "userId": "2018144705448730624",
+      "avatar": "/avatars/2018144705448730624.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "LKDenchin",
+      "handle": "LKDenchin",
+      "userId": "1825733032151756801",
+      "avatar": "/avatars/1825733032151756801.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "卡尔森",
+      "handle": "loooool_fun",
+      "userId": "2007010624291983360",
+      "avatar": "/avatars/2007010624291983360.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "猫",
+      "handle": "Lorp_Voltemord",
+      "userId": "2001163937388355584",
+      "avatar": "/avatars/2001163937388355584.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "MAKY",
+      "handle": "MAKY2022M",
+      "userId": "1487217749067591680",
+      "avatar": "/avatars/1487217749067591680.png",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "May",
+      "handle": "mayflowers2x8",
+      "userId": "818705139120734209",
+      "avatar": "/avatars/818705139120734209.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Micheal",
+      "handle": "Micheal1722460",
+      "userId": "1979131969054347264",
+      "avatar": "/avatars/1979131969054347264.png",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Julia REPL stan now at mas to/b sky",
+      "handle": "miguelraz_",
+      "userId": "1317141761689485312",
+      "avatar": "/avatars/1317141761689485312.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "𝒎𝒊𝒓𝒂",
+      "handle": "mira_beant",
+      "userId": "2069854346590978048",
+      "avatar": "/avatars/2069854346590978048.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "智乃萌萌",
+      "handle": "moeKafuuChino",
+      "userId": "2090993417744719872",
+      "avatar": "/avatars/2090993417744719872.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "凌甫Oberon",
+      "handle": "Mr_Lingfu",
+      "userId": "1886927751065821188",
+      "avatar": "/avatars/1886927751065821188.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Nguyễn Nhật Linh",
+      "handle": "NgNhatLinh23",
+      "userId": "2095556737231364096",
+      "avatar": "/avatars/2095556737231364096.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Ban Nguyen",
+      "handle": "pandev00",
+      "userId": "1789666230993145856",
+      "avatar": "/avatars/1789666230993145856.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Pavot",
+      "handle": "Pavotttt",
+      "userId": "425629159",
+      "avatar": "/avatars/425629159.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Revolutionary Gangsta💚",
+      "handle": "RevoGangSta777",
+      "userId": "294688744",
+      "avatar": "/avatars/294688744.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "阿彬油画日记",
+      "handle": "roberthuang236",
+      "userId": "912516778298720256",
+      "avatar": "/avatars/912516778298720256.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "SeanX888",
+      "handle": "SeanX_888",
+      "userId": "2098243498973519885",
+      "avatar": "/avatars/2098243498973519885.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "𝐒𝐡𝐢 𝐒𝐤𝐲 ☄️",
+      "handle": "Senshi2k2",
+      "userId": "1476943097980276743",
+      "avatar": "/avatars/1476943097980276743.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Shohana",
+      "handle": "Shohana79",
+      "userId": "2090816762610962432",
+      "avatar": "/avatars/2090816762610962432.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Rita",
+      "handle": "sleepyRizzy",
+      "userId": "2097614252605648896",
+      "avatar": "/avatars/2097614252605648896.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "大嘴和尚",
+      "handle": "SonicAIWizard",
+      "userId": "1521086568194211842",
+      "avatar": "/avatars/1521086568194211842.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "iamEl0nX𖤛",
+      "handle": "terrjqo",
+      "userId": "2087997512850235392",
+      "avatar": "/avatars/2087997512850235392.jpg",
+      "status": "followsMe",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "TheEasySale（互关，有关必回）",
+      "handle": "TheEasySale1",
+      "userId": "1126207424602337280",
+      "avatar": "/avatars/1126207424602337280.png",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "红与羽",
+      "handle": "tingzi_love",
+      "userId": "2089299881433448448",
+      "avatar": "/avatars/2089299881433448448.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "文森",
+      "handle": "wensen771",
+      "userId": "802087418295783426",
+      "avatar": "/avatars/802087418295783426.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "wjcjdk",
+      "handle": "wjcjdkqj7",
+      "userId": "2089887330790481920",
+      "avatar": "/avatars/2089887330790481920.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Yifan Xu",
+      "handle": "yifanxu_ephai",
+      "userId": "2073035346707968000",
+      "avatar": "/avatars/2073035346707968000.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "由依🍥",
+      "handle": "youy1qwq",
+      "userId": "2012631283898187776",
+      "avatar": "/avatars/2012631283898187776.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "幽幽小雪",
+      "handle": "YuuYuki233",
+      "userId": "1841126187789324288",
+      "avatar": "/avatars/1841126187789324288.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "兴雨",
+      "handle": "YxzRainy",
+      "userId": "1994485839402057728",
+      "avatar": "/avatars/1994485839402057728.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "huihui",
+      "handle": "yyhhyyyyyy",
+      "userId": "1831648250841198593",
+      "avatar": "/avatars/1831648250841198593.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Zack",
+      "handle": "Zack_1229",
+      "userId": "2032599702454329344",
+      "avatar": "/avatars/2032599702454329344.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Zaiphirion the Eternal ⚔️",
+      "handle": "zaiphirion",
+      "userId": "1749277587535474688",
+      "avatar": "/avatars/1749277587535474688.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
+    },
+    {
+      "name": "Zara_Quinn",
+      "handle": "Zara_Quinnx",
+      "userId": "1325815317990305793",
+      "avatar": "/avatars/1325815317990305793.jpg",
+      "status": "mutual",
+      "firstSeen": "2026-09-28",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [],
+      "impression": "",
+      "timeline": [],
+      "pinnedPosts": [],
+      "interactions": 0
     }
   ]
 }

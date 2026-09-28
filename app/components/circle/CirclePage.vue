@@ -2,7 +2,7 @@
 import type { Person } from '#shared/circle/types'
 
 const { t } = useI18n()
-const { center, people, listed } = useCircleData()
+const { people, listed } = useCircleData()
 
 const selected = ref<Person | null>(null)
 const cardOpen = computed(() => selected.value !== null)
@@ -33,7 +33,6 @@ useSeoMeta({ description: () => t('circle.copyLead') })
   <Sheet :line="false">
     <div class="board-page">
       <CircleBoard
-        :center="center"
         :people="people"
         @select="openPerson"
       />

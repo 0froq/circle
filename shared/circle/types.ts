@@ -39,6 +39,7 @@ export interface Person {
 
 export interface PeopleFile {
   version: 1
+  /** Identity of the circle. The board does not draw this avatar. */
   center: {
     name: string
     handle: string

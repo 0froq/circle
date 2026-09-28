@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { PeopleFile, Person } from '#shared/circle/types'
-import { faceRadius, HOST_RADIUS, packBounds, packCircles } from '#shared/circle/pack'
+import type { Person } from '#shared/circle/types'
+import { faceRadius, packBounds, packCircles } from '#shared/circle/pack'
 
 const props = defineProps<{
-  center: PeopleFile['center']
   people: Person[]
 }>()
 
@@ -16,7 +15,7 @@ interface Face {
   name: string
   handle: string
   avatar: string
-  person: Person | null
+  person: Person
   unfollowed: boolean
   x: number
   y: number
@@ -24,24 +23,11 @@ interface Face {
 }
 
 const packed = computed(() => {
-  const discs = [
-    { id: 'host', r: HOST_RADIUS },
-    ...props.people.map(person => ({ id: person.userId, r: faceRadius(person.userId) })),
-  ]
+  const discs = props.people.map(person => ({ id: person.userId, r: faceRadius(person.userId) }))
   const layout = packCircles(discs)
   const bounds = packBounds(layout)
   const at = new Map(layout.map(disc => [disc.id, disc]))
-  const faces: Face[] = [{
-    id: 'host',
-    name: props.center.name,
-    handle: props.center.handle,
-    avatar: props.center.avatar,
-    person: null,
-    unfollowed: false,
-    x: at.get('host')!.x,
-    y: at.get('host')!.y,
-    d: HOST_RADIUS * 2,
-  }]
+  const faces: Face[] = []
   for (const person of props.people) {
     const disc = at.get(person.userId)!
     faces.push({
@@ -148,7 +134,6 @@ function show(face: Face): void {
           :key="face.id"
         >
           <button
-            v-if="face.person"
             type="button"
             class="board-face"
             :class="{ 'is-unfollowed': face.unfollowed }"
@@ -167,20 +152,6 @@ function show(face: Face): void {
               height="64"
             >
           </button>
-          <div
-            v-else
-            class="board-face is-host"
-            :style="place(face)"
-            @pointerenter="show(face)"
-            @pointerleave="hovered = null"
-          >
-            <img
-              :src="face.avatar"
-              :alt="face.name"
-              width="96"
-              height="96"
-            >
-          </div>
         </template>
       </div>
     </div>
@@ -246,10 +217,6 @@ function show(face: Face): void {
   z-index: 2;
   outline: 2px solid var(--fg);
   outline-offset: 2px;
-}
-
-.is-host {
-  cursor: default;
 }
 
 .board-face.is-unfollowed {

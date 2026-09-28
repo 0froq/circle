@@ -1,6 +1,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+// Overwrites data/people.json and public/avatars with fiction. Do not run against the Notion snapshot.
 const root = join(import.meta.dirname, '..')
 const avatarDir = join(root, 'public', 'avatars')
 const dataDir = join(root, 'data')
