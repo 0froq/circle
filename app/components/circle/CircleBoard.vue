@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PeopleFile, Person } from '#shared/circle/types'
-import { CENTER_MARK, layoutBoard } from '#shared/circle/layout'
+import { faceRadius, HOST_RADIUS, packBounds, packCircles } from '#shared/circle/pack'
 
 const props = defineProps<{
   center: PeopleFile['center']
@@ -11,13 +11,59 @@ const emit = defineEmits<{
   select: [person: Person]
 }>()
 
-const layout = computed(() => layoutBoard(props.people))
+interface Face {
+  id: string
+  name: string
+  handle: string
+  avatar: string
+  person: Person | null
+  unfollowed: boolean
+  x: number
+  y: number
+  d: number
+}
+
+const packed = computed(() => {
+  const discs = [
+    { id: 'host', r: HOST_RADIUS },
+    ...props.people.map(person => ({ id: person.userId, r: faceRadius(person.userId) })),
+  ]
+  const layout = packCircles(discs)
+  const bounds = packBounds(layout)
+  const at = new Map(layout.map(disc => [disc.id, disc]))
+  const faces: Face[] = [{
+    id: 'host',
+    name: props.center.name,
+    handle: props.center.handle,
+    avatar: props.center.avatar,
+    person: null,
+    unfollowed: false,
+    x: at.get('host')!.x,
+    y: at.get('host')!.y,
+    d: HOST_RADIUS * 2,
+  }]
+  for (const person of props.people) {
+    const disc = at.get(person.userId)!
+    faces.push({
+      id: person.userId,
+      name: person.name,
+      handle: person.handle,
+      avatar: person.avatar,
+      person,
+      unfollowed: person.status === 'unfollowed',
+      x: disc.x,
+      y: disc.y,
+      d: disc.r * 2,
+    })
+  }
+  return { bounds, faces }
+})
+
 const panX = ref(0)
 const panY = ref(0)
 const scale = ref(1)
-const hovered = ref<Person | null>(null)
+const hovered = ref<{ name: string, handle: string } | null>(null)
 
-const aspect = computed(() => layout.value.viewBox.width / layout.value.viewBox.height)
 const stageStyle = computed(() => ({
   transform: `translate(${panX.value}px, ${panY.value}px) scale(${scale.value})`,
 }))
@@ -27,12 +73,12 @@ let moved = false
 let lastX = 0
 let lastY = 0
 
-function place(x: number, y: number, size: number): { left: string, top: string, width: string } {
-  const box = layout.value.viewBox
+function place(face: Face): { left: string, top: string, width: string } {
+  const box = packed.value.bounds
   return {
-    left: `${((x - box.minX) / box.width) * 100}%`,
-    top: `${((y - box.minY) / box.height) * 100}%`,
-    width: `${(size / box.width) * 100}%`,
+    left: `${((face.x - box.minX) / box.width) * 100}%`,
+    top: `${((face.y - box.minY) / box.height) * 100}%`,
+    width: `${(face.d / box.width) * 100}%`,
   }
 }
 
@@ -44,7 +90,6 @@ function onPointerDown(event: PointerEvent): void {
   if (target.closest('button'))
     return
   dragging = true
-  moved = false
   lastX = event.clientX
   lastY = event.clientY
   ;(event.currentTarget as HTMLElement).setPointerCapture(event.pointerId)
@@ -70,7 +115,7 @@ function onPointerUp(): void {
 function onWheel(event: WheelEvent): void {
   event.preventDefault()
   const next = scale.value * (event.deltaY > 0 ? 0.94 : 1.06)
-  scale.value = Math.min(2.2, Math.max(0.65, next))
+  scale.value = Math.min(2.4, Math.max(0.7, next))
 }
 
 function choose(person: Person): void {
@@ -78,76 +123,91 @@ function choose(person: Person): void {
     return
   emit('select', person)
 }
+
+function show(face: Face): void {
+  hovered.value = { name: face.name, handle: face.handle }
+}
 </script>
 
 <template>
-  <div
-    class="board"
-    :style="{ aspectRatio: String(aspect) }"
-    @pointerdown="onPointerDown"
-    @pointermove="onPointerMove"
-    @pointerup="onPointerUp"
-    @pointercancel="onPointerUp"
-    @wheel="onWheel"
-  >
+  <div class="sponsor">
     <div
-      class="board-stage"
-      :style="stageStyle"
+      class="board"
+      @pointerdown="onPointerDown"
+      @pointermove="onPointerMove"
+      @pointerup="onPointerUp"
+      @pointercancel="onPointerUp"
+      @wheel="onWheel"
     >
       <div
-        class="board-mark"
-        :style="place(CENTER_MARK.x, CENTER_MARK.y, 64)"
+        class="board-stage"
+        :style="stageStyle"
       >
-        <img
-          :src="center.avatar"
-          :alt="center.name"
-          width="64"
-          height="64"
+        <template
+          v-for="face in packed.faces"
+          :key="face.id"
         >
-        <span>{{ center.name }}</span>
+          <button
+            v-if="face.person"
+            type="button"
+            class="board-face"
+            :class="{ 'is-unfollowed': face.unfollowed }"
+            :style="place(face)"
+            :aria-label="`${face.name} @${face.handle}`"
+            @click="choose(face.person)"
+            @pointerenter="show(face)"
+            @pointerleave="hovered = null"
+            @focus="show(face)"
+            @blur="hovered = null"
+          >
+            <img
+              :src="face.avatar"
+              :alt="face.name"
+              width="64"
+              height="64"
+            >
+          </button>
+          <div
+            v-else
+            class="board-face is-host"
+            :style="place(face)"
+            @pointerenter="show(face)"
+            @pointerleave="hovered = null"
+          >
+            <img
+              :src="face.avatar"
+              :alt="face.name"
+              width="96"
+              height="96"
+            >
+          </div>
+        </template>
       </div>
-
-      <button
-        v-for="node in layout.nodes"
-        :key="node.person.userId"
-        type="button"
-        class="board-face"
-        :class="{ 'is-unfollowed': node.person.status === 'unfollowed' }"
-        :style="place(node.x, node.y, node.size)"
-        :aria-label="`${node.person.name} @${node.person.handle}`"
-        @click="choose(node.person)"
-        @pointerenter="hovered = node.person"
-        @pointerleave="hovered = null"
-        @focus="hovered = node.person"
-        @blur="hovered = null"
-      >
-        <img
-          :src="node.person.avatar"
-          :alt="node.person.name"
-          width="46"
-          height="46"
-        >
-      </button>
     </div>
-
     <p
-      v-if="hovered"
       class="board-label"
+      :class="{ 'is-shown': hovered }"
     >
-      <span>{{ hovered.name }}</span>
-      <span class="board-handle">@{{ hovered.handle }}</span>
+      <template v-if="hovered">
+        <span>{{ hovered.name }}</span>
+        <span class="board-handle">@{{ hovered.handle }}</span>
+      </template>
     </p>
   </div>
 </template>
 
 <style scoped>
+.sponsor {
+  width: min(100%, 760px);
+  margin: 0 auto;
+}
+
 .board {
   position: relative;
   width: 100%;
-  min-height: 420px;
+  aspect-ratio: 1;
   touch-action: none;
   cursor: grab;
-  overflow: hidden;
 }
 
 .board:active {
@@ -160,76 +220,59 @@ function choose(person: Person): void {
   transform-origin: center center;
 }
 
-.board-mark,
 .board-face {
   position: absolute;
   transform: translate(-50%, -50%);
   aspect-ratio: 1;
+  height: auto;
+  border: 0;
   border-radius: 50%;
   padding: 0;
   overflow: hidden;
-}
-
-.board-mark {
-  display: grid;
-  justify-items: center;
-  border: 0;
-  background: transparent;
-  overflow: visible;
-}
-
-.board-mark img,
-.board-face img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-  background: var(--bg);
-}
-
-.board-mark span {
-  margin-top: 0.35rem;
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  white-space: nowrap;
-}
-
-.board-face {
-  border: 1px solid var(--line);
   background: var(--bg);
   cursor: pointer;
 }
 
+.board-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+
 .board-face:hover,
 .board-face:focus-visible {
-  border-color: var(--fg);
-  outline: none;
-  z-index: 1;
+  z-index: 2;
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+.is-host {
+  cursor: default;
 }
 
 .board-face.is-unfollowed {
-  opacity: 0.4;
+  opacity: 0.42;
   filter: grayscale(1);
 }
 
 .board-label {
-  position: absolute;
-  left: 50%;
-  bottom: 12px;
-  transform: translateX(-50%);
-  margin: 0;
-  display: flex;
-  gap: 0.55em;
-  align-items: baseline;
+  min-height: 1.6em;
+  margin: 0.75rem 0 0;
+  text-align: center;
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  pointer-events: none;
+  font-size: 1.25rem;
+}
+
+.board-label:not(.is-shown) {
+  visibility: hidden;
 }
 
 .board-handle {
+  margin-left: 0.5em;
   color: var(--muted);
   font-family: var(--font-text);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
 }
 </style>

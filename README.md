@@ -1,6 +1,6 @@
 # circle
 
-一张纸上的朋友画板（paper-landing 模板）。头像一样大，按 `userId` 落在纸上，不按亲疏分圈。拖空白处移动纸面，滚轮缩放，点头像看纸条。光标不会把人推开。当前使用 **mock** 的 `data/people.json` 与 `public/avatars/`。
+一张纸上的朋友画板（paper-landing 模板），排成 GitHub Sponsors 那种圆打包。头像大小只为构图，不按互动或早晚分等级。点头像看纸条。当前使用 **mock** 的 `data/people.json` 与 `public/avatars/`。
 
 ## 本地运行
 
