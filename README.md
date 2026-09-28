@@ -1,6 +1,6 @@
 # circle
 
-一张纸上的朋友画板（paper-landing 模板）。头像按 `userId` 散列，大小相同，不画圈、不按互动或早晚分等级。当前使用 **mock** 的 `data/people.json` 与 `public/avatars/`。
+一张纸上的朋友画板（paper-landing 模板）。头像一样大，落在 three.js 力场里：彼此推开，鼠标经过会拨开周围的人，拖一个人其余的人会让开。位置不按互动或早晚分等级。当前使用 **mock** 的 `data/people.json` 与 `public/avatars/`。
 
 ## 本地运行
 

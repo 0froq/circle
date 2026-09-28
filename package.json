@@ -24,6 +24,7 @@
     "@nuxt/content": "catalog:prod",
     "@nuxtjs/i18n": "catalog:prod",
     "nuxt": "catalog:prod",
+    "three": "catalog:prod",
     "vue": "catalog:prod"
   },
   "devDependencies": {
