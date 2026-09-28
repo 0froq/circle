@@ -1,6 +1,25 @@
 {
+  "circle": {
+    "title": "朋友圈星图",
+    "lede": "mock 数据预览：同心圆头像围绕 froQ，点击看纸感卡片。",
+    "toolbarLabel": "星图筛选",
+    "showUnfollowed": "显示已取关",
+    "ringFilterLabel": "圈层",
+    "ringOnly": "只看第 {n} 圈",
+    "closeCard": "关闭",
+    "pinnedPosts": "精选帖子",
+    "postLink": "原帖链接",
+    "copyLead": "这些是一早就支持我、和我连接的人。",
+    "connectLabel": "来连接",
+    "wechatPlaceholder": "公众号（占位）",
+    "revenueSlot": "收益分享文案留位（占位）",
+    "a11yTitle": "按圈层浏览（读屏 / 索引）",
+    "ringSummary": "第 {n} 圈",
+    "ringEmpty": "这一圈暂无可见成员。",
+    "unfollowedTag": "已取关"
+  },
   "site": {
-    "title": "",
+    "title": "circle · froQ",
     "skip": "跳到正文",
     "footer": ""
   },

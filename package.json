@@ -13,6 +13,7 @@
     "lint": "eslint . --cache",
     "lint:fix": "eslint . --cache --fix",
     "typecheck": "nuxt typecheck",
+    "test": "node --experimental-strip-types --test shared/circle/**/*.test.ts",
     "postinstall": "nuxt prepare",
     "prepare": "npx simple-git-hooks"
   },

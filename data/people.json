@@ -1,0 +1,1450 @@
+{
+  "version": 1,
+  "center": {
+    "name": "froQ",
+    "handle": "0froq",
+    "avatar": "/avatars/froq.svg"
+  },
+  "people": [
+    {
+      "name": "纸鸢阿七",
+      "handle": "mock_kite_07",
+      "userId": "mock_001",
+      "avatar": "/avatars/mock_001.svg",
+      "status": "mutual",
+      "firstSeen": "2019-03-12",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_kite_07"
+        }
+      ],
+      "impression": "占位印象：和 纸鸢阿七 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2019-03-12",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_kite_07/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 142
+    },
+    {
+      "name": "墨线白川",
+      "handle": "mock_pen_bai",
+      "userId": "mock_002",
+      "avatar": "/avatars/mock_002.svg",
+      "status": "mutual",
+      "firstSeen": "2018-11-02",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": 1,
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_pen_bai"
+        }
+      ],
+      "impression": "占位印象：和 墨线白川 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2018-11-02",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_pen_bai/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 210
+    },
+    {
+      "name": "星图小鹿",
+      "handle": "mock_deer_map",
+      "userId": "mock_003",
+      "avatar": "/avatars/mock_003.svg",
+      "status": "mutual",
+      "firstSeen": "2020-01-18",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_deer_map"
+        }
+      ],
+      "impression": "占位印象：和 星图小鹿 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2020-01-18",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_deer_map/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 88
+    },
+    {
+      "name": "回声拾穗",
+      "handle": "mock_echo_harvest",
+      "userId": "mock_004",
+      "avatar": "/avatars/mock_004.svg",
+      "status": "followsMe",
+      "firstSeen": "2021-04-09",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_echo_harvest"
+        }
+      ],
+      "impression": "占位印象：和 回声拾穗 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2021-04-09",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_echo_harvest/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 34
+    },
+    {
+      "name": "半糖电台",
+      "handle": "mock_half_sugar",
+      "userId": "mock_005",
+      "avatar": "/avatars/mock_005.svg",
+      "status": "iFollow",
+      "firstSeen": "2022-07-21",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": 3,
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_half_sugar"
+        }
+      ],
+      "impression": "占位印象：和 半糖电台 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2022-07-21",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_half_sugar/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 19
+    },
+    {
+      "name": "夜航罐头",
+      "handle": "mock_night_can",
+      "userId": "mock_006",
+      "avatar": "/avatars/mock_006.svg",
+      "status": "mutual",
+      "firstSeen": "2019-09-30",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_night_can"
+        }
+      ],
+      "impression": "占位印象：和 夜航罐头 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2019-09-30",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_night_can/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 76
+    },
+    {
+      "name": "折纸彗星",
+      "handle": "mock_comet_fold",
+      "userId": "mock_007",
+      "avatar": "/avatars/mock_007.svg",
+      "status": "mutual",
+      "firstSeen": "2020-06-14",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": 2,
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_comet_fold"
+        }
+      ],
+      "impression": "占位印象：和 折纸彗星 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2020-06-14",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_comet_fold/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 55
+    },
+    {
+      "name": "雾都铅笔",
+      "handle": "mock_fog_pencil",
+      "userId": "mock_008",
+      "avatar": "/avatars/mock_008.svg",
+      "status": "mutual",
+      "firstSeen": "2023-02-02",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_fog_pencil"
+        }
+      ],
+      "impression": "占位印象：和 雾都铅笔 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2023-02-02",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_fog_pencil/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 12
+    },
+    {
+      "name": "青柠手账",
+      "handle": "mock_lime_journal",
+      "userId": "mock_009",
+      "avatar": "/avatars/mock_009.svg",
+      "status": "mutual",
+      "firstSeen": "2021-12-01",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_lime_journal"
+        }
+      ],
+      "impression": "占位印象：和 青柠手账 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2021-12-01",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_lime_journal/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 41
+    },
+    {
+      "name": "北风邮差",
+      "handle": "mock_north_post",
+      "userId": "mock_010",
+      "avatar": "/avatars/mock_010.svg",
+      "status": "unfollowed",
+      "firstSeen": "2018-05-20",
+      "unfollowedAt": "2025-11-03",
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_north_post"
+        }
+      ],
+      "impression": "占位印象：和 北风邮差 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2018-05-20",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_north_post/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 67
+    },
+    {
+      "name": "云朵焊工",
+      "handle": "mock_cloud_weld",
+      "userId": "mock_011",
+      "avatar": "/avatars/mock_011.svg",
+      "status": "mutual",
+      "firstSeen": "2022-03-08",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_cloud_weld"
+        }
+      ],
+      "impression": "占位印象：和 云朵焊工 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2022-03-08",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_cloud_weld/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 28
+    },
+    {
+      "name": "沙洲程序员",
+      "handle": "mock_sand_dev",
+      "userId": "mock_012",
+      "avatar": "/avatars/mock_012.svg",
+      "status": "mutual",
+      "firstSeen": "2020-10-10",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_sand_dev"
+        }
+      ],
+      "impression": "占位印象：和 沙洲程序员 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2020-10-10",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_sand_dev/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 93
+    },
+    {
+      "name": "柚子观测站",
+      "handle": "mock_yuzu_watch",
+      "userId": "mock_013",
+      "avatar": "/avatars/mock_013.svg",
+      "status": "followsMe",
+      "firstSeen": "2024-01-15",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_yuzu_watch"
+        }
+      ],
+      "impression": "占位印象：和 柚子观测站 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2024-01-15",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_yuzu_watch/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 8
+    },
+    {
+      "name": "苔原旅人",
+      "handle": "mock_moss_walker",
+      "userId": "mock_014",
+      "avatar": "/avatars/mock_014.svg",
+      "status": "mutual",
+      "firstSeen": "2019-07-07",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_moss_walker"
+        }
+      ],
+      "impression": "占位印象：和 苔原旅人 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2019-07-07",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_moss_walker/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 120
+    },
+    {
+      "name": "像素茶室",
+      "handle": "mock_pixel_tea",
+      "userId": "mock_015",
+      "avatar": "/avatars/mock_015.svg",
+      "status": "mutual",
+      "firstSeen": "2021-08-19",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": 2,
+      "platforms": [
+        {
+          "name": "小红书",
+          "url": "https://example.com/placeholder/xhs"
+        }
+      ],
+      "impression": "占位印象：和 像素茶室 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2021-08-19",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_pixel_tea/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 47
+    },
+    {
+      "name": "虚构档案员",
+      "handle": "mock_fake_arch",
+      "userId": "mock_016",
+      "avatar": "/avatars/mock_016.svg",
+      "status": "iFollow",
+      "firstSeen": "2023-06-06",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_fake_arch"
+        }
+      ],
+      "impression": "占位印象：和 虚构档案员 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2023-06-06",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_fake_arch/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 15
+    },
+    {
+      "name": "雨声编译器",
+      "handle": "mock_rain_build",
+      "userId": "mock_017",
+      "avatar": "/avatars/mock_017.svg",
+      "status": "mutual",
+      "firstSeen": "2018-12-24",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_rain_build"
+        }
+      ],
+      "impression": "占位印象：和 雨声编译器 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2018-12-24",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_rain_build/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 165
+    },
+    {
+      "name": "慢速火箭",
+      "handle": "mock_slow_rocket",
+      "userId": "mock_018",
+      "avatar": "/avatars/mock_018.svg",
+      "status": "mutual",
+      "firstSeen": "2022-11-11",
+      "unfollowedAt": null,
+      "hidden": true,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_slow_rocket"
+        }
+      ],
+      "impression": "占位印象：和 慢速火箭 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2022-11-11",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_slow_rocket/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 22
+    },
+    {
+      "name": "海盐相框",
+      "handle": "mock_salt_frame",
+      "userId": "mock_019",
+      "avatar": "/avatars/mock_019.svg",
+      "status": "mutual",
+      "firstSeen": "2020-04-04",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_salt_frame"
+        }
+      ],
+      "impression": "占位印象：和 海盐相框 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2020-04-04",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_salt_frame/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 61
+    },
+    {
+      "name": "路灯诗人",
+      "handle": "mock_lamp_poet",
+      "userId": "mock_020",
+      "avatar": "/avatars/mock_020.svg",
+      "status": "unfollowed",
+      "firstSeen": "2019-02-14",
+      "unfollowedAt": "2026-01-20",
+      "hidden": false,
+      "ring": 2,
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_lamp_poet"
+        }
+      ],
+      "impression": "占位印象：和 路灯诗人 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2019-02-14",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_lamp_poet/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 38
+    },
+    {
+      "name": "空白样本",
+      "handle": "mock_blank_sample",
+      "userId": "mock_021",
+      "avatar": "/avatars/mock_021.svg",
+      "status": "mutual",
+      "firstSeen": "2024-08-08",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_blank_sample"
+        }
+      ],
+      "impression": "占位印象：和 空白样本 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2024-08-08",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_blank_sample/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 5
+    },
+    {
+      "name": "胡桃夹子",
+      "handle": "mock_nutcracker",
+      "userId": "mock_022",
+      "avatar": "/avatars/mock_022.svg",
+      "status": "mutual",
+      "firstSeen": "2017-10-31",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_nutcracker"
+        }
+      ],
+      "impression": "占位印象：和 胡桃夹子 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2017-10-31",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_nutcracker/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 188
+    },
+    {
+      "name": "潜水番茄",
+      "handle": "mock_dive_tomato",
+      "userId": "mock_023",
+      "avatar": "/avatars/mock_023.svg",
+      "status": "mutual",
+      "firstSeen": "2021-01-01",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": 3,
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_dive_tomato"
+        }
+      ],
+      "impression": "占位印象：和 潜水番茄 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2021-01-01",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_dive_tomato/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 33
+    },
+    {
+      "name": "纸船调度",
+      "handle": "mock_boat_ops",
+      "userId": "mock_024",
+      "avatar": "/avatars/mock_024.svg",
+      "status": "followsMe",
+      "firstSeen": "2023-09-09",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_boat_ops"
+        }
+      ],
+      "impression": "占位印象：和 纸船调度 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2023-09-09",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_boat_ops/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 11
+    },
+    {
+      "name": "晨光补丁",
+      "handle": "mock_dawn_patch",
+      "userId": "mock_025",
+      "avatar": "/avatars/mock_025.svg",
+      "status": "mutual",
+      "firstSeen": "2020-02-29",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_dawn_patch"
+        }
+      ],
+      "impression": "占位印象：和 晨光补丁 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2020-02-29",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_dawn_patch/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 72
+    },
+    {
+      "name": "虚构邻居",
+      "handle": "mock_fake_neighbor",
+      "userId": "mock_026",
+      "avatar": "/avatars/mock_026.svg",
+      "status": "mutual",
+      "firstSeen": "2022-05-05",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_fake_neighbor"
+        }
+      ],
+      "impression": "占位印象：和 虚构邻居 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2022-05-05",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_fake_neighbor/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 26
+    },
+    {
+      "name": "风铃数据库",
+      "handle": "mock_chime_db",
+      "userId": "mock_027",
+      "avatar": "/avatars/mock_027.svg",
+      "status": "iFollow",
+      "firstSeen": "2024-03-03",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": 4,
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_chime_db"
+        }
+      ],
+      "impression": "占位印象：和 风铃数据库 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2024-03-03",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_chime_db/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 3
+    },
+    {
+      "name": "橡皮宇宙",
+      "handle": "mock_eraser_cosmo",
+      "userId": "mock_028",
+      "avatar": "/avatars/mock_028.svg",
+      "status": "mutual",
+      "firstSeen": "2018-08-08",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_eraser_cosmo"
+        }
+      ],
+      "impression": "占位印象：和 橡皮宇宙 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2018-08-08",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_eraser_cosmo/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 131
+    },
+    {
+      "name": "离线蝴蝶",
+      "handle": "mock_offline_moth",
+      "userId": "mock_029",
+      "avatar": "/avatars/mock_029.svg",
+      "status": "mutual",
+      "firstSeen": "2021-05-15",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_offline_moth"
+        }
+      ],
+      "impression": "占位印象：和 离线蝴蝶 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2021-05-15",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_offline_moth/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 44
+    },
+    {
+      "name": "测试旅客甲",
+      "handle": "mock_traveler_a",
+      "userId": "mock_030",
+      "avatar": "/avatars/mock_030.svg",
+      "status": "mutual",
+      "firstSeen": "2019-04-01",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_traveler_a"
+        }
+      ],
+      "impression": "占位印象：和 测试旅客甲 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2019-04-01",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_traveler_a/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 99
+    },
+    {
+      "name": "测试旅客乙",
+      "handle": "mock_traveler_b",
+      "userId": "mock_031",
+      "avatar": "/avatars/mock_031.svg",
+      "status": "mutual",
+      "firstSeen": "2020-12-12",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_traveler_b"
+        }
+      ],
+      "impression": "占位印象：和 测试旅客乙 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2020-12-12",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_traveler_b/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 58
+    },
+    {
+      "name": "测试旅客丙",
+      "handle": "mock_traveler_c",
+      "userId": "mock_032",
+      "avatar": "/avatars/mock_032.svg",
+      "status": "unfollowed",
+      "firstSeen": "2017-01-01",
+      "unfollowedAt": "2025-06-01",
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_traveler_c"
+        }
+      ],
+      "impression": "占位印象：和 测试旅客丙 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2017-01-01",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_traveler_c/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 24
+    },
+    {
+      "name": "测试旅客丁",
+      "handle": "mock_traveler_d",
+      "userId": "mock_033",
+      "avatar": "/avatars/mock_033.svg",
+      "status": "mutual",
+      "firstSeen": "2023-11-11",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_traveler_d"
+        }
+      ],
+      "impression": "占位印象：和 测试旅客丁 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2023-11-11",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_traveler_d/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 17
+    },
+    {
+      "name": "测试旅客戊",
+      "handle": "mock_traveler_e",
+      "userId": "mock_034",
+      "avatar": "/avatars/mock_034.svg",
+      "status": "followsMe",
+      "firstSeen": "2022-08-08",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_traveler_e"
+        }
+      ],
+      "impression": "占位印象：和 测试旅客戊 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2022-08-08",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_traveler_e/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 21
+    },
+    {
+      "name": "测试旅客己",
+      "handle": "mock_traveler_f",
+      "userId": "mock_035",
+      "avatar": "/avatars/mock_035.svg",
+      "status": "mutual",
+      "firstSeen": "2016-06-06",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": 1,
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_traveler_f"
+        }
+      ],
+      "impression": "占位印象：和 测试旅客己 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2016-06-06",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_traveler_f/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 201
+    },
+    {
+      "name": "测试旅客庚",
+      "handle": "mock_traveler_g",
+      "userId": "mock_036",
+      "avatar": "/avatars/mock_036.svg",
+      "status": "mutual",
+      "firstSeen": "2024-02-02",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_traveler_g"
+        }
+      ],
+      "impression": "占位印象：和 测试旅客庚 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2024-02-02",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_traveler_g/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 9
+    },
+    {
+      "name": "测试旅客辛",
+      "handle": "mock_traveler_h",
+      "userId": "mock_037",
+      "avatar": "/avatars/mock_037.svg",
+      "status": "iFollow",
+      "firstSeen": "2021-10-10",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_traveler_h"
+        }
+      ],
+      "impression": "占位印象：和 测试旅客辛 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2021-10-10",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_traveler_h/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 27
+    },
+    {
+      "name": "测试旅客壬",
+      "handle": "mock_traveler_i",
+      "userId": "mock_038",
+      "avatar": "/avatars/mock_038.svg",
+      "status": "mutual",
+      "firstSeen": "2018-03-03",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_traveler_i"
+        }
+      ],
+      "impression": "占位印象：和 测试旅客壬 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2018-03-03",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_traveler_i/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 112
+    },
+    {
+      "name": "测试旅客癸",
+      "handle": "mock_traveler_j",
+      "userId": "mock_039",
+      "avatar": "/avatars/mock_039.svg",
+      "status": "mutual",
+      "firstSeen": "2020-07-07",
+      "unfollowedAt": null,
+      "hidden": false,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_traveler_j"
+        }
+      ],
+      "impression": "占位印象：和 测试旅客癸 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2020-07-07",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_traveler_j/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 63
+    },
+    {
+      "name": "占位隐藏人",
+      "handle": "mock_hidden_only",
+      "userId": "mock_040",
+      "avatar": "/avatars/mock_040.svg",
+      "status": "mutual",
+      "firstSeen": "2015-01-01",
+      "unfollowedAt": null,
+      "hidden": true,
+      "ring": "auto",
+      "platforms": [
+        {
+          "name": "X",
+          "url": "https://x.com/mock_hidden_only"
+        }
+      ],
+      "impression": "占位印象：和 占位隐藏人 在 mock 数据里击掌。",
+      "timeline": [
+        {
+          "date": "2015-01-01",
+          "text": "第一次在快照里出现（假）"
+        },
+        {
+          "date": "2025-01-01",
+          "text": "线下面基（虚构）"
+        }
+      ],
+      "pinnedPosts": [
+        {
+          "url": "https://x.com/mock_hidden_only/status/000000000000000000",
+          "text": "占位帖：一句假引用，不嵌 X 脚本。",
+          "date": "2025-06-01"
+        }
+      ],
+      "interactions": 300
+    }
+  ]
+}
