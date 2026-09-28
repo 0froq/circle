@@ -51,7 +51,7 @@
       "firstSeen": "2018-11-02",
       "unfollowedAt": null,
       "hidden": false,
-      "ring": 1,
+      "ring": "auto",
       "platforms": [
         {
           "name": "X",
@@ -159,7 +159,7 @@
       "firstSeen": "2022-07-21",
       "unfollowedAt": null,
       "hidden": false,
-      "ring": 3,
+      "ring": "auto",
       "platforms": [
         {
           "name": "X",
@@ -231,7 +231,7 @@
       "firstSeen": "2020-06-14",
       "unfollowedAt": null,
       "hidden": false,
-      "ring": 2,
+      "ring": "auto",
       "platforms": [
         {
           "name": "X",
@@ -519,7 +519,7 @@
       "firstSeen": "2021-08-19",
       "unfollowedAt": null,
       "hidden": false,
-      "ring": 2,
+      "ring": "auto",
       "platforms": [
         {
           "name": "小红书",
@@ -699,7 +699,7 @@
       "firstSeen": "2019-02-14",
       "unfollowedAt": "2026-01-20",
       "hidden": false,
-      "ring": 2,
+      "ring": "auto",
       "platforms": [
         {
           "name": "X",
@@ -807,7 +807,7 @@
       "firstSeen": "2021-01-01",
       "unfollowedAt": null,
       "hidden": false,
-      "ring": 3,
+      "ring": "auto",
       "platforms": [
         {
           "name": "X",
@@ -951,7 +951,7 @@
       "firstSeen": "2024-03-03",
       "unfollowedAt": null,
       "hidden": false,
-      "ring": 4,
+      "ring": "auto",
       "platforms": [
         {
           "name": "X",
@@ -1239,7 +1239,7 @@
       "firstSeen": "2016-06-06",
       "unfollowedAt": null,
       "hidden": false,
-      "ring": 1,
+      "ring": "auto",
       "platforms": [
         {
           "name": "X",

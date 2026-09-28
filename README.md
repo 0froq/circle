@@ -1,8 +1,6 @@
-# circle · 朋友圈星图
+# circle
 
-froQ 的朋友圈同心圆星图站点（paper-landing 模板 + 纸感 kit）。当前使用 **mock** 的 `data/people.json` 与 `public/avatars/` 占位头像，不接 Notion / X。
-
-参考视觉：[cut-noodle.com/x-circle](https://cut-noodle.com/x-circle)
+一张纸上的朋友画板（paper-landing 模板）。头像按 `userId` 散列，大小相同，不画圈、不按互动或早晚分等级。当前使用 **mock** 的 `data/people.json` 与 `public/avatars/`。
 
 ## 本地运行
 
@@ -10,7 +8,7 @@ froQ 的朋友圈同心圆星图站点（paper-landing 模板 + 纸感 kit）。
 pnpm install
 pnpm dev        # http://localhost:3000
 pnpm generate   # 静态导出到 .output/public
-pnpm test       # 圈层算法单测
+pnpm test       # 摆放：位置与分数无关
 pnpm lint
 pnpm typecheck
 ```
@@ -22,8 +20,8 @@ pnpm typecheck
 | `data/people.json` | 成员数据（构建时读取） |
 | `data/README.md` | JSON 字段说明 |
 | `public/avatars/` | 头像文件 |
-| `shared/circle/` | 圈层算法、布局、类型 |
-| `app/components/circle/` | 星图、卡片、无障碍列表 |
+| `shared/circle/` | 类型与画板摆放 |
+| `app/components/circle/` | 画板、纸条、名单 |
 | `app/pages/index.vue` | 首页（英文默认路由 `/`） |
 | `app/pages/zh/index.vue` | 中文路由 `/zh` |
 

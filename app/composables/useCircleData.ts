@@ -1,19 +1,16 @@
-import type { PeopleFile, PlacedPerson } from '#shared/circle/types'
-import { filterForDisplay, groupByLayoutRing, placePeople } from '#shared/circle/ring-placement'
+import type { PeopleFile, Person } from '#shared/circle/types'
+import { visiblePeople } from '#shared/circle/layout'
 import peopleJson from '../../data/people.json'
 
 export function useCircleData() {
   const data = peopleJson as PeopleFile
-  const allPlaced = computed(() => placePeople(data.people))
+  const people = computed(() => visiblePeople(data.people))
 
   return {
     center: data.center,
-    allPlaced,
-    filterPlaced: (showUnfollowed: boolean, ringOnly: number | null) =>
-      filterForDisplay(allPlaced.value, {
-        showUnfollowed,
-        ringOnly: ringOnly as PlacedPerson['layoutRing'] | null,
-      }),
-    groupByRing: (placed: PlacedPerson[]) => groupByLayoutRing(placed),
+    people,
+    listed: computed(() => [...people.value].sort((a, b) => a.handle.localeCompare(b.handle))),
   }
 }
+
+export type { Person }

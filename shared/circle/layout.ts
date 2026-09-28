@@ -1,39 +1,21 @@
-import type { DisplayRing, PlacedPerson } from './types.ts'
+import type { Person } from './types.ts'
 
-export interface MapNode {
-  person: PlacedPerson
+export interface BoardNode {
+  person: Person
   x: number
   y: number
   size: number
-  angleRad: number
 }
 
-export interface RingGuide {
-  ring: DisplayRing
-  radius: number
-}
-
-export interface StarMapLayout {
-  nodes: MapNode[]
-  rings: RingGuide[]
+export interface BoardLayout {
+  nodes: BoardNode[]
   viewBox: { minX: number, minY: number, width: number, height: number }
 }
 
-const RING_RADIUS: Record<DisplayRing, number> = {
-  1: 118,
-  2: 198,
-  3: 278,
-  4: 358,
-}
+/** Same face size for everyone. Position never encodes worth. */
+export const AVATAR_SIZE = 46
 
-const RING_SIZE: Record<DisplayRing, number> = {
-  1: 56,
-  2: 46,
-  3: 38,
-  4: 32,
-}
-
-function hashString(input: string): number {
+export function hashString(input: string): number {
   let h = 2166136261
   for (let i = 0; i < input.length; i++) {
     h ^= input.charCodeAt(i)
@@ -42,53 +24,49 @@ function hashString(input: string): number {
   return h >>> 0
 }
 
-function jitterAngle(userId: string, index: number): number {
-  const h = hashString(`${userId}:${index}`)
-  return ((h % 1000) / 1000 - 0.5) * 0.14
+export function visiblePeople(people: Person[]): Person[] {
+  return people.filter(p => !p.hidden)
 }
 
-/** Deterministic polar layout: same data ⇒ same positions. */
-export function layoutStarMap(people: PlacedPerson[]): StarMapLayout {
-  const byRing = new Map<DisplayRing, PlacedPerson[]>()
-  for (const ring of [1, 2, 3, 4] as const)
-    byRing.set(ring, [])
-  for (const person of people)
-    byRing.get(person.layoutRing)!.push(person)
+const SHEET_W = 980
+const SHEET_H = 640
+/** froQ sits on the sheet, not at the hub of a set of orbits. */
+export const CENTER_MARK = { x: -70, y: -36 }
 
-  for (const list of byRing.values())
-    list.sort((a, b) => a.userId.localeCompare(b.userId))
+/**
+ * Drop faces on a rectangle of paper. Coordinates come only from `userId`
+ * (no angle, no radius), so nothing reads as a nearer or farther ring.
+ */
+export function layoutBoard(people: Person[]): BoardLayout {
+  const visible = [...people].sort((a, b) => a.userId.localeCompare(b.userId))
+  const nodes: BoardNode[] = []
+  const minGap = AVATAR_SIZE + 18
 
-  const nodes: MapNode[] = []
-  const rings: RingGuide[] = []
-
-  for (const ring of [1, 2, 3, 4] as const) {
-    const group = byRing.get(ring)!
-    if (group.length === 0)
-      continue
-    rings.push({ ring, radius: RING_RADIUS[ring] })
-    const n = group.length
-    group.forEach((person, index) => {
-      const base = (index / n) * Math.PI * 2 - Math.PI / 2
-      const angleRad = base + jitterAngle(person.userId, index)
-      const radius = RING_RADIUS[ring]
-      nodes.push({
-        person,
-        x: Math.cos(angleRad) * radius,
-        y: Math.sin(angleRad) * radius,
-        size: RING_SIZE[ring],
-        angleRad,
-      })
-    })
+  for (const person of visible) {
+    let x = 0
+    let y = 0
+    for (let attempt = 0; attempt < 200; attempt++) {
+      const h = hashString(`${person.userId}:${attempt}`)
+      const nextX = ((h % 100000) / 100000 - 0.5) * SHEET_W
+      const nextY = (((h >>> 16) % 100000) / 100000 - 0.5) * SHEET_H
+      const clearMark = Math.hypot(nextX - CENTER_MARK.x, nextY - CENTER_MARK.y) >= 78
+      const clearOthers = nodes.every(node => Math.hypot(node.x - nextX, node.y - nextY) >= minGap)
+      x = nextX
+      y = nextY
+      if (clearMark && clearOthers)
+        break
+    }
+    nodes.push({ person, x, y, size: AVATAR_SIZE })
   }
 
-  const pad = 72
-  const maxR = Math.max(...rings.map(r => r.radius), 0) + 48
-  const viewBox = {
-    minX: -maxR - pad,
-    minY: -maxR - pad,
-    width: (maxR + pad) * 2,
-    height: (maxR + pad) * 2,
+  const pad = 48
+  return {
+    nodes,
+    viewBox: {
+      minX: -SHEET_W / 2 - pad,
+      minY: -SHEET_H / 2 - pad,
+      width: SHEET_W + pad * 2,
+      height: SHEET_H + pad * 2,
+    },
   }
-
-  return { nodes, rings, viewBox }
 }

@@ -28,21 +28,13 @@ export interface Person {
   firstSeen: string
   unfollowedAt?: string | null
   hidden: boolean
+  /** Stored for the data pipeline. The board does not read this. */
   ring: RingInput
   platforms: PlatformLink[]
   impression: string
   timeline: TimelineEntry[]
   pinnedPosts: PinnedPost[]
   interactions: number
-}
-
-export type DisplayRing = 1 | 2 | 3 | 4
-
-export interface PlacedPerson extends Person {
-  /** Ring after auto scoring and manual overrides (before unfollowed display tweak). */
-  resolvedRing: DisplayRing
-  /** Ring used for layout and filters (may force ring 4 for unfollowed). */
-  layoutRing: DisplayRing
 }
 
 export interface PeopleFile {

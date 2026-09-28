@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { PlacedPerson } from '#shared/circle/types'
+import type { Person } from '#shared/circle/types'
 
 const props = defineProps<{
   open: boolean
-  person: PlacedPerson | null
+  person: Person | null
 }>()
 
 const emit = defineEmits<{

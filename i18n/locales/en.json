@@ -1,11 +1,6 @@
 {
   "circle": {
-    "title": "Friends star map",
-    "lede": "Mock preview: concentric avatars around froQ; tap for a paper card.",
-    "toolbarLabel": "Map filters",
-    "showUnfollowed": "Show unfollowed",
-    "ringFilterLabel": "Rings",
-    "ringOnly": "Ring {n} only",
+    "title": "circle",
     "closeCard": "Close",
     "pinnedPosts": "Pinned posts",
     "postLink": "Original post",
@@ -13,9 +8,7 @@
     "connectLabel": "来连接",
     "wechatPlaceholder": "WeChat official account (placeholder)",
     "revenueSlot": "Revenue-sharing copy slot (placeholder)",
-    "a11yTitle": "Browse by ring (screen readers / SEO)",
-    "ringSummary": "Ring {n}",
-    "ringEmpty": "No visible members in this ring.",
+    "a11yTitle": "Names",
     "unfollowedTag": "unfollowed"
   },
   "site": {

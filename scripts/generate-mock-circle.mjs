@@ -89,7 +89,7 @@ const people = seeds.map((seed, index) => {
     firstSeen: seed.firstSeen,
     unfollowedAt: seed.unfollowedAt ?? null,
     hidden: seed.hidden,
-    ring: seed.ring,
+    ring: 'auto',
     platforms: seed.handle.includes('tea')
       ? [{ name: '小红书', url: 'https://example.com/placeholder/xhs' }]
       : [{ name: 'X', url: `https://x.com/${seed.handle}` }],
