@@ -31,29 +31,33 @@ useSeoMeta({ description: () => t('circle.copyLead') })
 
 <template>
   <Sheet :line="false">
-    <div class="board-page">
-      <CircleBoard
-        :people="people"
-        @select="openPerson"
-      />
+    <section class="l-section circle-sheet">
+      <p class="l-label">
+        {{ t('circle.title') }}
+      </p>
+      <div class="l-body">
+        <CircleBoard
+          :people="people"
+          @select="openPerson"
+        />
 
-      <CircleCopySlots />
+        <CircleCopySlots />
 
-      <CircleAccessibleList :people="listed" />
+        <CircleAccessibleList :people="listed" />
+      </div>
+    </section>
 
-      <CirclePersonCard
-        :open="cardOpen"
-        :person="selected"
-        @close="closeCard"
-      />
-    </div>
+    <CirclePersonCard
+      :open="cardOpen"
+      :person="selected"
+      @close="closeCard"
+    />
   </Sheet>
 </template>
 
 <style scoped>
-.board-page {
-  padding: clamp(12px, 3vw, 36px) var(--pad) calc(var(--pad) + 32px);
-  max-width: 1100px;
-  margin: 0 auto;
+.circle-sheet {
+  padding-top: 96px;
+  padding-bottom: calc(var(--pad) + 32px);
 }
 </style>

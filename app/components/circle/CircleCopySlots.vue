@@ -66,9 +66,6 @@ const { t } = useI18n()
 
 .circle-copy-placeholder {
   color: var(--muted);
-  border: 1px dashed var(--line);
-  padding: 2px 8px;
-  border-radius: 4px;
   font-size: 0.88rem;
 }
 
@@ -76,8 +73,7 @@ const { t } = useI18n()
   margin: 0;
   color: var(--muted);
   font-size: 0.88rem;
-  border: 1px dashed var(--faint);
-  padding: 12px 14px;
-  border-radius: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
 }
 </style>

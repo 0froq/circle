@@ -153,7 +153,7 @@ function onKey(event: KeyboardEvent): void {
   position: absolute;
   inset: 0;
   border: 0;
-  background: rgba(0, 0, 0, 0.28);
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
   cursor: pointer;
 }
 
@@ -165,7 +165,6 @@ function onKey(event: KeyboardEvent): void {
   background: var(--bg);
   border-left: 1px solid var(--line);
   padding: clamp(20px, 4vw, 32px);
-  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.08);
   outline: none;
 }
 
@@ -316,8 +315,6 @@ function onKey(event: KeyboardEvent): void {
     max-height: min(78vh, 520px);
     border-left: 0;
     border-top: 1px solid var(--line);
-    border-radius: 16px 16px 0 0;
-    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.12);
   }
 
   .card-enter-from .circle-card,
