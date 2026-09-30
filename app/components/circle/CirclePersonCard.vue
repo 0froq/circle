@@ -151,6 +151,7 @@ onBeforeUnmount(() => {
           <p
             v-if="tab === 'mine'"
             class="circle-card-impression"
+            :class="{ 'is-waiting': !written }"
             data-anchor="tagline"
           >
             {{ mineText }}
@@ -316,6 +317,10 @@ onBeforeUnmount(() => {
   line-height: 1.45;
   margin: 0 0 1.5rem;
   padding-left: 0.25rem;
+}
+
+.circle-card-impression.is-waiting {
+  color: var(--muted);
 }
 
 .circle-card-timeline {

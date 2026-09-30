@@ -1,20 +1,28 @@
 <script setup lang="ts">
 const { product } = useAppConfig()
 const { t, locale, locales } = useI18n()
+const copy = useCopy()
 const link = useKitLink()
 const switchLocalePath = useSwitchLocalePath()
 const { theme, ready, toggle } = useTheme()
 const others = computed(() => locales.value.filter(l => l.code !== locale.value))
 const next = computed(() => theme.value === 'dark' ? 'light' : 'dark')
+const footer = computed(() => copy('site.footer'))
 </script>
 
 <template>
-  <footer class="l-foot">
-    <span><Copy
+  <footer
+    class="l-foot"
+    :class="{ 'is-bare': !footer }"
+  >
+    <span v-if="footer"><Copy
       k="site.footer"
       :size="24"
     /></span>
-    <nav class="l-nav">
+    <nav
+      v-if="product.nav.length"
+      class="l-nav"
+    >
       <NuxtLink
         v-for="item in product.nav"
         :key="item.to"
@@ -39,3 +47,13 @@ const next = computed(() => theme.value === 'dark' ? 'light' : 'dark')
     </span>
   </footer>
 </template>
+
+<style scoped>
+.l-foot.is-bare {
+  grid-template-columns: 1fr;
+}
+
+.l-foot.is-bare .l-controls {
+  grid-column: 1;
+}
+</style>
