@@ -14,15 +14,29 @@ const { t } = useI18n()
 
 const panel = ref<HTMLElement>()
 
-watch(() => props.open, (isOpen) => {
-  if (isOpen)
-    nextTick(() => panel.value?.focus())
-})
-
 function onKey(event: KeyboardEvent): void {
   if (event.key === 'Escape')
     emit('close')
 }
+
+function onWheel(event: WheelEvent): void {
+  if (event.deltaX === 0 && event.deltaY === 0)
+    return
+  emit('close')
+}
+
+watch(() => props.open, (isOpen) => {
+  if (isOpen) {
+    nextTick(() => panel.value?.focus())
+    window.addEventListener('wheel', onWheel, { passive: true })
+    return
+  }
+  window.removeEventListener('wheel', onWheel)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('wheel', onWheel)
+})
 </script>
 
 <template>
