@@ -134,7 +134,7 @@ onBeforeUnmount(() => {
               :aria-selected="tab === 'mine'"
               @click="chooseTab('mine')"
             >
-              {{ t('circle.tabMine', { name: person.name }) }}
+              {{ t('circle.tabMine') }}
             </button>
             <button
               type="button"
@@ -144,7 +144,7 @@ onBeforeUnmount(() => {
               :disabled="!theirsText"
               @click="chooseTab('theirs')"
             >
-              {{ t('circle.tabTheirs', { name: person.name }) }}
+              {{ t('circle.tabTheirs') }}
             </button>
           </div>
 
