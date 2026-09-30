@@ -64,6 +64,15 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    preset: 'cloudflare_pages',
+    cloudflare: {
+      pages: {
+        routes: {
+          // One rule for the whole folder. Listing each file hits Pages' 100-route cap.
+          exclude: ['/avatars/*'],
+        },
+      },
+    },
     prerender: {
       crawlLinks: true,
       routes: ['/', '/zh'],
