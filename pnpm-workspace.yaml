@@ -9,6 +9,7 @@ onlyBuiltDependencies:
   - esbuild
   - simple-git-hooks
   - unrs-resolver
+  - workerd
 
 catalog: {}
 
@@ -22,6 +23,7 @@ catalogs:
     simple-git-hooks: ^2.14.0
     typescript: ~5.9.3
     vue-tsc: ^3.3.11
+    wrangler: ^4.123.0
   prod:
     '@fontsource-variable/geist': ^5.3.0
     '@fontsource-variable/geist-mono': ^5.3.0
