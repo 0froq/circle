@@ -35,7 +35,7 @@ useSeoMeta({ description: () => t('circle.copyLead') })
       <p class="l-label">
         {{ t('circle.title') }}
       </p>
-      <div class="l-body">
+      <div class="circle-main">
         <CircleBoard
           :people="people"
           @select="openPerson"
@@ -59,5 +59,11 @@ useSeoMeta({ description: () => t('circle.copyLead') })
 .circle-sheet {
   padding-top: 96px;
   padding-bottom: calc(var(--pad) + 32px);
+}
+
+.circle-main {
+  grid-column: 1 / -1;
+  width: min(100%, 760px);
+  justify-self: center;
 }
 </style>
