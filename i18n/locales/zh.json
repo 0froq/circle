@@ -1,6 +1,19 @@
 {
+  "circle": {
+    "title": "circle",
+    "closeCard": "关闭",
+    "pinnedPosts": "精选帖子",
+    "postLink": "原帖链接",
+    "copyLead": "我会逐渐给这里的每一个人写下句子。",
+    "discussInvite": "想写一句给我，就到这个仓库的 {link}。我会把这些句子放上来。",
+    "discussions": "Discussion",
+    "tabMine": "我想说的",
+    "tabTheirs": "TA 想说的",
+    "a11yTitle": "名单",
+    "unfollowedTag": "已取关"
+  },
   "site": {
-    "title": "",
+    "title": "circle · froQ",
     "skip": "跳到正文",
     "footer": ""
   },
