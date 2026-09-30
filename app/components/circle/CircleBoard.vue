@@ -46,7 +46,7 @@ const packed = computed(() => {
   return { bounds, faces }
 })
 
-const HOVER_MIN = 120
+const HOVER_MIN = 96
 
 const board = ref<HTMLElement>()
 const stage = ref<HTMLElement>()

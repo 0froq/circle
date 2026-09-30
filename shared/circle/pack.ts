@@ -10,7 +10,7 @@ export interface PackedDisc extends PackDisc {
 
 const GAP = 1.25
 
-const MIN_RADIUS = 14
+const MIN_RADIUS = 24
 const MAX_RADIUS = 62
 
 /**
