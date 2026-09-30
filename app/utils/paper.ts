@@ -19,22 +19,5 @@ export function paperTile(dark: boolean): HTMLCanvasElement {
     pixels[i + 3] = speck ? (dark ? 8 : 22) : 0
   }
   grain.putImageData(image, 0, 0)
-
-  grain.lineWidth = 0.6
-  grain.strokeStyle = dark ? 'rgba(242, 240, 234, 0.022)' : 'rgba(90, 70, 40, 0.07)'
-  for (let i = 0; i < 18; i += 1) {
-    const y = Math.random() * tile
-    grain.beginPath()
-    grain.moveTo(0, y)
-    grain.bezierCurveTo(
-      tile * 0.3,
-      y + (Math.random() - 0.5) * 6,
-      tile * 0.7,
-      y + (Math.random() - 0.5) * 6,
-      tile,
-      y + (Math.random() - 0.5) * 3,
-    )
-    grain.stroke()
-  }
   return spec
 }

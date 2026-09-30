@@ -48,11 +48,10 @@ const packed = computed(() => {
 
 const panX = ref(0)
 const panY = ref(0)
-const scale = ref(1)
 const hovered = ref<{ name: string, handle: string } | null>(null)
 
 const stageStyle = computed(() => ({
-  transform: `translate(${panX.value}px, ${panY.value}px) scale(${scale.value})`,
+  transform: `translate(${panX.value}px, ${panY.value}px)`,
 }))
 
 let dragging = false
@@ -99,12 +98,6 @@ function onPointerUp(): void {
   dragging = false
 }
 
-function onWheel(event: WheelEvent): void {
-  event.preventDefault()
-  const next = scale.value * (event.deltaY > 0 ? 0.94 : 1.06)
-  scale.value = Math.min(2.4, Math.max(0.7, next))
-}
-
 function choose(person: Person): void {
   if (moved)
     return
@@ -124,7 +117,6 @@ function show(face: Face): void {
       @pointermove="onPointerMove"
       @pointerup="onPointerUp"
       @pointercancel="onPointerUp"
-      @wheel="onWheel"
     >
       <div
         class="board-stage"
