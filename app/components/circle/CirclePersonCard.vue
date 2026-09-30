@@ -87,19 +87,6 @@ onBeforeUnmount(() => {
           :aria-label="person.name"
           tabindex="-1"
         >
-          <header class="circle-card-head">
-            <p class="circle-card-kicker">
-              {{ t('notes.label') }}
-            </p>
-            <button
-              type="button"
-              class="circle-card-close"
-              @click="emit('close')"
-            >
-              {{ t('circle.closeCard') }}
-            </button>
-          </header>
-
           <div class="circle-card-person">
             <img
               class="circle-card-avatar"
@@ -252,25 +239,6 @@ onBeforeUnmount(() => {
   outline: none;
 }
 
-.circle-card-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 28px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--line);
-}
-
-.circle-card-kicker {
-  margin: 0;
-  font-family: var(--font-meta);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
 .circle-card-person {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -310,15 +278,6 @@ onBeforeUnmount(() => {
 .circle-card-platforms a {
   text-decoration: underline;
   text-underline-offset: 2px;
-}
-
-.circle-card-close {
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  font: inherit;
-  font-size: 0.85rem;
 }
 
 .circle-card-tabs {
