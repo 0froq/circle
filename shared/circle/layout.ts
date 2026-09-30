@@ -24,8 +24,9 @@ export function hashString(input: string): number {
   return h >>> 0
 }
 
+/** The board is mutuals only. Hidden rows stay out. */
 export function visiblePeople(people: Person[]): Person[] {
-  return people.filter(p => !p.hidden)
+  return people.filter(p => !p.hidden && p.status === 'mutual')
 }
 
 const SHEET_W = 980

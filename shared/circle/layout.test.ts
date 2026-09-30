@@ -33,12 +33,13 @@ describe('board layout', () => {
     assert.equal(layoutBoard(visiblePeople(people)).nodes.length, 1)
   })
 
-  it('keeps unfollowed on the same sheet', () => {
-    const board = layoutBoard(visiblePeople([
+  it('drops anyone who is not a mutual', () => {
+    const people = visiblePeople([
       person({ userId: 'a', handle: 'a' }),
       person({ userId: 'u', handle: 'u', status: 'unfollowed' }),
-    ]))
-    assert.equal(board.nodes.length, 2)
+      person({ userId: 'f', handle: 'f', status: 'followsMe' }),
+    ])
+    assert.deepEqual(people.map(person => person.userId), ['a'])
   })
 
   it('does not move a person when score-like fields change', () => {
