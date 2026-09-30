@@ -170,7 +170,8 @@ function onKey(event: KeyboardEvent): void {
 
 .circle-card {
   position: relative;
-  width: min(440px, 100%);
+  width: min(420px, 100%);
+  min-height: min(360px, 70vh);
   max-height: min(78vh, 640px);
   overflow: auto;
   background: var(--bg);
