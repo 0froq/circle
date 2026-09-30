@@ -48,6 +48,19 @@ function onKey(event: KeyboardEvent): void {
           tabindex="-1"
         >
           <header class="circle-card-head">
+            <p class="circle-card-kicker">
+              {{ t('notes.label') }}
+            </p>
+            <button
+              type="button"
+              class="circle-card-close"
+              @click="emit('close')"
+            >
+              {{ t('circle.closeCard') }}
+            </button>
+          </header>
+
+          <div class="circle-card-person">
             <img
               class="circle-card-avatar"
               :src="person.avatar"
@@ -61,6 +74,9 @@ function onKey(event: KeyboardEvent): void {
               </h2>
               <p class="circle-card-handle">
                 @{{ person.handle }}
+                <template v-if="person.status === 'unfollowed'">
+                  · {{ t('circle.unfollowedTag') }}
+                </template>
               </p>
               <ul
                 v-if="person.platforms.length"
@@ -78,16 +94,10 @@ function onKey(event: KeyboardEvent): void {
                 </li>
               </ul>
             </div>
-            <button
-              type="button"
-              class="circle-card-close"
-              @click="emit('close')"
-            >
-              {{ t('circle.closeCard') }}
-            </button>
-          </header>
+          </div>
 
           <p
+            v-if="person.impression"
             class="circle-card-impression"
             data-anchor="tagline"
           >
@@ -145,34 +155,54 @@ function onKey(event: KeyboardEvent): void {
   position: fixed;
   inset: 0;
   z-index: 40;
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  place-items: center;
+  padding: clamp(20px, 4vw, 56px);
 }
 
 .circle-card-backdrop {
   position: absolute;
   inset: 0;
   border: 0;
-  background: color-mix(in srgb, var(--fg) 8%, transparent);
+  background: color-mix(in srgb, var(--fg) 18%, transparent);
   cursor: pointer;
 }
 
 .circle-card {
   position: relative;
-  width: min(420px, 100vw);
-  max-height: 100vh;
+  width: min(440px, 100%);
+  max-height: min(78vh, 640px);
   overflow: auto;
   background: var(--bg);
-  border-left: 1px solid var(--line);
-  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid var(--line);
+  padding: clamp(28px, 4vw, 40px);
   outline: none;
 }
 
 .circle-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.circle-card-kicker {
+  margin: 0;
+  font-family: var(--font-meta);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.circle-card-person {
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 14px;
-  align-items: start;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
   margin-bottom: 1.25rem;
 }
 
@@ -302,24 +332,6 @@ function onKey(event: KeyboardEvent): void {
 
 .card-enter-from .circle-card,
 .card-leave-to .circle-card {
-  transform: translateX(100%);
-}
-
-@media (max-width: 640px) {
-  .circle-card-root {
-    align-items: flex-end;
-  }
-
-  .circle-card {
-    width: 100%;
-    max-height: min(78vh, 520px);
-    border-left: 0;
-    border-top: 1px solid var(--line);
-  }
-
-  .card-enter-from .circle-card,
-  .card-leave-to .circle-card {
-    transform: translateY(100%);
-  }
+  transform: translateY(10px);
 }
 </style>

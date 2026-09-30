@@ -46,18 +46,33 @@ const packed = computed(() => {
   return { bounds, faces }
 })
 
-const panX = ref(0)
-const panY = ref(0)
+const stage = ref<HTMLElement>()
+const facesReady = ref(false)
 const hovered = ref<{ name: string, handle: string } | null>(null)
 
-const stageStyle = computed(() => ({
-  transform: `translate(${panX.value}px, ${panY.value}px)`,
-}))
-
-let dragging = false
-let moved = false
-let lastX = 0
-let lastY = 0
+onMounted(() => {
+  const root = stage.value
+  const images = root ? [...root.querySelectorAll('img')] : []
+  if (images.length === 0) {
+    facesReady.value = true
+    return
+  }
+  let pending = images.length
+  const done = (): void => {
+    pending -= 1
+    if (pending <= 0)
+      facesReady.value = true
+  }
+  for (const img of images) {
+    if (img.complete) {
+      done()
+    }
+    else {
+      img.addEventListener('load', done, { once: true })
+      img.addEventListener('error', done, { once: true })
+    }
+  }
+})
 
 function place(face: Face): { left: string, top: string, width: string } {
   const box = packed.value.bounds
@@ -68,39 +83,7 @@ function place(face: Face): { left: string, top: string, width: string } {
   }
 }
 
-function onPointerDown(event: PointerEvent): void {
-  if (event.button !== 0)
-    return
-  moved = false
-  const target = event.target as HTMLElement
-  if (target.closest('button'))
-    return
-  dragging = true
-  lastX = event.clientX
-  lastY = event.clientY
-  ;(event.currentTarget as HTMLElement).setPointerCapture(event.pointerId)
-}
-
-function onPointerMove(event: PointerEvent): void {
-  if (!dragging)
-    return
-  const dx = event.clientX - lastX
-  const dy = event.clientY - lastY
-  if (Math.hypot(dx, dy) > 3)
-    moved = true
-  lastX = event.clientX
-  lastY = event.clientY
-  panX.value += dx
-  panY.value += dy
-}
-
-function onPointerUp(): void {
-  dragging = false
-}
-
 function choose(person: Person): void {
-  if (moved)
-    return
   emit('select', person)
 }
 
@@ -113,14 +96,11 @@ function show(face: Face): void {
   <div class="sponsor">
     <div
       class="board"
-      @pointerdown="onPointerDown"
-      @pointermove="onPointerMove"
-      @pointerup="onPointerUp"
-      @pointercancel="onPointerUp"
+      :class="{ 'is-ready': facesReady }"
     >
       <div
+        ref="stage"
         class="board-stage"
-        :style="stageStyle"
       >
         <template
           v-for="face in packed.faces"
@@ -170,18 +150,17 @@ function show(face: Face): void {
   position: relative;
   width: 100%;
   aspect-ratio: 1;
-  touch-action: none;
-  cursor: grab;
-}
-
-.board:active {
-  cursor: grabbing;
+  touch-action: pan-y;
 }
 
 .board-stage {
   position: absolute;
   inset: 0;
-  transform-origin: center center;
+  opacity: 0;
+}
+
+.board.is-ready .board-stage {
+  opacity: 1;
 }
 
 .board-face {
