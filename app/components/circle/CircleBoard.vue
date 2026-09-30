@@ -186,7 +186,7 @@ function show(face: Face): void {
 
 .board-face {
   position: absolute;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%);
   aspect-ratio: 1;
   height: auto;
   border: 0;
@@ -201,7 +201,6 @@ function show(face: Face): void {
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   transition:
-    transform 0.22s var(--ease),
     opacity 0.22s var(--ease),
     filter 0.22s var(--ease);
 }
@@ -215,6 +214,8 @@ function show(face: Face): void {
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
+  transform: scale(1);
+  transition: transform 0.22s var(--ease);
 }
 
 .board-face.is-unfollowed {
@@ -225,15 +226,20 @@ function show(face: Face): void {
 .board:has(.board-face:hover) .board-face:not(:hover),
 .board:has(.board-face:focus-visible) .board-face:not(:focus-visible) {
   opacity: 0.28;
-  filter: blur(3px);
+  filter: saturate(0.2);
 }
 
 .board-face:hover,
 .board-face:focus-visible {
   z-index: 3;
+  overflow: visible;
   opacity: 1;
   filter: none;
-  transform: translate(-50%, -50%) scale(var(--hover-scale));
+}
+
+.board-face:hover img,
+.board-face:focus-visible img {
+  transform: scale(var(--hover-scale));
 }
 
 .board-label {
