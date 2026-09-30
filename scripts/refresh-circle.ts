@@ -1,6 +1,5 @@
 import type { SocialProfile, TweetRef } from '../shared/circle/sync.ts'
-import type { PeopleFile, Person } from '../shared/circle/types.ts'
-import { Buffer } from 'node:buffer'
+import type { PeopleFile } from '../shared/circle/types.ts'
 import { existsSync } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import process from 'node:process'
@@ -11,7 +10,6 @@ const HOST_HANDLE = '0froQ'
 const PEOPLE_PATH = new URL('../data/people.json', import.meta.url)
 const HIDDEN_PATH = new URL('../data/hidden.json', import.meta.url)
 const SYNC_PATH = new URL('../data/sync.json', import.meta.url)
-const AVATAR_DIR = new URL('../public/avatars/', import.meta.url)
 
 const key = process.env.SOCIALDATA_API_KEY
 if (!key) {
@@ -113,26 +111,6 @@ async function search(query: string): Promise<TweetRef[]> {
   return tweets
 }
 
-function localAvatar(person: Person): URL {
-  const name = person.avatar.replace(/^\/avatars\//, '')
-  return new URL(name, AVATAR_DIR)
-}
-
-async function saveAvatar(person: Person, remote: string): Promise<void> {
-  if (!remote)
-    return
-  const larger = remote.replace('_normal.', '_400x400.')
-  const response = await fetch(larger)
-  if (!response.ok)
-    return
-  const type = response.headers.get('content-type') ?? ''
-  const ext = type.includes('png') ? 'png' : 'jpg'
-  const bytes = Buffer.from(await response.arrayBuffer())
-  const file = new URL(`${person.userId}.${ext}`, AVATAR_DIR)
-  await writeFile(file, bytes)
-  person.avatar = `/avatars/${person.userId}.${ext}`
-}
-
 async function main(): Promise<void> {
   const file = JSON.parse(await readFile(PEOPLE_PATH, 'utf8')) as PeopleFile
   const hidden = new Set<string>(JSON.parse(await readFile(HIDDEN_PATH, 'utf8')) as string[])
@@ -162,12 +140,6 @@ async function main(): Promise<void> {
   }
   else {
     console.log('first run records the cursor and keeps the interaction counts already in the file')
-  }
-
-  for (const person of people) {
-    const profile = followers.find(item => item.userId === person.userId)
-    if (profile?.avatarUrl && !existsSync(localAvatar(person)))
-      await saveAvatar(person, profile.avatarUrl)
   }
 
   file.people = people

@@ -2,7 +2,7 @@
 
 站点构建时只读此文件（与 `public/avatars/` 中的头像路径）。画板只显示 `status` 为 `mutual` 且未隐藏的人。当前文件里还留着 2026-09-28 的快照，其中有关注了 froQ 但 froQ 没有回关的人；这些人不会画出来。每周一 04:20 UTC，`.github/workflows/refresh-circle.yml` 用 SocialData 重拉关注者与正在关注的人，只保留两边都有的互关，写回这个文件。仓库需要 secret `SOCIALDATA_API_KEY`。余额不足时这次跳过，不把任务标成失败。
 
-第一次跑只记下时间，不回头重扫互动，文件里已有的 `interactions` 留着。之后每次只搜上次记下的时间之后、froQ 发出的和提到 froQ 的帖，把回复、引用、@ 加到对应互关的 `interactions` 上。已经计过的帖子 id 写在 `data/sync.json`，同一条不会再加一次。头像只在 `public/avatars/` 里还没有对应文件时才下载。
+第一次跑只记下时间，不回头重扫互动，文件里已有的 `interactions` 留着。之后每次只搜上次记下的时间之后、froQ 发出的和提到 froQ 的帖，把回复、引用、@ 加到对应互关的 `interactions` 上。已经计过的帖子 id 写在 `data/sync.json`，同一条不会再加一次。头像不下载进仓库，只把 X 的图片地址写进 `avatar`，页面打开时由浏览器去取。这次快照里已经缓存的 `public/avatars/` 仍给当前文件用，下次任务跑完就会换成远程地址。
 
 `data/hidden.json` 是一串 user id。出现在里面的人不会被每周任务加回来，也不会上墙。
 
@@ -23,7 +23,7 @@
 | `name`         | string                                               | 显示名                                                       |
 | `handle`       | string                                               | X handle，不带 `@`                                           |
 | `userId`       | string                                               | X user id，改名后对齐同一人                                  |
-| `avatar`       | string                                               | 站内头像路径，如 `/avatars/{userId}.jpg`                     |
+| `avatar`       | string                                               | 头像地址。远程 URL，或快照里的 `/avatars/{userId}.jpg`       |
 | `status`       | `mutual` \| `followsMe` \| `iFollow` \| `unfollowed` | 关注状态                                                     |
 | `firstSeen`    | string (ISO date)                                    | 首次出现在快照的日期                                         |
 | `unfollowedAt` | string \| null                                       | 取关日                                                       |

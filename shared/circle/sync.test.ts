@@ -3,7 +3,7 @@ import type { SocialProfile, TweetRef } from './sync.ts'
 import type { Person } from './types.ts'
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
-import { addHits, interactionHits, mergeRoster, mutualOf, rememberTweets } from './sync.ts'
+import { addHits, interactionHits, mergeRoster, mutualOf, profileAvatar, rememberTweets } from './sync.ts'
 
 function profile(userId: string, handle = userId): SocialProfile {
   return { userId, name: handle, handle, avatarUrl: '' }
@@ -59,6 +59,15 @@ describe('mutual roster', () => {
     assert.equal(next[0]?.interactions, 4)
     assert.equal(next[0]?.handle, 'kept')
     assert.equal(next[0]?.status, 'mutual')
+    assert.equal(next[0]?.avatar, '/avatars/keep.jpg')
+  })
+
+  it('stores the remote 400px address and does not invent a local file', () => {
+    const remote = profile('a')
+    remote.avatarUrl = 'https://pbs.twimg.com/profile_images/1/a_normal.jpg'
+    const next = mergeRoster([], [remote], new Set(), '2026-09-30')
+    assert.equal(next[0]?.avatar, 'https://pbs.twimg.com/profile_images/1/a_400x400.jpg')
+    assert.equal(profileAvatar(''), '')
   })
 })
 

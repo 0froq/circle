@@ -94,6 +94,7 @@ onBeforeUnmount(() => {
               :alt="person.name"
               width="72"
               height="72"
+              referrerpolicy="no-referrer"
             >
             <div>
               <h2 class="circle-card-name">

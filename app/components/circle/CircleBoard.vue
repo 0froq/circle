@@ -142,6 +142,7 @@ function show(face: Face): void {
               width="64"
               height="64"
               draggable="false"
+              referrerpolicy="no-referrer"
             >
           </button>
         </template>

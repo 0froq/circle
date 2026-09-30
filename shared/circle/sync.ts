@@ -17,6 +17,13 @@ export interface TweetRef {
   isRetweet: boolean
 }
 
+/** X serves a small default. Ask for the 400px file instead of storing a copy. */
+export function profileAvatar(url: string): string {
+  if (!url)
+    return ''
+  return url.replace('_normal.', '_400x400.')
+}
+
 /** People who follow froQ and whom froQ follows. */
 export function mutualOf(followers: SocialProfile[], following: SocialProfile[]): SocialProfile[] {
   const followed = new Set(following.map(profile => profile.userId))
@@ -46,7 +53,7 @@ export function mergeRoster(previous: Person[], mutuals: SocialProfile[], hidden
       name: profile.name || old?.name || profile.handle,
       handle: profile.handle || old?.handle || '',
       userId: profile.userId,
-      avatar: old?.avatar || `/avatars/${profile.userId}.jpg`,
+      avatar: profileAvatar(profile.avatarUrl) || old?.avatar || '',
       status: 'mutual',
       firstSeen: old?.firstSeen || today,
       unfollowedAt: null,
