@@ -22,6 +22,9 @@ function onKey(event: KeyboardEvent): void {
 function onWheel(event: WheelEvent): void {
   if (event.deltaX === 0 && event.deltaY === 0)
     return
+  const target = event.target
+  if (target instanceof Node && panel.value?.contains(target))
+    return
   emit('close')
 }
 
