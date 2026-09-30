@@ -24,9 +24,6 @@ const { t } = useI18n()
         >{{ t('circle.discussions') }}</a>
       </template>
     </i18n-t>
-    <p class="circle-copy-revenue">
-      {{ t('circle.revenueSlot') }}
-    </p>
   </section>
 </template>
 
@@ -55,13 +52,5 @@ const { t } = useI18n()
   color: var(--fg);
   text-decoration: underline;
   text-underline-offset: 3px;
-}
-
-.circle-copy-revenue {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.88rem;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
 }
 </style>

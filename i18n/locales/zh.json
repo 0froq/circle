@@ -4,12 +4,11 @@
     "closeCard": "关闭",
     "pinnedPosts": "精选帖子",
     "postLink": "原帖链接",
-    "copyLead": "我会逐渐给这里的每一个人写下句子，也可能随时间再改。",
+    "copyLead": "我会逐渐给这里的每一个人写下句子。",
     "discussInvite": "想写一句给我，就到这个仓库的 {link}。我会把这些句子放上来。",
     "discussions": "Discussion",
     "tabMine": "我对{name}",
     "tabTheirs": "{name}对我",
-    "revenueSlot": "收益分享文案留位（占位）",
     "a11yTitle": "名单",
     "unfollowedTag": "已取关"
   },

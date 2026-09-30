@@ -27,7 +27,6 @@ pnpm typecheck
 
 ## 占位项
 
-- 收益分享文案为明确标注的占位
 - 写给我的句子还是空的，对应标签不可点。我对这个人的句子空着时，显示按 userId 固定的等候句
 - 互动数是这一次 SocialData 搜索的结果，还没写回 Notion
 - `product.install.href` 指向 `/`，避免模板「安装」遮罩
