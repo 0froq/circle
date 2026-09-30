@@ -191,6 +191,7 @@ onBeforeUnmount(() => {
   min-height: min(360px, 70vh);
   max-height: min(78vh, 640px);
   overflow: auto;
+  overscroll-behavior: contain;
   background: var(--bg);
   border: 1px solid var(--line);
   padding: clamp(28px, 4vw, 40px);
