@@ -46,11 +46,22 @@ const packed = computed(() => {
   return { bounds, faces }
 })
 
+const HOVER_MIN = 120
+
+const board = ref<HTMLElement>()
 const stage = ref<HTMLElement>()
+const boardWidth = ref(0)
 const facesReady = ref(false)
 const hovered = ref<{ name: string, handle: string } | null>(null)
+let boardObserver: ResizeObserver | undefined
 
 onMounted(() => {
+  if (board.value) {
+    boardObserver = new ResizeObserver(([entry]) => {
+      boardWidth.value = entry?.contentRect.width ?? 0
+    })
+    boardObserver.observe(board.value)
+  }
   const root = stage.value
   const images = root ? [...root.querySelectorAll('img')] : []
   if (images.length === 0) {
@@ -74,13 +85,18 @@ onMounted(() => {
   }
 })
 
+onBeforeUnmount(() => {
+  boardObserver?.disconnect()
+})
+
 function place(face: Face): Record<string, string> {
   const box = packed.value.bounds
+  const rendered = boardWidth.value > 0 ? (face.d / box.width) * boardWidth.value : face.d
   return {
     'left': `${((face.x - box.minX) / box.width) * 100}%`,
     'top': `${((face.y - box.minY) / box.height) * 100}%`,
     'width': `${(face.d / box.width) * 100}%`,
-    '--frac': String(face.d / box.width),
+    '--hover-scale': String(Math.max(1, HOVER_MIN / rendered)),
   }
 }
 
@@ -96,6 +112,7 @@ function show(face: Face): void {
 <template>
   <div class="sponsor">
     <div
+      ref="board"
       class="board"
       :class="{ 'is-ready': facesReady }"
     >
@@ -153,7 +170,6 @@ function show(face: Face): void {
   width: 100%;
   aspect-ratio: 1;
   touch-action: pan-y;
-  container-type: inline-size;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -169,8 +185,6 @@ function show(face: Face): void {
 }
 
 .board-face {
-  --rendered: calc(var(--frac) * 100cqi);
-  --hover-scale: max(1, calc(120px / var(--rendered)));
   position: absolute;
   transform: translate(-50%, -50%) scale(1);
   aspect-ratio: 1;
