@@ -135,7 +135,10 @@ code {
 }
 
 .l-dot {
+  display: inline-block;
   color: var(--accent);
+  /* U+00B7 sits on the midline. Drop the ink onto the baseline, at the word's lower right. */
+  transform: translateY(0.33em);
 }
 
 .l-nav {
@@ -221,6 +224,7 @@ code {
 .l-mark {
   display: inline-block;
   color: var(--accent);
+  transform: translateY(0.33em);
 }
 
 /* Layers draw the stops, the tagline and the rules themselves */
