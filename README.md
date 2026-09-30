@@ -30,8 +30,7 @@ pnpm typecheck
 | `.github/workflows/refresh-circle.yml` | 每周一重拉互关 |
 | `wrangler.jsonc` | Cloudflare Pages 的项目名和发布目录 |
 | `app/components/circle/` | 画板、纸条、名单 |
-| `app/pages/index.vue` | 首页（英文默认路由 `/`） |
-| `app/pages/zh/index.vue` | 中文路由 `/zh` |
+| `app/pages/index.vue` | 首页。英文 `/`，中文 `/zh`，日文 `/ja` |
 
 ## 占位项
 

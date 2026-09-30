@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Person } from '#shared/circle/types'
-import { waitingLine } from '#shared/circle/waiting'
+import { waitingLineIndex } from '#shared/circle/waiting'
 
 const props = defineProps<{
   open: boolean
@@ -24,7 +24,7 @@ const mineText = computed(() => {
   const person = props.person
   if (!person)
     return ''
-  return written.value || waitingLine(person.userId)
+  return written.value || t(`circle.waiting.${waitingLineIndex(person.userId)}`)
 })
 
 watch(() => props.person?.userId, () => {
@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
           <section
             v-if="tab === 'mine' && person.timeline.length"
             class="circle-card-timeline"
-            aria-label="时间线"
+            :aria-label="t('circle.timeline')"
           >
             <div class="circle-card-timeline-line" />
             <ul>
@@ -184,7 +184,7 @@ onBeforeUnmount(() => {
           <section
             v-if="tab === 'mine' && person.pinnedPosts.length"
             class="circle-card-posts"
-            aria-label="精选帖子"
+            :aria-label="t('circle.pinnedPosts')"
           >
             <h3>{{ t('circle.pinnedPosts') }}</h3>
             <blockquote

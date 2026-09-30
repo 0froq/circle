@@ -4,13 +4,25 @@
     "closeCard": "Close",
     "pinnedPosts": "Pinned posts",
     "postLink": "Original post",
-    "copyLead": "我会逐渐给这里的每一个人写下句子。",
-    "discussInvite": "想写一句给我，就到这个仓库的 {link}。我会把这些句子放上来。",
+    "copyLead": "I'll gradually write a sentence for each person here.",
+    "discussInvite": "If you'd like to write me a line, use this repo's {link}. I'll put those sentences here.",
     "discussions": "Discussion",
-    "tabMine": "我想说的",
-    "tabTheirs": "TA 想说的",
+    "copyRegion": "Introduction and link",
+    "tabMine": "What I'd say",
+    "tabTheirs": "What they'd say",
+    "timeline": "Timeline",
     "a11yTitle": "Names",
-    "unfollowedTag": "unfollowed"
+    "unfollowedTag": "unfollowed",
+    "waiting": [
+      "I'm still lining up the shape of you.",
+      "This sentence stays blank until I know you a little better.",
+      "You're already here. The sentence is still on its way.",
+      "I want to see you clearly before I write.",
+      "There's a place for you. The words haven't arrived.",
+      "Once we're more familiar, this sentence will grow on its own.",
+      "I'll remember that you're here. The specifics can wait.",
+      "Right now it's only the sense of a greeting, not a finished sentence."
+    ]
   },
   "site": {
     "title": "circle · froQ",

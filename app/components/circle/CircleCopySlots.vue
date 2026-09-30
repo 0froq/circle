@@ -5,7 +5,7 @@ const { t } = useI18n()
 <template>
   <section
     class="circle-copy"
-    aria-label="说明与连接"
+    :aria-label="t('circle.copyRegion')"
   >
     <p class="circle-copy-lead">
       {{ t('circle.copyLead') }}

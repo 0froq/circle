@@ -32,9 +32,6 @@ useSeoMeta({ description: () => t('circle.copyLead') })
 <template>
   <Sheet :line="false">
     <section class="l-section circle-sheet">
-      <p class="l-label">
-        {{ t('circle.title') }}
-      </p>
       <div class="circle-main">
         <CircleBoard
           :people="people"
