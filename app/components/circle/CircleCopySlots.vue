@@ -10,17 +10,20 @@ const { t } = useI18n()
     <p class="circle-copy-lead">
       {{ t('circle.copyLead') }}
     </p>
-    <div class="circle-copy-connect">
-      <span class="circle-copy-connect-label">{{ t('circle.connectLabel') }}</span>
-      <a
-        class="circle-copy-link"
-        href="https://x.com/0froq"
-        target="_blank"
-        rel="noopener noreferrer"
-      >X</a>
-      <span class="circle-copy-sep">/</span>
-      <span class="circle-copy-placeholder">{{ t('circle.wechatPlaceholder') }}</span>
-    </div>
+    <i18n-t
+      keypath="circle.discussInvite"
+      tag="p"
+      class="circle-copy-invite"
+    >
+      <template #link>
+        <a
+          class="circle-copy-link"
+          href="https://github.com/0froq/circle/discussions"
+          target="_blank"
+          rel="noopener noreferrer"
+        >{{ t('circle.discussions') }}</a>
+      </template>
+    </i18n-t>
     <p class="circle-copy-revenue">
       {{ t('circle.revenueSlot') }}
     </p>
@@ -35,38 +38,23 @@ const { t } = useI18n()
   max-width: 40em;
 }
 
-.circle-copy-lead {
+.circle-copy-lead,
+.circle-copy-invite {
   font-family: var(--font-display);
   font-size: 1.35rem;
   margin: 0 0 1rem;
 }
 
-.circle-copy-connect {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 1.25rem;
+.circle-copy-invite {
+  font-family: var(--font-text);
   font-size: 0.95rem;
-}
-
-.circle-copy-connect-label {
   color: var(--muted);
-  margin-right: 4px;
 }
 
 .circle-copy-link {
+  color: var(--fg);
   text-decoration: underline;
   text-underline-offset: 3px;
-}
-
-.circle-copy-sep {
-  color: var(--faint);
-}
-
-.circle-copy-placeholder {
-  color: var(--muted);
-  font-size: 0.88rem;
 }
 
 .circle-copy-revenue {

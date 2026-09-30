@@ -31,7 +31,10 @@ export interface Person {
   /** Stored for the data pipeline. The board does not read this. */
   ring: RingInput
   platforms: PlatformLink[]
+  /** What froQ has written about this person. Empty uses a seeded waiting line. */
   impression: string
+  /** What this person wrote about froQ. Empty keeps that tab shut. */
+  aboutMe?: string
   timeline: TimelineEntry[]
   pinnedPosts: PinnedPost[]
   interactions: number

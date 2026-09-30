@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Person } from '#shared/circle/types'
+import { waitingLine } from '#shared/circle/waiting'
 
 const props = defineProps<{
   open: boolean
@@ -12,7 +13,29 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
+type NoteTab = 'mine' | 'theirs'
+
 const panel = ref<HTMLElement>()
+const tab = ref<NoteTab>('mine')
+
+const written = computed(() => props.person?.impression.trim() ?? '')
+const theirsText = computed(() => props.person?.aboutMe?.trim() ?? '')
+const mineText = computed(() => {
+  const person = props.person
+  if (!person)
+    return ''
+  return written.value || waitingLine(person.userId)
+})
+
+watch(() => props.person?.userId, () => {
+  tab.value = 'mine'
+})
+
+function chooseTab(next: NoteTab): void {
+  if (next === 'theirs' && !theirsText.value)
+    return
+  tab.value = next
+}
 
 function onKey(event: KeyboardEvent): void {
   if (event.key === 'Escape')
@@ -113,16 +136,47 @@ onBeforeUnmount(() => {
             </div>
           </div>
 
+          <div
+            class="circle-card-tabs"
+            role="tablist"
+          >
+            <button
+              type="button"
+              role="tab"
+              class="circle-card-tab"
+              :aria-selected="tab === 'mine'"
+              @click="chooseTab('mine')"
+            >
+              {{ t('circle.tabMine', { name: person.name }) }}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              class="circle-card-tab"
+              :aria-selected="tab === 'theirs'"
+              :disabled="!theirsText"
+              @click="chooseTab('theirs')"
+            >
+              {{ t('circle.tabTheirs', { name: person.name }) }}
+            </button>
+          </div>
+
           <p
-            v-if="person.impression"
+            v-if="tab === 'mine'"
             class="circle-card-impression"
             data-anchor="tagline"
           >
-            {{ person.impression }}
+            {{ mineText }}
+          </p>
+          <p
+            v-else
+            class="circle-card-impression"
+          >
+            {{ theirsText }}
           </p>
 
           <section
-            v-if="person.timeline.length"
+            v-if="tab === 'mine' && person.timeline.length"
             class="circle-card-timeline"
             aria-label="时间线"
           >
@@ -139,7 +193,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section
-            v-if="person.pinnedPosts.length"
+            v-if="tab === 'mine' && person.pinnedPosts.length"
             class="circle-card-posts"
             aria-label="精选帖子"
           >
@@ -265,6 +319,35 @@ onBeforeUnmount(() => {
   cursor: pointer;
   font: inherit;
   font-size: 0.85rem;
+}
+
+.circle-card-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 0 0 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.circle-card-tab {
+  margin: 0;
+  padding: 0 0 10px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.circle-card-tab[aria-selected='true'] {
+  color: var(--fg);
+  box-shadow: inset 0 -1px 0 var(--fg);
+}
+
+.circle-card-tab:disabled {
+  color: var(--faint);
+  cursor: default;
 }
 
 .circle-card-impression {

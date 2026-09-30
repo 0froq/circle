@@ -12,22 +12,23 @@
 
 ## `people[]` 字段
 
-| 字段           | 类型                                                 | 说明                                           |
-| -------------- | ---------------------------------------------------- | ---------------------------------------------- |
-| `name`         | string                                               | 显示名                                         |
-| `handle`       | string                                               | X handle，不带 `@`                             |
-| `userId`       | string                                               | X user id，改名后对齐同一人                    |
-| `avatar`       | string                                               | 站内头像路径，如 `/avatars/{userId}.jpg`       |
-| `status`       | `mutual` \| `followsMe` \| `iFollow` \| `unfollowed` | 关注状态                                       |
-| `firstSeen`    | string (ISO date)                                    | 首次出现在快照的日期                           |
-| `unfollowedAt` | string \| null                                       | 取关日                                         |
-| `hidden`       | boolean                                              | `true` 则不上墙、不参与渲染                    |
-| `ring`         | `auto` \| `1` \| `2` \| `3` \| `4`                   | 数据管线可保留。站点不读取、不展示、不参与摆放 |
-| `platforms`    | `{ name, url }[]`                                    | 其他平台链接                                   |
-| `impression`   | string                                               | 手写印象（卡片内用手写体风格展示）             |
-| `timeline`     | `{ date, text }[]`                                   | 时间线                                         |
-| `pinnedPosts`  | `{ url, text, date, images? }[]`                     | 精选帖子静态引用                               |
-| `interactions` | number                                               | 近 90 天回复、引用、@ 的合计。决定头像大小     |
+| 字段           | 类型                                                 | 说明                                                     |
+| -------------- | ---------------------------------------------------- | -------------------------------------------------------- |
+| `name`         | string                                               | 显示名                                                   |
+| `handle`       | string                                               | X handle，不带 `@`                                       |
+| `userId`       | string                                               | X user id，改名后对齐同一人                              |
+| `avatar`       | string                                               | 站内头像路径，如 `/avatars/{userId}.jpg`                 |
+| `status`       | `mutual` \| `followsMe` \| `iFollow` \| `unfollowed` | 关注状态                                                 |
+| `firstSeen`    | string (ISO date)                                    | 首次出现在快照的日期                                     |
+| `unfollowedAt` | string \| null                                       | 取关日                                                   |
+| `hidden`       | boolean                                              | `true` 则不上墙、不参与渲染                              |
+| `ring`         | `auto` \| `1` \| `2` \| `3` \| `4`                   | 数据管线可保留。站点不读取、不展示、不参与摆放           |
+| `platforms`    | `{ name, url }[]`                                    | 其他平台链接                                             |
+| `impression`   | string                                               | 我对这个人写下的句子。空着时笔记用按 userId 固定的等候句 |
+| `aboutMe`      | string，可省略                                       | 这个人写给我的句子。空着或没有该字段时，对应标签不可点   |
+| `timeline`     | `{ date, text }[]`                                   | 时间线                                                   |
+| `pinnedPosts`  | `{ url, text, date, images? }[]`                     | 精选帖子静态引用                                         |
+| `interactions` | number                                               | 近 90 天回复、引用、@ 的合计。决定头像大小               |
 
 TypeScript 类型见 `shared/circle/types.ts`。
 
