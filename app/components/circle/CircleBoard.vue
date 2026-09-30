@@ -74,12 +74,13 @@ onMounted(() => {
   }
 })
 
-function place(face: Face): { left: string, top: string, width: string } {
+function place(face: Face): Record<string, string> {
   const box = packed.value.bounds
   return {
-    left: `${((face.x - box.minX) / box.width) * 100}%`,
-    top: `${((face.y - box.minY) / box.height) * 100}%`,
-    width: `${(face.d / box.width) * 100}%`,
+    'left': `${((face.x - box.minX) / box.width) * 100}%`,
+    'top': `${((face.y - box.minY) / box.height) * 100}%`,
+    'width': `${(face.d / box.width) * 100}%`,
+    '--frac': String(face.d / box.width),
   }
 }
 
@@ -120,9 +121,10 @@ function show(face: Face): void {
           >
             <img
               :src="face.avatar"
-              :alt="face.name"
+              alt=""
               width="64"
               height="64"
+              draggable="false"
             >
           </button>
         </template>
@@ -151,6 +153,9 @@ function show(face: Face): void {
   width: 100%;
   aspect-ratio: 1;
   touch-action: pan-y;
+  container-type: inline-size;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .board-stage {
@@ -164,8 +169,10 @@ function show(face: Face): void {
 }
 
 .board-face {
+  --rendered: calc(var(--frac) * 100cqi);
+  --hover-scale: max(1, calc(120px / var(--rendered)));
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   aspect-ratio: 1;
   height: auto;
   border: 0;
@@ -174,6 +181,15 @@ function show(face: Face): void {
   overflow: hidden;
   background: var(--bg);
   cursor: pointer;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  transition:
+    transform 0.22s var(--ease),
+    opacity 0.22s var(--ease),
+    filter 0.22s var(--ease);
 }
 
 .board-face img {
@@ -182,18 +198,28 @@ function show(face: Face): void {
   object-fit: cover;
   display: block;
   border-radius: 50%;
-}
-
-.board-face:hover,
-.board-face:focus-visible {
-  z-index: 2;
-  outline: 2px solid var(--fg);
-  outline-offset: 2px;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .board-face.is-unfollowed {
   opacity: 0.42;
   filter: grayscale(1);
+}
+
+.board:has(.board-face:hover) .board-face:not(:hover),
+.board:has(.board-face:focus-visible) .board-face:not(:focus-visible) {
+  opacity: 0.28;
+  filter: blur(3px);
+}
+
+.board-face:hover,
+.board-face:focus-visible {
+  z-index: 3;
+  opacity: 1;
+  filter: none;
+  transform: translate(-50%, -50%) scale(var(--hover-scale));
 }
 
 .board-label {
