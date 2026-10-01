@@ -1,6 +1,6 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content'
 
-// Every file lives under a locale folder (`en/`, `zh/`), so paths start with `/en`, `/zh`.
+// Every file lives under a locale folder (`en/`, `zh/`, `ja/`), so paths start with `/en`, `/zh`, `/ja`.
 export default defineContentConfig({
   collections: {
     // Free-form pages built from MDC blocks: the landing (`index.md`), install, anything else
