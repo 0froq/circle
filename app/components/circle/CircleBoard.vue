@@ -2,7 +2,7 @@
 import type { Person } from '#shared/circle/types'
 import type { BoardView } from '#shared/circle/viewport'
 import { faceRadius, packBounds, packCircles } from '#shared/circle/pack'
-import { clampPan, MIN_ZOOM, zoomToward } from '#shared/circle/viewport'
+import { clampPan, faceOnScreen, MIN_ZOOM, viewForFace, zoomToward } from '#shared/circle/viewport'
 
 const props = defineProps<{
   people: Person[]
@@ -51,6 +51,7 @@ const packed = computed(() => {
 
 const HOVER_MIN = 96
 const TAP_SLOP = 8
+const FOCUS_MS = 900
 
 const board = ref<HTMLElement>()
 const stage = ref<HTMLElement>()
@@ -62,6 +63,17 @@ const coarse = ref(false)
 const pickedId = ref<string | null>(null)
 const dragging = ref(false)
 const view = ref<BoardView>({ zoom: MIN_ZOOM, x: 0, y: 0 })
+const settling = ref(false)
+const tracking = ref(false)
+const focusMoving = ref(false)
+const focusFrame = ref<{ x: number, y: number, size: number } | null>(null)
+const focusedId = ref<string | null>(null)
+const heldScale = ref(1)
+
+let restView: BoardView | null = null
+let alignGeneration = 0
+let settleTimer = 0
+let framing = false
 
 let boardObserver: ResizeObserver | undefined
 let coarseMedia: MediaQueryList | undefined
@@ -79,6 +91,11 @@ onMounted(() => {
     boardObserver = new ResizeObserver(([entry]) => {
       boardWidth.value = entry?.contentRect.width ?? 0
       boardHeight.value = entry?.contentRect.height ?? 0
+      if (props.activeId) {
+        alignGeneration += 1
+        void alignToCard(props.activeId, alignGeneration)
+        return
+      }
       view.value = fit(view.value)
     })
     boardObserver.observe(board.value)
@@ -88,6 +105,7 @@ onMounted(() => {
   coarseMedia = window.matchMedia('(pointer: coarse)')
   syncStored()
   coarseMedia.addEventListener('change', syncStored)
+  window.addEventListener('scroll', onScroll, { passive: true })
   const root = stage.value
   const images = root ? [...root.querySelectorAll('img')] : []
   if (images.length === 0) {
@@ -116,6 +134,21 @@ onBeforeUnmount(() => {
   board.value?.removeEventListener('wheel', onWheel)
   board.value?.removeEventListener('touchmove', onTouchMove)
   coarseMedia?.removeEventListener('change', syncStored)
+  window.removeEventListener('scroll', onScroll)
+  window.clearTimeout(settleTimer)
+})
+
+watch(() => props.activeId, (id) => {
+  window.clearTimeout(settleTimer)
+  alignGeneration += 1
+  const generation = alignGeneration
+  if (!id) {
+    releaseFocus(generation)
+    return
+  }
+  if (!restView)
+    restView = { ...view.value }
+  void alignToCard(id, generation)
 })
 
 function syncStored(): void {
@@ -154,13 +187,198 @@ function place(face: Face): Record<string, string> {
   const d = face.d * scale
   const cx = (boardW - box.width * scale) / 2 + (face.x - box.minX) * scale
   const cy = (boardH - box.height * scale) / 2 + (face.y - box.minY) * scale
+  const held = focusedId.value === face.id
+  const hover = held ? heldScale.value : Math.max(1, HOVER_MIN / (d * view.value.zoom))
   return {
     'left': `${cx}px`,
     'top': `${cy}px`,
     'width': `${d}px`,
-    '--hover-scale': String(Math.max(1, HOVER_MIN / (d * view.value.zoom))),
+    '--hover-scale': String(hover),
   }
 }
+
+function layoutOf(face: Face): { cx: number, cy: number, d: number } | null {
+  const box = packed.value.bounds
+  const boardW = boardWidth.value
+  const boardH = boardHeight.value || boardW
+  if (boardW <= 0 || boardH <= 0 || box.width <= 0 || box.height <= 0)
+    return null
+  const scale = Math.min(boardW / box.width, boardH / box.height)
+  return {
+    d: face.d * scale,
+    cx: (boardW - box.width * scale) / 2 + (face.x - box.minX) * scale,
+    cy: (boardH - box.height * scale) / 2 + (face.y - box.minY) * scale,
+  }
+}
+
+function imageScale(diameter: number, zoom: number): number {
+  const rendered = diameter * zoom
+  if (rendered <= 0)
+    return 1
+  return Math.max(1, HOVER_MIN / rendered)
+}
+
+function waitFrame(): Promise<void> {
+  return new Promise(resolve => requestAnimationFrame(() => resolve()))
+}
+
+function cardAvatarFrame(avatar: HTMLElement): { x: number, y: number, size: number } {
+  const rect = avatar.getBoundingClientRect()
+  const card = avatar.closest('.circle-card')
+  let shiftY = 0
+  if (card) {
+    const transform = getComputedStyle(card).transform
+    if (transform && transform !== 'none')
+      shiftY = new DOMMatrix(transform).m42
+  }
+  return {
+    x: rect.left + rect.width / 2,
+    y: rect.top + rect.height / 2 - shiftY,
+    size: rect.width,
+  }
+}
+
+async function alignToCard(id: string, generation: number, attempt = 0): Promise<void> {
+  await nextTick()
+  await waitFrame()
+  if (generation !== alignGeneration || props.activeId !== id)
+    return
+  const face = packed.value.faces.find(item => item.id === id)
+  const node = board.value
+  const avatar = document.querySelector<HTMLElement>('.circle-card-avatar')
+  const layout = face ? layoutOf(face) : null
+  const rest = restView
+  if (!face || !node || !layout || !avatar || !rest || layout.d <= 0) {
+    if (attempt < 8)
+      void alignToCard(id, generation, attempt + 1)
+    return
+  }
+  const rect = node.getBoundingClientRect()
+  const scale = coarse.value ? 1 : imageScale(layout.d, rest.zoom)
+  const boardW = boardWidth.value
+  const boardH = boardHeight.value || boardW
+  heldScale.value = scale
+  const already = focusFrame.value !== null && focusedId.value === id
+  focusedId.value = id
+  const target = cardAvatarFrame(avatar)
+  const next = viewForFace(
+    layout.cx,
+    layout.cy,
+    layout.d,
+    scale,
+    boardW,
+    boardH,
+    rect.left,
+    rect.top,
+    target.x,
+    target.y,
+    target.size,
+  )
+  if (!already) {
+    framing = true
+    focusMoving.value = false
+    focusFrame.value = faceOnScreen(
+      layout.cx,
+      layout.cy,
+      layout.d,
+      scale,
+      boardW,
+      boardH,
+      rect.left,
+      rect.top,
+      rest,
+    )
+    await nextTick()
+    await waitFrame()
+    if (generation !== alignGeneration || props.activeId !== id) {
+      framing = false
+      return
+    }
+    focusMoving.value = true
+    await nextTick()
+    document.querySelector('.board-focus')?.getBoundingClientRect()
+    if (generation !== alignGeneration || props.activeId !== id) {
+      framing = false
+      return
+    }
+  }
+  framing = false
+  tracking.value = already
+  settling.value = true
+  focusMoving.value = true
+  view.value = next
+  focusFrame.value = target
+}
+
+function onScroll(): void {
+  if (framing || !props.activeId || !focusFrame.value)
+    return
+  alignGeneration += 1
+  void alignToCard(props.activeId, alignGeneration)
+}
+
+function releaseFocus(generation: number): void {
+  framing = false
+  tracking.value = false
+  const id = focusedId.value
+  const rest = restView
+  const face = id ? packed.value.faces.find(item => item.id === id) : undefined
+  const node = board.value
+  const layout = face ? layoutOf(face) : null
+  if (!rest || !face || !node || !layout || !focusFrame.value) {
+    focusFrame.value = null
+    focusMoving.value = false
+    settling.value = false
+    focusedId.value = null
+    restView = null
+    view.value = rest ? { ...rest } : { zoom: MIN_ZOOM, x: 0, y: 0 }
+    return
+  }
+  const rect = node.getBoundingClientRect()
+  const boardW = boardWidth.value
+  const boardH = boardHeight.value || boardW
+  settling.value = true
+  focusMoving.value = true
+  view.value = { ...rest }
+  focusFrame.value = faceOnScreen(
+    layout.cx,
+    layout.cy,
+    layout.d,
+    heldScale.value,
+    boardW,
+    boardH,
+    rect.left,
+    rect.top,
+    rest,
+  )
+  settleTimer = window.setTimeout(() => {
+    if (generation !== alignGeneration)
+      return
+    focusFrame.value = null
+    focusMoving.value = false
+    requestAnimationFrame(() => {
+      if (generation !== alignGeneration)
+        return
+      settling.value = false
+      focusedId.value = null
+      restView = null
+    })
+  }, FOCUS_MS)
+}
+
+const focusFace = computed(() => packed.value.faces.find(face => face.id === focusedId.value) ?? null)
+
+const focusStyle = computed(() => {
+  const frame = focusFrame.value
+  if (!frame)
+    return {}
+  return {
+    left: `${frame.x - frame.size / 2}px`,
+    top: `${frame.y - frame.size / 2}px`,
+    width: `${frame.size}px`,
+    height: `${frame.size}px`,
+  }
+})
 
 function centerOf(clientX: number, clientY: number): { x: number, y: number } | null {
   const rect = board.value?.getBoundingClientRect()
@@ -220,7 +438,7 @@ function pinchGeometry(): { dist: number, originX: number, originY: number } | n
 }
 
 function onPointerDown(event: PointerEvent): void {
-  if (event.button !== 0)
+  if (event.button !== 0 || props.activeId)
     return
   rememberPointer(event)
   if (pointers.size >= 2) {
@@ -311,7 +529,7 @@ function onPointerCancel(event: PointerEvent): void {
 
 function onWheel(event: WheelEvent): void {
   // A normal scroll moves the page. Pinch on a trackpad arrives as a wheel event with ctrlKey.
-  if (!event.ctrlKey)
+  if (!event.ctrlKey || props.activeId)
     return
   event.preventDefault()
   const delta = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? event.deltaY * 16 : event.deltaY
@@ -333,7 +551,7 @@ function onTouchMove(event: TouchEvent): void {
     <div
       ref="board"
       class="board"
-      :class="{ 'is-ready': facesReady, 'is-dragging': dragging, 'is-coarse': coarse, 'is-open': activeId }"
+      :class="{ 'is-ready': facesReady, 'is-dragging': dragging, 'is-coarse': coarse, 'is-open': activeId, 'is-settling': settling, 'is-tracking': tracking }"
       @pointerdown="onPointerDown"
       @pointermove="onPointerMove"
       @pointerup="onPointerUp"
@@ -351,7 +569,7 @@ function onTouchMove(event: TouchEvent): void {
           <button
             type="button"
             class="board-face"
-            :class="{ 'is-unfollowed': face.unfollowed, 'is-picked': coarse && pickedId === face.id, 'is-active': activeId === face.id }"
+            :class="{ 'is-unfollowed': face.unfollowed, 'is-picked': coarse && pickedId === face.id, 'is-active': activeId === face.id, 'is-held': focusedId === face.id, 'is-lifted': focusFrame && focusedId === face.id }"
             :style="place(face)"
             :aria-label="`${face.name} @${face.handle}`"
             @click="choose(face.person)"
@@ -382,6 +600,22 @@ function onTouchMove(event: TouchEvent): void {
       </template>
     </p>
   </div>
+  <Teleport to="body">
+    <div
+      v-if="focusFace && focusFrame"
+      class="board-focus"
+      :class="{ 'is-moving': focusMoving, 'is-tracking': tracking }"
+      :style="focusStyle"
+      aria-hidden="true"
+    >
+      <img
+        :src="focusFace.avatar"
+        alt=""
+        draggable="false"
+        referrerpolicy="no-referrer"
+      >
+    </div>
+  </Teleport>
 </template>
 
 <style scoped>
@@ -432,6 +666,11 @@ function onTouchMove(event: TouchEvent): void {
 
 .board.is-dragging {
   cursor: grabbing;
+}
+
+.board.is-open .board-stage,
+.board.is-settling .board-stage {
+  transition: transform 0.9s var(--ease);
 }
 
 .board-stage {
@@ -515,10 +754,57 @@ function onTouchMove(event: TouchEvent): void {
   filter: saturate(0.2);
 }
 
-.board.is-open .board-face.is-active {
+.board.is-open .board-face.is-active,
+.board-face.is-held {
   z-index: 3;
+  overflow: visible;
   opacity: 1;
   filter: none;
+}
+
+.board-face.is-held img {
+  transform: scale(var(--hover-scale));
+}
+
+.board-face.is-lifted {
+  visibility: hidden;
+}
+
+.board-focus {
+  position: fixed;
+  z-index: 45;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.board-focus.is-moving {
+  transition:
+    left 0.9s var(--ease),
+    top 0.9s var(--ease),
+    width 0.9s var(--ease),
+    height 0.9s var(--ease);
+}
+
+.board.is-tracking .board-stage,
+.board-focus.is-tracking {
+  transition: none;
+}
+
+.board-focus img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board.is-open .board-stage,
+  .board.is-settling .board-stage,
+  .board-focus.is-moving {
+    transition: none;
+  }
 }
 
 .board.is-coarse .board-face.is-picked {

@@ -26,6 +26,62 @@ export function clampPan(pan: number, size: number, zoom: number): number {
  * where that point should sit afterwards (the same point for a wheel zoom).
  * Both are offsets from the board center.
  */
+export interface FaceFrame {
+  x: number
+  y: number
+  size: number
+}
+
+/**
+ * Pan and zoom so a face, including its image enlargement, lands on a screen
+ * point at a fixed size. Coordinates are board pixels and screen pixels.
+ * This view is a presentation frame, so it is not limited to pinch zoom.
+ */
+export function viewForFace(
+  faceX: number,
+  faceY: number,
+  faceDiameter: number,
+  imageScale: number,
+  boardWidth: number,
+  boardHeight: number,
+  boardLeft: number,
+  boardTop: number,
+  targetX: number,
+  targetY: number,
+  targetSize: number,
+): BoardView {
+  const visual = faceDiameter * imageScale
+  const zoom = visual > 0 && targetSize > 0 ? targetSize / visual : MIN_ZOOM
+  const localX = faceX - boardWidth / 2
+  const localY = faceY - boardHeight / 2
+  return {
+    zoom,
+    x: targetX - boardLeft - boardWidth / 2 - localX * zoom,
+    y: targetY - boardTop - boardHeight / 2 - localY * zoom,
+  }
+}
+
+/** Where a face is drawn after the stage transform, including image enlargement. */
+export function faceOnScreen(
+  faceX: number,
+  faceY: number,
+  faceDiameter: number,
+  imageScale: number,
+  boardWidth: number,
+  boardHeight: number,
+  boardLeft: number,
+  boardTop: number,
+  view: BoardView,
+): FaceFrame {
+  const localX = faceX - boardWidth / 2
+  const localY = faceY - boardHeight / 2
+  return {
+    x: boardLeft + boardWidth / 2 + view.x + localX * view.zoom,
+    y: boardTop + boardHeight / 2 + view.y + localY * view.zoom,
+    size: faceDiameter * imageScale * view.zoom,
+  }
+}
+
 export function zoomToward(
   view: BoardView,
   originX: number,

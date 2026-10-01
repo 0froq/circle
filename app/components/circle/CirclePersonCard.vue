@@ -104,14 +104,16 @@ function requestClose(): void {
           tabindex="-1"
         >
           <div class="circle-card-person">
-            <img
-              class="circle-card-avatar"
-              :src="person.avatar"
-              :alt="person.name"
-              width="72"
-              height="72"
-              referrerpolicy="no-referrer"
-            >
+            <div class="circle-card-avatar-slot">
+              <img
+                class="circle-card-avatar"
+                :src="person.avatar"
+                :alt="person.name"
+                width="72"
+                height="72"
+                referrerpolicy="no-referrer"
+              >
+            </div>
             <div>
               <h2 class="circle-card-name">
                 {{ person.name }}
@@ -265,9 +267,20 @@ function requestClose(): void {
   margin-bottom: 1.25rem;
 }
 
-.circle-card-avatar {
+.circle-card-avatar-slot {
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   border: 1px solid var(--line);
+  box-sizing: content-box;
+}
+
+.circle-card-avatar {
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  opacity: 0;
 }
 
 .circle-card-name {

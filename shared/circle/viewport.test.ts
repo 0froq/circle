@@ -1,7 +1,7 @@
 /* eslint-disable test/no-import-node-test */
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
-import { clampPan, clampZoom, MAX_ZOOM, MIN_ZOOM, zoomToward } from './viewport.ts'
+import { clampPan, clampZoom, faceOnScreen, MAX_ZOOM, MIN_ZOOM, viewForFace, zoomToward } from './viewport.ts'
 
 describe('board zoom', () => {
   it('keeps zoom inside the fixed limits', () => {
@@ -30,5 +30,46 @@ describe('board zoom', () => {
   it('does not zoom past the maximum', () => {
     const next = zoomToward({ zoom: MAX_ZOOM, x: 0, y: 0 }, 10, 10, 10, 10, MAX_ZOOM + 2, 400)
     assert.equal(next.zoom, MAX_ZOOM)
+  })
+
+  it('frames an enlarged face on the card avatar', () => {
+    const boardWidth = 800
+    const boardHeight = 500
+    const boardLeft = 40
+    const boardTop = 80
+    const faceX = 300
+    const faceY = 180
+    const faceDiameter = 40
+    const imageScale = 2.4
+    const targetX = 510
+    const targetY = 260
+    const targetSize = 72
+    const view = viewForFace(
+      faceX,
+      faceY,
+      faceDiameter,
+      imageScale,
+      boardWidth,
+      boardHeight,
+      boardLeft,
+      boardTop,
+      targetX,
+      targetY,
+      targetSize,
+    )
+    const screen = faceOnScreen(
+      faceX,
+      faceY,
+      faceDiameter,
+      imageScale,
+      boardWidth,
+      boardHeight,
+      boardLeft,
+      boardTop,
+      view,
+    )
+    assert.ok(Math.abs(screen.x - targetX) < 1e-6)
+    assert.ok(Math.abs(screen.y - targetY) < 1e-6)
+    assert.ok(Math.abs(screen.size - targetSize) < 1e-6)
   })
 })
