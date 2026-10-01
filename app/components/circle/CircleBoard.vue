@@ -385,7 +385,8 @@ function onTouchMove(event: TouchEvent): void {
 
 <style scoped>
 .sponsor {
-  width: 100%;
+  width: min(78%, 960px);
+  margin-inline: auto;
   container-type: inline-size;
 }
 
@@ -394,7 +395,7 @@ function onTouchMove(event: TouchEvent): void {
   --edge-y: clamp(40px, 8%, 72px);
   position: relative;
   width: 100%;
-  height: min(100cqw, calc(100dvh - 96px));
+  height: min(100cqw, calc((100dvh - 96px) * 0.78));
   overflow: hidden;
   touch-action: pan-y;
   user-select: none;

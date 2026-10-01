@@ -400,12 +400,12 @@ function requestClose(): void {
 
 .card-enter-active,
 .card-leave-active {
-  transition: opacity 0.25s var(--ease);
+  transition: opacity 0.7s var(--ease);
 }
 
 .card-enter-active .circle-card,
 .card-leave-active .circle-card {
-  transition: transform 0.3s var(--ease);
+  transition: transform 0.9s var(--ease);
 }
 
 .card-enter-from,
