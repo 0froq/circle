@@ -4,7 +4,7 @@
     "closeCard": "Close",
     "pinnedPosts": "Pinned posts",
     "postLink": "Original post",
-    "copyLead": "I'll gradually write a sentence for each person here.",
+    "copyLead": "I'll gradually write sentences for each person here.",
     "discussInvite": "If you'd like to write me a line, use this repo's {link}. I'll put those sentences here.",
     "discussions": "disussion",
     "copyRegion": "Introduction and link",
@@ -16,14 +16,9 @@
     "searchEmpty": "No one matches",
     "unfollowedTag": "unfollowed",
     "waiting": [
-      "I'm still lining up the shape of you.",
-      "This sentence stays blank until I know you a little better.",
-      "You're already here. The sentence is still on its way.",
-      "I want to see you clearly before I write.",
-      "There's a place for you. The words haven't arrived.",
-      "Once we're more familiar, this sentence will grow on its own.",
-      "I'll remember that you're here. The specifics can wait.",
-      "Right now it's only the sense of a greeting, not a finished sentence."
+      "Let me get to know you a little more.",
+      "I want to keep looking at you.",
+      "Give me a little more time."
     ]
   },
   "site": {
