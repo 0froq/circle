@@ -29,14 +29,17 @@ const { t } = useI18n()
 
 <style scoped>
 .circle-copy {
+  position: relative;
+  z-index: 2;
   margin-top: clamp(32px, 6vw, 56px);
   padding-top: 24px;
   border-top: 1px solid var(--line);
-  max-width: 40em;
+  background: var(--bg);
 }
 
 .circle-copy-lead,
 .circle-copy-invite {
+  max-width: 40em;
   font-family: var(--font-display);
   font-size: 1.35rem;
   margin: 0 0 1rem;

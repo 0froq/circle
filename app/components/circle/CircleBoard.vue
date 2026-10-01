@@ -380,6 +380,7 @@ function onTouchMove(event: TouchEvent): void {
   position: relative;
   width: 100%;
   aspect-ratio: 1;
+  overflow: hidden;
   touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
