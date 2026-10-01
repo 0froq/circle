@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Person } from '#shared/circle/types'
+import type { BoardView } from '#shared/circle/viewport'
 import { faceRadius, packBounds, packCircles } from '#shared/circle/pack'
+import { clampPan, MIN_ZOOM, zoomToward } from '#shared/circle/viewport'
 
 const props = defineProps<{
   people: Person[]
@@ -47,21 +49,46 @@ const packed = computed(() => {
 })
 
 const HOVER_MIN = 96
+const TAP_SLOP = 8
 
 const board = ref<HTMLElement>()
 const stage = ref<HTMLElement>()
 const boardWidth = ref(0)
 const facesReady = ref(false)
 const hovered = ref<{ name: string, handle: string } | null>(null)
+const coarse = ref(false)
+const pickedId = ref<string | null>(null)
+const dragging = ref(false)
+const view = ref<BoardView>({ zoom: MIN_ZOOM, x: 0, y: 0 })
+
 let boardObserver: ResizeObserver | undefined
+let coarseMedia: MediaQueryList | undefined
+const pointers = new Map<number, { x: number, y: number }>()
+let drag: { id: number, x: number, y: number, panX: number, panY: number, moved: boolean } | null = null
+let pinch: { zoom: number, x: number, y: number, dist: number, originX: number, originY: number } | null = null
+let ignoreClick = false
+
+const boardStyle = computed(() => ({
+  touchAction: view.value.zoom > MIN_ZOOM ? 'none' : 'pan-y',
+}))
+
+const stageStyle = computed(() => ({
+  transform: `translate(${view.value.x}px, ${view.value.y}px) scale(${view.value.zoom})`,
+}))
 
 onMounted(() => {
   if (board.value) {
     boardObserver = new ResizeObserver(([entry]) => {
       boardWidth.value = entry?.contentRect.width ?? 0
+      view.value = fit(view.value)
     })
     boardObserver.observe(board.value)
+    board.value.addEventListener('wheel', onWheel, { passive: false })
+    board.value.addEventListener('touchmove', onTouchMove, { passive: false })
   }
+  coarseMedia = window.matchMedia('(pointer: coarse)')
+  syncStored()
+  coarseMedia.addEventListener('change', syncStored)
   const root = stage.value
   const images = root ? [...root.querySelectorAll('img')] : []
   if (images.length === 0) {
@@ -87,11 +114,29 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   boardObserver?.disconnect()
+  board.value?.removeEventListener('wheel', onWheel)
+  board.value?.removeEventListener('touchmove', onTouchMove)
+  coarseMedia?.removeEventListener('change', syncStored)
 })
+
+function syncStored(): void {
+  coarse.value = coarseMedia?.matches ?? false
+}
+
+function fit(next: BoardView): BoardView {
+  const size = boardWidth.value
+  return {
+    zoom: next.zoom,
+    x: clampPan(next.x, size, next.zoom),
+    y: clampPan(next.y, size, next.zoom),
+  }
+}
 
 function place(face: Face): Record<string, string> {
   const box = packed.value.bounds
-  const rendered = boardWidth.value > 0 ? (face.d / box.width) * boardWidth.value : face.d
+  const rendered = boardWidth.value > 0
+    ? (face.d / box.width) * boardWidth.value * view.value.zoom
+    : face.d
   return {
     'left': `${((face.x - box.minX) / box.width) * 100}%`,
     'top': `${((face.y - box.minY) / box.height) * 100}%`,
@@ -100,12 +145,171 @@ function place(face: Face): Record<string, string> {
   }
 }
 
+function centerOf(clientX: number, clientY: number): { x: number, y: number } | null {
+  const rect = board.value?.getBoundingClientRect()
+  if (!rect)
+    return null
+  return {
+    x: clientX - rect.left - rect.width / 2,
+    y: clientY - rect.top - rect.height / 2,
+  }
+}
+
 function choose(person: Person): void {
+  if (ignoreClick) {
+    ignoreClick = false
+    return
+  }
+  if (coarse.value && pickedId.value !== person.userId) {
+    pickedId.value = person.userId
+    hovered.value = { name: person.name, handle: person.handle }
+    return
+  }
   emit('select', person)
 }
 
 function show(face: Face): void {
+  if (dragging.value)
+    return
   hovered.value = { name: face.name, handle: face.handle }
+}
+
+function hide(): void {
+  if (coarse.value && pickedId.value)
+    return
+  hovered.value = null
+}
+
+function rememberPointer(event: PointerEvent): void {
+  pointers.set(event.pointerId, { x: event.clientX, y: event.clientY })
+}
+
+function pinchGeometry(): { dist: number, originX: number, originY: number } | null {
+  const points = [...pointers.values()]
+  const first = points[0]
+  const second = points[1]
+  if (!first || !second)
+    return null
+  const midX = (first.x + second.x) / 2
+  const midY = (first.y + second.y) / 2
+  const origin = centerOf(midX, midY)
+  if (!origin)
+    return null
+  return {
+    dist: Math.hypot(first.x - second.x, first.y - second.y),
+    originX: origin.x,
+    originY: origin.y,
+  }
+}
+
+function onPointerDown(event: PointerEvent): void {
+  if (event.button !== 0)
+    return
+  rememberPointer(event)
+  if (pointers.size >= 2) {
+    drag = null
+    dragging.value = true
+    const geometry = pinchGeometry()
+    if (geometry) {
+      pinch = { zoom: view.value.zoom, x: view.value.x, y: view.value.y, ...geometry }
+    }
+    board.value?.setPointerCapture(event.pointerId)
+    return
+  }
+  const zoomed = view.value.zoom > MIN_ZOOM
+  if (coarse.value && !zoomed)
+    return
+  drag = {
+    id: event.pointerId,
+    x: event.clientX,
+    y: event.clientY,
+    panX: view.value.x,
+    panY: view.value.y,
+    moved: false,
+  }
+}
+
+function onPointerMove(event: PointerEvent): void {
+  if (!pointers.has(event.pointerId))
+    return
+  rememberPointer(event)
+  if (pointers.size >= 2 && pinch) {
+    const geometry = pinchGeometry()
+    if (!geometry || pinch.dist <= 0)
+      return
+    const size = board.value?.clientWidth ?? 0
+    view.value = zoomToward(
+      pinch,
+      pinch.originX,
+      pinch.originY,
+      geometry.originX,
+      geometry.originY,
+      pinch.zoom * (geometry.dist / pinch.dist),
+      size,
+    )
+    dragging.value = true
+    return
+  }
+  if (!drag || drag.id !== event.pointerId)
+    return
+  const dx = event.clientX - drag.x
+  const dy = event.clientY - drag.y
+  if (!drag.moved && Math.hypot(dx, dy) < TAP_SLOP)
+    return
+  drag.moved = true
+  dragging.value = true
+  board.value?.setPointerCapture(event.pointerId)
+  if (view.value.zoom <= MIN_ZOOM)
+    return
+  const size = board.value?.clientWidth ?? 0
+  view.value = {
+    zoom: view.value.zoom,
+    x: clampPan(drag.panX + dx, size, view.value.zoom),
+    y: clampPan(drag.panY + dy, size, view.value.zoom),
+  }
+}
+
+function endGesture(moved: boolean): void {
+  if (!moved)
+    return
+  ignoreClick = true
+  window.setTimeout(() => {
+    ignoreClick = false
+  }, 0)
+}
+
+function onPointerUp(event: PointerEvent): void {
+  const moved = (drag?.id === event.pointerId && drag.moved) || pinch !== null
+  pointers.delete(event.pointerId)
+  if (drag?.id === event.pointerId)
+    drag = null
+  if (pointers.size < 2)
+    pinch = null
+  if (pointers.size === 0)
+    dragging.value = false
+  endGesture(moved)
+}
+
+function onPointerCancel(event: PointerEvent): void {
+  onPointerUp(event)
+}
+
+function onWheel(event: WheelEvent): void {
+  const delta = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? event.deltaY * 16 : event.deltaY
+  const factor = Math.exp(-delta * 0.0016)
+  if (factor < 1 && view.value.zoom <= MIN_ZOOM)
+    return
+  event.preventDefault()
+  const origin = centerOf(event.clientX, event.clientY)
+  const size = board.value?.clientWidth ?? 0
+  if (!origin)
+    return
+  view.value = zoomToward(view.value, origin.x, origin.y, origin.x, origin.y, view.value.zoom * factor, size)
+}
+
+function onTouchMove(event: TouchEvent): void {
+  if (event.touches.length >= 2 || (dragging.value && view.value.zoom > MIN_ZOOM))
+    event.preventDefault()
 }
 </script>
 
@@ -114,11 +318,17 @@ function show(face: Face): void {
     <div
       ref="board"
       class="board"
-      :class="{ 'is-ready': facesReady }"
+      :class="{ 'is-ready': facesReady, 'is-dragging': dragging, 'is-coarse': coarse }"
+      :style="boardStyle"
+      @pointerdown="onPointerDown"
+      @pointermove="onPointerMove"
+      @pointerup="onPointerUp"
+      @pointercancel="onPointerCancel"
     >
       <div
         ref="stage"
         class="board-stage"
+        :style="stageStyle"
       >
         <template
           v-for="face in packed.faces"
@@ -127,14 +337,14 @@ function show(face: Face): void {
           <button
             type="button"
             class="board-face"
-            :class="{ 'is-unfollowed': face.unfollowed }"
+            :class="{ 'is-unfollowed': face.unfollowed, 'is-picked': coarse && pickedId === face.id }"
             :style="place(face)"
             :aria-label="`${face.name} @${face.handle}`"
             @click="choose(face.person)"
             @pointerenter="show(face)"
-            @pointerleave="hovered = null"
+            @pointerleave="hide"
             @focus="show(face)"
-            @blur="hovered = null"
+            @blur="hide"
           >
             <img
               :src="face.avatar"
@@ -173,12 +383,19 @@ function show(face: Face): void {
   touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
+  cursor: grab;
+  overscroll-behavior: contain;
+}
+
+.board.is-dragging {
+  cursor: grabbing;
 }
 
 .board-stage {
   position: absolute;
   inset: 0;
   opacity: 0;
+  transform-origin: center center;
 }
 
 .board.is-ready .board-stage {
@@ -219,28 +436,40 @@ function show(face: Face): void {
   transition: transform 0.22s var(--ease);
 }
 
+.board.is-dragging .board-face,
+.board.is-dragging .board-face img {
+  transition: none;
+}
+
 .board-face.is-unfollowed {
   opacity: 0.42;
   filter: grayscale(1);
 }
 
-.board:has(.board-face:hover) .board-face:not(:hover),
-.board:has(.board-face:focus-visible) .board-face:not(:focus-visible) {
-  opacity: 0.28;
-  filter: saturate(0.2);
+@media (hover: hover) and (pointer: fine) {
+  .board:has(.board-face:hover) .board-face:not(:hover),
+  .board:has(.board-face:focus-visible) .board-face:not(:focus-visible) {
+    opacity: 0.28;
+    filter: saturate(0.2);
+  }
+
+  .board-face:hover,
+  .board-face:focus-visible {
+    z-index: 3;
+    overflow: visible;
+    opacity: 1;
+    filter: none;
+  }
+
+  .board-face:hover img,
+  .board-face:focus-visible img {
+    transform: scale(var(--hover-scale));
+  }
 }
 
-.board-face:hover,
-.board-face:focus-visible {
+.board.is-coarse .board-face.is-picked {
   z-index: 3;
-  overflow: visible;
-  opacity: 1;
-  filter: none;
-}
-
-.board-face:hover img,
-.board-face:focus-visible img {
-  transform: scale(var(--hover-scale));
+  box-shadow: inset 0 0 0 2px var(--fg);
 }
 
 .board-label {

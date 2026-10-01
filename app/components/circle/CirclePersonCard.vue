@@ -17,6 +17,8 @@ type NoteTab = 'mine' | 'theirs'
 
 const panel = ref<HTMLElement>()
 const tab = ref<NoteTab>('mine')
+const backdropReady = ref(true)
+let backdropTimer: number | undefined
 
 const written = computed(() => props.person?.impression.trim() ?? '')
 const theirsText = computed(() => props.person?.aboutMe?.trim() ?? '')
@@ -52,17 +54,31 @@ function onWheel(event: WheelEvent): void {
 }
 
 watch(() => props.open, (isOpen) => {
+  window.clearTimeout(backdropTimer)
   if (isOpen) {
-    nextTick(() => panel.value?.focus())
+    // A tap both opens the note and can land on the backdrop that just appeared.
+    const coarse = window.matchMedia('(pointer: coarse)').matches
+    backdropReady.value = !coarse
+    if (coarse)
+      backdropTimer = window.setTimeout(() => { backdropReady.value = true }, 400)
+    nextTick(() => panel.value?.focus({ preventScroll: true }))
     window.addEventListener('wheel', onWheel, { passive: true })
     return
   }
+  backdropReady.value = true
   window.removeEventListener('wheel', onWheel)
 })
 
 onBeforeUnmount(() => {
+  window.clearTimeout(backdropTimer)
   window.removeEventListener('wheel', onWheel)
 })
+
+function requestClose(): void {
+  if (!backdropReady.value)
+    return
+  emit('close')
+}
 </script>
 
 <template>
@@ -77,7 +93,7 @@ onBeforeUnmount(() => {
           type="button"
           class="circle-card-backdrop"
           :aria-label="t('circle.closeCard')"
-          @click="emit('close')"
+          @click="requestClose"
         />
         <aside
           ref="panel"
