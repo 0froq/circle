@@ -69,10 +69,6 @@ let drag: { id: number, x: number, y: number, panX: number, panY: number, moved:
 let pinch: { zoom: number, x: number, y: number, dist: number, originX: number, originY: number } | null = null
 let ignoreClick = false
 
-const boardStyle = computed(() => ({
-  touchAction: view.value.zoom > MIN_ZOOM ? 'none' : 'pan-y',
-}))
-
 const stageStyle = computed(() => ({
   transform: `translate(${view.value.x}px, ${view.value.y}px) scale(${view.value.zoom})`,
 }))
@@ -236,8 +232,7 @@ function onPointerDown(event: PointerEvent): void {
     board.value?.setPointerCapture(event.pointerId)
     return
   }
-  const zoomed = view.value.zoom > MIN_ZOOM
-  if (coarse.value && !zoomed)
+  if (coarse.value)
     return
   drag = {
     id: event.pointerId,
@@ -314,11 +309,12 @@ function onPointerCancel(event: PointerEvent): void {
 }
 
 function onWheel(event: WheelEvent): void {
-  const delta = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? event.deltaY * 16 : event.deltaY
-  const factor = Math.exp(-delta * 0.0016)
-  if (factor < 1 && view.value.zoom <= MIN_ZOOM)
+  // A normal scroll moves the page. Pinch on a trackpad arrives as a wheel event with ctrlKey.
+  if (!event.ctrlKey)
     return
   event.preventDefault()
+  const delta = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? event.deltaY * 16 : event.deltaY
+  const factor = Math.exp(-delta * 0.0016)
   const origin = centerOf(event.clientX, event.clientY)
   if (!origin)
     return
@@ -326,7 +322,7 @@ function onWheel(event: WheelEvent): void {
 }
 
 function onTouchMove(event: TouchEvent): void {
-  if (event.touches.length >= 2 || (dragging.value && view.value.zoom > MIN_ZOOM))
+  if (event.touches.length >= 2)
     event.preventDefault()
 }
 </script>
@@ -337,7 +333,6 @@ function onTouchMove(event: TouchEvent): void {
       ref="board"
       class="board"
       :class="{ 'is-ready': facesReady, 'is-dragging': dragging, 'is-coarse': coarse }"
-      :style="boardStyle"
       @pointerdown="onPointerDown"
       @pointermove="onPointerMove"
       @pointerup="onPointerUp"
@@ -391,6 +386,7 @@ function onTouchMove(event: TouchEvent): void {
 <style scoped>
 .sponsor {
   width: 100%;
+  container-type: inline-size;
 }
 
 .board {
@@ -398,13 +394,12 @@ function onTouchMove(event: TouchEvent): void {
   --edge-y: clamp(40px, 8%, 72px);
   position: relative;
   width: 100%;
-  aspect-ratio: 1;
+  height: min(100cqw, calc(100dvh - 96px));
   overflow: hidden;
   touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
   cursor: grab;
-  overscroll-behavior: contain;
   mask-image:
     linear-gradient(to right, transparent, #000 var(--edge-x), #000 calc(100% - var(--edge-x)), transparent),
     linear-gradient(to bottom, transparent, #000 var(--edge-y), #000 calc(100% - var(--edge-y)), transparent);
@@ -413,13 +408,6 @@ function onTouchMove(event: TouchEvent): void {
     linear-gradient(to right, transparent, #000 var(--edge-x), #000 calc(100% - var(--edge-x)), transparent),
     linear-gradient(to bottom, transparent, #000 var(--edge-y), #000 calc(100% - var(--edge-y)), transparent);
   -webkit-mask-composite: source-in;
-}
-
-@media (min-width: 900px) {
-  .board {
-    aspect-ratio: auto;
-    height: min(100vw, 1280px);
-  }
 }
 
 .board::after {
