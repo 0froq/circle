@@ -277,9 +277,6 @@ function requestClose(): void {
 .circle-card-avatar-slot {
   width: 144px;
   height: 144px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  box-sizing: content-box;
 }
 
 .circle-card-avatar {
