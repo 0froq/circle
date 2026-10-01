@@ -33,15 +33,17 @@ export function zoomToward(
   nextOriginX: number,
   nextOriginY: number,
   nextZoom: number,
-  size: number,
+  size: number | { width: number, height: number },
 ): BoardView {
   const zoom = clampZoom(nextZoom)
   const safeZoom = view.zoom > 0 ? view.zoom : MIN_ZOOM
+  const width = typeof size === 'number' ? size : size.width
+  const height = typeof size === 'number' ? size : size.height
   const contentX = (originX - view.x) / safeZoom
   const contentY = (originY - view.y) / safeZoom
   return {
     zoom,
-    x: clampPan(nextOriginX - contentX * zoom, size, zoom),
-    y: clampPan(nextOriginY - contentY * zoom, size, zoom),
+    x: clampPan(nextOriginX - contentX * zoom, width, zoom),
+    y: clampPan(nextOriginY - contentY * zoom, height, zoom),
   }
 }

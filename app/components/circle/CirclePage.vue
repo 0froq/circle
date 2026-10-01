@@ -38,9 +38,11 @@ useSeoMeta({ description: () => t('circle.copyLead') })
           @select="openPerson"
         />
 
-        <CircleCopySlots />
+        <div class="circle-notes">
+          <CircleCopySlots />
 
-        <CircleAccessibleList :people="listed" />
+          <CircleAccessibleList :people="listed" />
+        </div>
       </div>
     </section>
 
@@ -55,12 +57,18 @@ useSeoMeta({ description: () => t('circle.copyLead') })
 <style scoped>
 .circle-sheet {
   padding-top: 96px;
+  padding-right: 0;
   padding-bottom: calc(var(--pad) + 32px);
+  padding-left: 0;
 }
 
 .circle-main {
   grid-column: 1 / -1;
-  width: min(100%, 760px);
-  justify-self: center;
+  width: 100%;
+}
+
+.circle-notes {
+  width: min(calc(100% - 2 * var(--pad)), 760px);
+  margin-inline: auto;
 }
 </style>

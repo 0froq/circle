@@ -54,6 +54,7 @@ const TAP_SLOP = 8
 const board = ref<HTMLElement>()
 const stage = ref<HTMLElement>()
 const boardWidth = ref(0)
+const boardHeight = ref(0)
 const facesReady = ref(false)
 const hovered = ref<{ name: string, handle: string } | null>(null)
 const coarse = ref(false)
@@ -80,6 +81,7 @@ onMounted(() => {
   if (board.value) {
     boardObserver = new ResizeObserver(([entry]) => {
       boardWidth.value = entry?.contentRect.width ?? 0
+      boardHeight.value = entry?.contentRect.height ?? 0
       view.value = fit(view.value)
     })
     boardObserver.observe(board.value)
@@ -123,25 +125,43 @@ function syncStored(): void {
   coarse.value = coarseMedia?.matches ?? false
 }
 
+function frame(): { width: number, height: number } {
+  return {
+    width: board.value?.clientWidth ?? boardWidth.value,
+    height: board.value?.clientHeight ?? boardHeight.value,
+  }
+}
+
 function fit(next: BoardView): BoardView {
-  const size = boardWidth.value
+  const { width, height } = frame()
   return {
     zoom: next.zoom,
-    x: clampPan(next.x, size, next.zoom),
-    y: clampPan(next.y, size, next.zoom),
+    x: clampPan(next.x, width, next.zoom),
+    y: clampPan(next.y, height, next.zoom),
   }
 }
 
 function place(face: Face): Record<string, string> {
   const box = packed.value.bounds
-  const rendered = boardWidth.value > 0
-    ? (face.d / box.width) * boardWidth.value * view.value.zoom
-    : face.d
+  const boardW = boardWidth.value
+  const boardH = boardHeight.value || boardW
+  if (boardW <= 0 || boardH <= 0 || box.width <= 0 || box.height <= 0) {
+    return {
+      'left': '50%',
+      'top': '50%',
+      'width': `${face.d}px`,
+      '--hover-scale': '1',
+    }
+  }
+  const scale = Math.min(boardW / box.width, boardH / box.height)
+  const d = face.d * scale
+  const cx = (boardW - box.width * scale) / 2 + (face.x - box.minX) * scale
+  const cy = (boardH - box.height * scale) / 2 + (face.y - box.minY) * scale
   return {
-    'left': `${((face.x - box.minX) / box.width) * 100}%`,
-    'top': `${((face.y - box.minY) / box.height) * 100}%`,
-    'width': `${(face.d / box.width) * 100}%`,
-    '--hover-scale': String(Math.max(1, HOVER_MIN / rendered)),
+    'left': `${cx}px`,
+    'top': `${cy}px`,
+    'width': `${d}px`,
+    '--hover-scale': String(Math.max(1, HOVER_MIN / (d * view.value.zoom))),
   }
 }
 
@@ -237,7 +257,6 @@ function onPointerMove(event: PointerEvent): void {
     const geometry = pinchGeometry()
     if (!geometry || pinch.dist <= 0)
       return
-    const size = board.value?.clientWidth ?? 0
     view.value = zoomToward(
       pinch,
       pinch.originX,
@@ -245,7 +264,7 @@ function onPointerMove(event: PointerEvent): void {
       geometry.originX,
       geometry.originY,
       pinch.zoom * (geometry.dist / pinch.dist),
-      size,
+      frame(),
     )
     dragging.value = true
     return
@@ -261,11 +280,11 @@ function onPointerMove(event: PointerEvent): void {
   board.value?.setPointerCapture(event.pointerId)
   if (view.value.zoom <= MIN_ZOOM)
     return
-  const size = board.value?.clientWidth ?? 0
+  const { width, height } = frame()
   view.value = {
     zoom: view.value.zoom,
-    x: clampPan(drag.panX + dx, size, view.value.zoom),
-    y: clampPan(drag.panY + dy, size, view.value.zoom),
+    x: clampPan(drag.panX + dx, width, view.value.zoom),
+    y: clampPan(drag.panY + dy, height, view.value.zoom),
   }
 }
 
@@ -301,10 +320,9 @@ function onWheel(event: WheelEvent): void {
     return
   event.preventDefault()
   const origin = centerOf(event.clientX, event.clientY)
-  const size = board.value?.clientWidth ?? 0
   if (!origin)
     return
-  view.value = zoomToward(view.value, origin.x, origin.y, origin.x, origin.y, view.value.zoom * factor, size)
+  view.value = zoomToward(view.value, origin.x, origin.y, origin.x, origin.y, view.value.zoom * factor, frame())
 }
 
 function onTouchMove(event: TouchEvent): void {
@@ -372,12 +390,12 @@ function onTouchMove(event: TouchEvent): void {
 
 <style scoped>
 .sponsor {
-  width: min(100%, 760px);
-  margin: 0 auto;
+  width: 100%;
 }
 
 .board {
-  --edge: clamp(48px, 14%, 88px);
+  --edge-x: clamp(28px, 5%, 48px);
+  --edge-y: clamp(40px, 8%, 72px);
   position: relative;
   width: 100%;
   aspect-ratio: 1;
@@ -388,13 +406,20 @@ function onTouchMove(event: TouchEvent): void {
   cursor: grab;
   overscroll-behavior: contain;
   mask-image:
-    linear-gradient(to right, transparent, #000 var(--edge), #000 calc(100% - var(--edge)), transparent),
-    linear-gradient(to bottom, transparent, #000 var(--edge), #000 calc(100% - var(--edge)), transparent);
+    linear-gradient(to right, transparent, #000 var(--edge-x), #000 calc(100% - var(--edge-x)), transparent),
+    linear-gradient(to bottom, transparent, #000 var(--edge-y), #000 calc(100% - var(--edge-y)), transparent);
   mask-composite: intersect;
   -webkit-mask-image:
-    linear-gradient(to right, transparent, #000 var(--edge), #000 calc(100% - var(--edge)), transparent),
-    linear-gradient(to bottom, transparent, #000 var(--edge), #000 calc(100% - var(--edge)), transparent);
+    linear-gradient(to right, transparent, #000 var(--edge-x), #000 calc(100% - var(--edge-x)), transparent),
+    linear-gradient(to bottom, transparent, #000 var(--edge-y), #000 calc(100% - var(--edge-y)), transparent);
   -webkit-mask-composite: source-in;
+}
+
+@media (min-width: 900px) {
+  .board {
+    aspect-ratio: auto;
+    height: min(100vw, 1280px);
+  }
 }
 
 .board::after {
@@ -406,12 +431,12 @@ function onTouchMove(event: TouchEvent): void {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   mask-image:
-    linear-gradient(to right, #000, transparent var(--edge), transparent calc(100% - var(--edge)), #000),
-    linear-gradient(to bottom, #000, transparent var(--edge), transparent calc(100% - var(--edge)), #000);
+    linear-gradient(to right, #000, transparent var(--edge-x), transparent calc(100% - var(--edge-x)), #000),
+    linear-gradient(to bottom, #000, transparent var(--edge-y), transparent calc(100% - var(--edge-y)), #000);
   mask-composite: add;
   -webkit-mask-image:
-    linear-gradient(to right, #000, transparent var(--edge), transparent calc(100% - var(--edge)), #000),
-    linear-gradient(to bottom, #000, transparent var(--edge), transparent calc(100% - var(--edge)), #000);
+    linear-gradient(to right, #000, transparent var(--edge-x), transparent calc(100% - var(--edge-x)), #000),
+    linear-gradient(to bottom, #000, transparent var(--edge-y), transparent calc(100% - var(--edge-y)), #000);
   -webkit-mask-composite: source-over;
 }
 
