@@ -27,6 +27,7 @@
   "site": {
     "title": "circle · froQ",
     "skip": "Skip to content",
+    "language": "Language",
     "footer": ""
   },
   "theme": {
