@@ -20,8 +20,14 @@ function onGlobalKey(event: KeyboardEvent): void {
     closeCard()
 }
 
-onMounted(() => addEventListener('keydown', onGlobalKey))
-onBeforeUnmount(() => removeEventListener('keydown', onGlobalKey))
+onMounted(() => {
+  document.documentElement.classList.add('is-circle-screen')
+  addEventListener('keydown', onGlobalKey)
+})
+onBeforeUnmount(() => {
+  document.documentElement.classList.remove('is-circle-screen')
+  removeEventListener('keydown', onGlobalKey)
+})
 
 useHead({
   title: t('circle.title'),
@@ -32,18 +38,21 @@ useSeoMeta({ description: () => t('circle.copyLead') })
 <template>
   <Sheet :line="false">
     <section class="l-section circle-sheet">
-      <p class="l-label">
-        {{ t('circle.title') }}
-      </p>
       <div class="circle-main">
         <CircleBoard
           :people="people"
+          :active-id="selected?.userId ?? null"
           @select="openPerson"
         />
 
-        <CircleCopySlots />
+        <div class="circle-notes">
+          <CircleCopySlots />
 
-        <CircleAccessibleList :people="listed" />
+          <CircleAccessibleList
+            :people="listed"
+            @select="openPerson"
+          />
+        </div>
       </div>
     </section>
 
@@ -57,13 +66,52 @@ useSeoMeta({ description: () => t('circle.copyLead') })
 
 <style scoped>
 .circle-sheet {
-  padding-top: 96px;
-  padding-bottom: calc(var(--pad) + 32px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  padding: 72px 0 0;
 }
 
 .circle-main {
-  grid-column: 1 / -1;
-  width: min(100%, 760px);
-  justify-self: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+}
+
+.circle-notes {
+  flex: none;
+  width: min(calc(100% - 2 * var(--pad)), 760px);
+  margin-inline: auto;
+  padding-bottom: 12px;
+}
+
+:global(html.is-circle-screen),
+:global(html.is-circle-screen body) {
+  height: 100%;
+  overflow: hidden;
+}
+
+:global(html.is-circle-screen .l-site) {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+:global(html.is-circle-screen #main) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+:global(html.is-circle-screen .l-sheet) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
 }
 </style>

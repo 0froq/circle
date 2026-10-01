@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Person } from '#shared/circle/types'
-import { waitingLine } from '#shared/circle/waiting'
+import { waitingLineIndex } from '#shared/circle/waiting'
 
 const props = defineProps<{
   open: boolean
@@ -17,6 +17,8 @@ type NoteTab = 'mine' | 'theirs'
 
 const panel = ref<HTMLElement>()
 const tab = ref<NoteTab>('mine')
+const backdropReady = ref(true)
+let backdropTimer: number | undefined
 
 const written = computed(() => props.person?.impression.trim() ?? '')
 const theirsText = computed(() => props.person?.aboutMe?.trim() ?? '')
@@ -24,7 +26,7 @@ const mineText = computed(() => {
   const person = props.person
   if (!person)
     return ''
-  return written.value || waitingLine(person.userId)
+  return written.value || t(`circle.waiting.${waitingLineIndex(person.userId)}`)
 })
 
 watch(() => props.person?.userId, () => {
@@ -52,17 +54,31 @@ function onWheel(event: WheelEvent): void {
 }
 
 watch(() => props.open, (isOpen) => {
+  window.clearTimeout(backdropTimer)
   if (isOpen) {
-    nextTick(() => panel.value?.focus())
+    // A tap both opens the note and can land on the backdrop that just appeared.
+    const coarse = window.matchMedia('(pointer: coarse)').matches
+    backdropReady.value = !coarse
+    if (coarse)
+      backdropTimer = window.setTimeout(() => { backdropReady.value = true }, 400)
+    nextTick(() => panel.value?.focus({ preventScroll: true }))
     window.addEventListener('wheel', onWheel, { passive: true })
     return
   }
+  backdropReady.value = true
   window.removeEventListener('wheel', onWheel)
 })
 
 onBeforeUnmount(() => {
+  window.clearTimeout(backdropTimer)
   window.removeEventListener('wheel', onWheel)
 })
+
+function requestClose(): void {
+  if (!backdropReady.value)
+    return
+  emit('close')
+}
 </script>
 
 <template>
@@ -77,7 +93,7 @@ onBeforeUnmount(() => {
           type="button"
           class="circle-card-backdrop"
           :aria-label="t('circle.closeCard')"
-          @click="emit('close')"
+          @click="requestClose"
         />
         <aside
           ref="panel"
@@ -87,16 +103,18 @@ onBeforeUnmount(() => {
           :aria-label="person.name"
           tabindex="-1"
         >
-          <div class="circle-card-person">
+          <div class="circle-card-avatar-slot">
             <img
               class="circle-card-avatar"
               :src="person.avatar"
               :alt="person.name"
-              width="72"
-              height="72"
+              width="144"
+              height="144"
               referrerpolicy="no-referrer"
             >
-            <div>
+          </div>
+          <div class="circle-card-main">
+            <div class="circle-card-person">
               <h2 class="circle-card-name">
                 {{ person.name }}
               </h2>
@@ -122,88 +140,88 @@ onBeforeUnmount(() => {
                 </li>
               </ul>
             </div>
-          </div>
 
-          <div
-            class="circle-card-tabs"
-            role="tablist"
-          >
-            <button
-              type="button"
-              role="tab"
-              class="circle-card-tab"
-              :aria-selected="tab === 'mine'"
-              @click="chooseTab('mine')"
+            <div
+              class="circle-card-tabs"
+              role="tablist"
             >
-              {{ t('circle.tabMine') }}
-            </button>
-            <button
-              type="button"
-              role="tab"
-              class="circle-card-tab"
-              :aria-selected="tab === 'theirs'"
-              :disabled="!theirsText"
-              @click="chooseTab('theirs')"
-            >
-              {{ t('circle.tabTheirs') }}
-            </button>
-          </div>
-
-          <p
-            v-if="tab === 'mine'"
-            class="circle-card-impression"
-            :class="{ 'is-waiting': !written }"
-            data-anchor="tagline"
-          >
-            {{ mineText }}
-          </p>
-          <p
-            v-else
-            class="circle-card-impression"
-          >
-            {{ theirsText }}
-          </p>
-
-          <section
-            v-if="tab === 'mine' && person.timeline.length"
-            class="circle-card-timeline"
-            aria-label="时间线"
-          >
-            <div class="circle-card-timeline-line" />
-            <ul>
-              <li
-                v-for="entry in person.timeline"
-                :key="`${entry.date}-${entry.text}`"
+              <button
+                type="button"
+                role="tab"
+                class="circle-card-tab"
+                :aria-selected="tab === 'mine'"
+                @click="chooseTab('mine')"
               >
-                <time :datetime="entry.date">{{ entry.date }}</time>
-                <span>{{ entry.text }}</span>
-              </li>
-            </ul>
-          </section>
+                {{ t('circle.tabMine') }}
+              </button>
+              <button
+                type="button"
+                role="tab"
+                class="circle-card-tab"
+                :aria-selected="tab === 'theirs'"
+                :disabled="!theirsText"
+                @click="chooseTab('theirs')"
+              >
+                {{ t('circle.tabTheirs') }}
+              </button>
+            </div>
 
-          <section
-            v-if="tab === 'mine' && person.pinnedPosts.length"
-            class="circle-card-posts"
-            aria-label="精选帖子"
-          >
-            <h3>{{ t('circle.pinnedPosts') }}</h3>
-            <blockquote
-              v-for="post in person.pinnedPosts"
-              :key="post.url"
-              class="circle-card-quote"
+            <p
+              v-if="tab === 'mine'"
+              class="circle-card-impression"
+              :class="{ 'is-waiting': !written }"
+              data-anchor="tagline"
             >
-              <p>{{ post.text }}</p>
-              <footer>
-                <time :datetime="post.date">{{ post.date }}</time>
-                ·
-                <a
-                  :href="post.url"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >{{ t('circle.postLink') }}</a>
-              </footer>
-            </blockquote>
-          </section>
+              {{ mineText }}
+            </p>
+            <p
+              v-else
+              class="circle-card-impression"
+            >
+              {{ theirsText }}
+            </p>
+
+            <section
+              v-if="tab === 'mine' && person.timeline.length"
+              class="circle-card-timeline"
+              :aria-label="t('circle.timeline')"
+            >
+              <div class="circle-card-timeline-line" />
+              <ul>
+                <li
+                  v-for="entry in person.timeline"
+                  :key="`${entry.date}-${entry.text}`"
+                >
+                  <time :datetime="entry.date">{{ entry.date }}</time>
+                  <span>{{ entry.text }}</span>
+                </li>
+              </ul>
+            </section>
+
+            <section
+              v-if="tab === 'mine' && person.pinnedPosts.length"
+              class="circle-card-posts"
+              :aria-label="t('circle.pinnedPosts')"
+            >
+              <h3>{{ t('circle.pinnedPosts') }}</h3>
+              <blockquote
+                v-for="post in person.pinnedPosts"
+                :key="post.url"
+                class="circle-card-quote"
+              >
+                <p>{{ post.text }}</p>
+                <footer>
+                  <time :datetime="post.date">{{ post.date }}</time>
+                  ·
+                  <a
+                    :href="post.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >{{ t('circle.postLink') }}</a>
+                </footer>
+              </blockquote>
+            </section>
+          </div>
         </aside>
       </div>
     </Transition>
@@ -230,28 +248,43 @@ onBeforeUnmount(() => {
 
 .circle-card {
   position: relative;
-  width: min(420px, 100%);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 22px;
+  width: min(560px, 100%);
   min-height: min(360px, 70vh);
   max-height: min(78vh, 640px);
-  overflow: auto;
-  overscroll-behavior: contain;
+  overflow: hidden;
   background: var(--bg);
   border: 1px solid var(--line);
   padding: clamp(28px, 4vw, 40px);
   outline: none;
 }
 
+.circle-card-main {
+  align-self: stretch;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
 .circle-card-person {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 16px;
-  align-items: center;
   margin-bottom: 1.25rem;
 }
 
+.circle-card-avatar-slot {
+  width: 144px;
+  height: 144px;
+}
+
 .circle-card-avatar {
+  display: block;
+  width: 144px;
+  height: 144px;
   border-radius: 50%;
-  border: 1px solid var(--line);
+  opacity: 0;
 }
 
 .circle-card-name {
@@ -384,12 +417,12 @@ onBeforeUnmount(() => {
 
 .card-enter-active,
 .card-leave-active {
-  transition: opacity 0.25s var(--ease);
+  transition: opacity 0.7s var(--ease);
 }
 
 .card-enter-active .circle-card,
 .card-leave-active .circle-card {
-  transition: transform 0.3s var(--ease);
+  transition: transform 0.9s var(--ease);
 }
 
 .card-enter-from,

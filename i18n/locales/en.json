@@ -4,17 +4,27 @@
     "closeCard": "Close",
     "pinnedPosts": "Pinned posts",
     "postLink": "Original post",
-    "copyLead": "我会逐渐给这里的每一个人写下句子。",
-    "discussInvite": "想写一句给我，就到这个仓库的 {link}。我会把这些句子放上来。",
-    "discussions": "Discussion",
-    "tabMine": "我想说的",
-    "tabTheirs": "TA 想说的",
+    "copyLead": "I'll gradually write sentences for each person here.",
+    "discussInvite": "If you'd like to write me a line, use this repo's {link}. I'll put those sentences here.",
+    "discussions": "disussion",
+    "copyRegion": "Introduction and link",
+    "tabMine": "What I'd say",
+    "tabTheirs": "What they'd say",
+    "timeline": "Timeline",
     "a11yTitle": "Names",
-    "unfollowedTag": "unfollowed"
+    "searchNames": "Search names",
+    "searchEmpty": "No one matches",
+    "unfollowedTag": "unfollowed",
+    "waiting": [
+      "Let me get to know you a little more.",
+      "I want to keep looking at you.",
+      "Give me a little more time."
+    ]
   },
   "site": {
     "title": "circle · froQ",
     "skip": "Skip to content",
+    "language": "Language",
     "footer": ""
   },
   "theme": {

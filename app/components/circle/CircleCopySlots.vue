@@ -5,7 +5,7 @@ const { t } = useI18n()
 <template>
   <section
     class="circle-copy"
-    aria-label="说明与连接"
+    :aria-label="t('circle.copyRegion')"
   >
     <p class="circle-copy-lead">
       {{ t('circle.copyLead') }}
@@ -29,17 +29,20 @@ const { t } = useI18n()
 
 <style scoped>
 .circle-copy {
-  margin-top: clamp(32px, 6vw, 56px);
-  padding-top: 24px;
+  position: relative;
+  z-index: 2;
+  margin-top: 8px;
+  padding-top: 14px;
   border-top: 1px solid var(--line);
-  max-width: 40em;
+  background: var(--bg);
 }
 
 .circle-copy-lead,
 .circle-copy-invite {
+  max-width: 40em;
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  margin: 0 0 1rem;
+  font-size: 1.15rem;
+  margin: 0 0 0.45rem;
 }
 
 .circle-copy-invite {

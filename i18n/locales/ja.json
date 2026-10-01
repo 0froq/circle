@@ -1,0 +1,76 @@
+{
+  "circle": {
+    "title": "circle",
+    "closeCard": "閉じる",
+    "pinnedPosts": "ピン留めした投稿",
+    "postLink": "元の投稿",
+    "copyLead": "ここにいる一人ひとりに、少しずついくつもの文を書いていきます。",
+    "discussInvite": "一言書いてくれるなら、このリポジトリの {link} へ。そうした文は、ここに載せます。",
+    "discussions": "disussion",
+    "copyRegion": "説明とリンク",
+    "tabMine": "言いたいこと",
+    "tabTheirs": "相手が言いたいこと",
+    "timeline": "タイムライン",
+    "a11yTitle": "名簿",
+    "searchNames": "名前を検索",
+    "searchEmpty": "該当する人はいません",
+    "unfollowedTag": "フォロー解除",
+    "waiting": [
+      "もう少し、あなたを知るまで待っていて。",
+      "もう少し、あなたを見ていたい。",
+      "もう少し時間をください。"
+    ]
+  },
+  "site": {
+    "title": "circle · froQ",
+    "skip": "本文へスキップ",
+    "language": "言語",
+    "footer": ""
+  },
+  "theme": {
+    "dark": "ダーク",
+    "light": "ライト"
+  },
+  "nav": {
+    "docs": "ドキュメント",
+    "notes": "ノート",
+    "changelog": "更新履歴",
+    "sections": "このページ"
+  },
+  "install": {
+    "label": "",
+    "done": "",
+    "back": "戻る",
+    "copy": "コピー",
+    "copied": "コピーしました"
+  },
+  "notes": {
+    "label": "ノート",
+    "title": "",
+    "lede": "",
+    "count": "{n} 件",
+    "read": "読む",
+    "minutes": "約 {n} 分",
+    "back": "すべてのノート",
+    "next": "次のノート",
+    "end": ""
+  },
+  "changelog": {
+    "label": "更新履歴",
+    "title": "",
+    "lede": "",
+    "count": "{n} 件のリリース",
+    "latest": "最新",
+    "end": ""
+  },
+  "docs": {
+    "label": "ドキュメント",
+    "prev": "前へ",
+    "next": "次へ"
+  },
+  "notFound": {
+    "title": "",
+    "lede": "",
+    "back": "ホームへ戻る"
+  }
+}
