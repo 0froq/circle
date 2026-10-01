@@ -31,8 +31,8 @@ const { t } = useI18n()
 .circle-copy {
   position: relative;
   z-index: 2;
-  margin-top: clamp(32px, 6vw, 56px);
-  padding-top: 24px;
+  margin-top: 8px;
+  padding-top: 14px;
   border-top: 1px solid var(--line);
   background: var(--bg);
 }
@@ -41,8 +41,8 @@ const { t } = useI18n()
 .circle-copy-invite {
   max-width: 40em;
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  margin: 0 0 1rem;
+  font-size: 1.15rem;
+  margin: 0 0 0.45rem;
 }
 
 .circle-copy-invite {

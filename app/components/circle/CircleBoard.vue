@@ -620,7 +620,11 @@ function onTouchMove(event: TouchEvent): void {
 
 <style scoped>
 .sponsor {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   width: min(78%, 960px);
+  min-height: 0;
   margin-inline: auto;
   container-type: inline-size;
 }
@@ -630,7 +634,8 @@ function onTouchMove(event: TouchEvent): void {
   --edge-y: clamp(40px, 8%, 72px);
   position: relative;
   width: 100%;
-  height: min(100cqw, calc((100dvh - 96px) * 0.78));
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
   touch-action: pan-y;
   user-select: none;
