@@ -377,6 +377,7 @@ function onTouchMove(event: TouchEvent): void {
 }
 
 .board {
+  --edge: clamp(48px, 14%, 88px);
   position: relative;
   width: 100%;
   aspect-ratio: 1;
@@ -386,6 +387,32 @@ function onTouchMove(event: TouchEvent): void {
   -webkit-user-select: none;
   cursor: grab;
   overscroll-behavior: contain;
+  mask-image:
+    linear-gradient(to right, transparent, #000 var(--edge), #000 calc(100% - var(--edge)), transparent),
+    linear-gradient(to bottom, transparent, #000 var(--edge), #000 calc(100% - var(--edge)), transparent);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 var(--edge), #000 calc(100% - var(--edge)), transparent),
+    linear-gradient(to bottom, transparent, #000 var(--edge), #000 calc(100% - var(--edge)), transparent);
+  -webkit-mask-composite: source-in;
+}
+
+.board::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  mask-image:
+    linear-gradient(to right, #000, transparent var(--edge), transparent calc(100% - var(--edge)), #000),
+    linear-gradient(to bottom, #000, transparent var(--edge), transparent calc(100% - var(--edge)), #000);
+  mask-composite: add;
+  -webkit-mask-image:
+    linear-gradient(to right, #000, transparent var(--edge), transparent calc(100% - var(--edge)), #000),
+    linear-gradient(to bottom, #000, transparent var(--edge), transparent calc(100% - var(--edge)), #000);
+  -webkit-mask-composite: source-over;
 }
 
 .board.is-dragging {
