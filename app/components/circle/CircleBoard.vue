@@ -6,6 +6,7 @@ import { clampPan, MIN_ZOOM, zoomToward } from '#shared/circle/viewport'
 
 const props = defineProps<{
   people: Person[]
+  activeId?: string | null
 }>()
 
 const emit = defineEmits<{
@@ -332,7 +333,7 @@ function onTouchMove(event: TouchEvent): void {
     <div
       ref="board"
       class="board"
-      :class="{ 'is-ready': facesReady, 'is-dragging': dragging, 'is-coarse': coarse }"
+      :class="{ 'is-ready': facesReady, 'is-dragging': dragging, 'is-coarse': coarse, 'is-open': activeId }"
       @pointerdown="onPointerDown"
       @pointermove="onPointerMove"
       @pointerup="onPointerUp"
@@ -350,7 +351,7 @@ function onTouchMove(event: TouchEvent): void {
           <button
             type="button"
             class="board-face"
-            :class="{ 'is-unfollowed': face.unfollowed, 'is-picked': coarse && pickedId === face.id }"
+            :class="{ 'is-unfollowed': face.unfollowed, 'is-picked': coarse && pickedId === face.id, 'is-active': activeId === face.id }"
             :style="place(face)"
             :aria-label="`${face.name} @${face.handle}`"
             @click="choose(face.person)"
@@ -507,6 +508,17 @@ function onTouchMove(event: TouchEvent): void {
   .board-face:focus-visible img {
     transform: scale(var(--hover-scale));
   }
+}
+
+.board.is-open .board-face:not(.is-active) {
+  opacity: 0.28;
+  filter: saturate(0.2);
+}
+
+.board.is-open .board-face.is-active {
+  z-index: 3;
+  opacity: 1;
+  filter: none;
 }
 
 .board.is-coarse .board-face.is-picked {

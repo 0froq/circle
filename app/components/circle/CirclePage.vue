@@ -35,6 +35,7 @@ useSeoMeta({ description: () => t('circle.copyLead') })
       <div class="circle-main">
         <CircleBoard
           :people="people"
+          :active-id="selected?.userId ?? null"
           @select="openPerson"
         />
 
