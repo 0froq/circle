@@ -22,7 +22,6 @@ function person(userId: string, extra: Partial<Person> = {}): Person {
     platforms: [],
     impression: extra.impression ?? '',
     timeline: [],
-    pinnedPosts: [],
     interactions: extra.interactions ?? 0,
     ...extra,
     userId,

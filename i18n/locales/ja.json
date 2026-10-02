@@ -2,8 +2,6 @@
   "circle": {
     "title": "circle",
     "closeCard": "閉じる",
-    "pinnedPosts": "ピン留めした投稿",
-    "postLink": "元の投稿",
     "copyLead": "ここにいる一人ひとりに、少しずついくつもの文を書いていきます。",
     "discussInvite": "一言書いてくれるなら、このリポジトリの {link} へ。そうした文は、ここに載せます。",
     "discussions": "disussion",

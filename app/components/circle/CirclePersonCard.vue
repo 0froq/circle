@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Person } from '#shared/circle/types'
+import { noteText } from '#shared/circle/note'
 import { waitingLineIndex } from '#shared/circle/waiting'
 
 const props = defineProps<{
@@ -20,8 +21,8 @@ const tab = ref<NoteTab>('mine')
 const backdropReady = ref(true)
 let backdropTimer: number | undefined
 
-const written = computed(() => props.person?.impression.trim() ?? '')
-const theirsText = computed(() => props.person?.aboutMe?.trim() ?? '')
+const written = computed(() => noteText(props.person?.impression))
+const theirsText = computed(() => noteText(props.person?.aboutMe))
 const mineText = computed(() => {
   const person = props.person
   if (!person)
@@ -103,124 +104,102 @@ function requestClose(): void {
           :aria-label="person.name"
           tabindex="-1"
         >
-          <div class="circle-card-avatar-slot">
-            <img
-              class="circle-card-avatar"
-              :src="person.avatar"
-              :alt="person.name"
-              width="144"
-              height="144"
-              referrerpolicy="no-referrer"
-            >
-          </div>
-          <div class="circle-card-main">
-            <div class="circle-card-person">
-              <h2 class="circle-card-name">
-                {{ person.name }}
-              </h2>
-              <p class="circle-card-handle">
-                @{{ person.handle }}
-                <template v-if="person.status === 'unfollowed'">
-                  · {{ t('circle.unfollowedTag') }}
-                </template>
+          <div class="circle-card-row">
+            <div class="circle-card-avatar-slot">
+              <img
+                class="circle-card-avatar"
+                :src="person.avatar"
+                :alt="person.name"
+                width="144"
+                height="144"
+                referrerpolicy="no-referrer"
+              >
+            </div>
+            <div class="circle-card-main">
+              <div class="circle-card-person">
+                <h2 class="circle-card-name">
+                  {{ person.name }}
+                </h2>
+                <p class="circle-card-handle">
+                  @{{ person.handle }}
+                  <template v-if="person.status === 'unfollowed'">
+                    · {{ t('circle.unfollowedTag') }}
+                  </template>
+                </p>
+                <ul
+                  v-if="person.platforms.length"
+                  class="circle-card-platforms"
+                >
+                  <li
+                    v-for="platform in person.platforms"
+                    :key="platform.url"
+                  >
+                    <a
+                      :href="platform.url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >{{ platform.name }}</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="circle-card-tabs"
+                role="tablist"
+              >
+                <button
+                  type="button"
+                  role="tab"
+                  class="circle-card-tab"
+                  :aria-selected="tab === 'mine'"
+                  @click="chooseTab('mine')"
+                >
+                  {{ t('circle.tabMine') }}
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  class="circle-card-tab"
+                  :aria-selected="tab === 'theirs'"
+                  :disabled="!theirsText"
+                  @click="chooseTab('theirs')"
+                >
+                  {{ t('circle.tabTheirs') }}
+                </button>
+              </div>
+
+              <p
+                v-if="tab === 'mine'"
+                class="circle-card-impression"
+                :class="{ 'is-waiting': !written }"
+                data-anchor="tagline"
+              >
+                <CircleNoteText :text="mineText" />
               </p>
-              <ul
-                v-if="person.platforms.length"
-                class="circle-card-platforms"
+              <p
+                v-else
+                class="circle-card-impression"
               >
-                <li
-                  v-for="platform in person.platforms"
-                  :key="platform.url"
-                >
-                  <a
-                    :href="platform.url"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >{{ platform.name }}</a>
-                </li>
-              </ul>
+                <CircleNoteText :text="theirsText" />
+              </p>
+
+              <section
+                v-if="tab === 'mine' && person.timeline.length"
+                class="circle-card-timeline"
+                :aria-label="t('circle.timeline')"
+              >
+                <div class="circle-card-timeline-line" />
+                <ul>
+                  <li
+                    v-for="entry in person.timeline"
+                    :key="`${entry.date}-${entry.text}`"
+                  >
+                    <time :datetime="entry.date">{{ entry.date }}</time>
+                    <span>{{ entry.text }}</span>
+                  </li>
+                </ul>
+              </section>
             </div>
-
-            <div
-              class="circle-card-tabs"
-              role="tablist"
-            >
-              <button
-                type="button"
-                role="tab"
-                class="circle-card-tab"
-                :aria-selected="tab === 'mine'"
-                @click="chooseTab('mine')"
-              >
-                {{ t('circle.tabMine') }}
-              </button>
-              <button
-                type="button"
-                role="tab"
-                class="circle-card-tab"
-                :aria-selected="tab === 'theirs'"
-                :disabled="!theirsText"
-                @click="chooseTab('theirs')"
-              >
-                {{ t('circle.tabTheirs') }}
-              </button>
-            </div>
-
-            <p
-              v-if="tab === 'mine'"
-              class="circle-card-impression"
-              :class="{ 'is-waiting': !written }"
-              data-anchor="tagline"
-            >
-              {{ mineText }}
-            </p>
-            <p
-              v-else
-              class="circle-card-impression"
-            >
-              {{ theirsText }}
-            </p>
-
-            <section
-              v-if="tab === 'mine' && person.timeline.length"
-              class="circle-card-timeline"
-              :aria-label="t('circle.timeline')"
-            >
-              <div class="circle-card-timeline-line" />
-              <ul>
-                <li
-                  v-for="entry in person.timeline"
-                  :key="`${entry.date}-${entry.text}`"
-                >
-                  <time :datetime="entry.date">{{ entry.date }}</time>
-                  <span>{{ entry.text }}</span>
-                </li>
-              </ul>
-            </section>
-
-            <section
-              v-if="tab === 'mine' && person.pinnedPosts.length"
-              class="circle-card-posts"
-              :aria-label="t('circle.pinnedPosts')"
-            >
-              <h3>{{ t('circle.pinnedPosts') }}</h3>
-              <blockquote
-                v-for="post in person.pinnedPosts"
-                :key="post.url"
-                class="circle-card-quote"
-              >
-                <p>{{ post.text }}</p>
-                <footer>
-                  <time :datetime="post.date">{{ post.date }}</time>
-                  ·
-                  <a
-                    :href="post.url"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >{{ t('circle.postLink') }}</a>
-                </footer>
-              </blockquote>
-            </section>
           </div>
         </aside>
       </div>
@@ -247,26 +226,34 @@ function requestClose(): void {
 }
 
 .circle-card {
+  --card-pad: clamp(28px, 4vw, 40px);
   position: relative;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  column-gap: 22px;
+  display: flex;
+  flex-direction: column;
   width: min(560px, 100%);
   min-height: min(360px, 70vh);
   max-height: min(78vh, 640px);
   overflow: hidden;
   background: var(--bg);
   border: 1px solid var(--line);
-  padding: clamp(28px, 4vw, 40px);
+  padding: var(--card-pad);
   outline: none;
 }
 
+.circle-card-row {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  column-gap: 22px;
+  min-height: 0;
+}
+
 .circle-card-main {
+  flex: 1 1 auto;
   align-self: stretch;
   min-width: 0;
   min-height: 0;
-  overflow: auto;
+  overflow-y: auto;
   overscroll-behavior: contain;
 }
 
@@ -346,15 +333,22 @@ function requestClose(): void {
 
 .circle-card-impression {
   font-family: var(--font-display);
-  font-style: italic;
   font-size: 1.25rem;
   line-height: 1.45;
   margin: 0 0 1.5rem;
   padding-left: 0.25rem;
+  white-space: pre-line;
 }
 
 .circle-card-impression.is-waiting {
   color: var(--muted);
+  font-style: italic;
+}
+
+.circle-card-impression :deep(a) {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .circle-card-timeline {
@@ -389,30 +383,6 @@ function requestClose(): void {
   font-size: 0.78rem;
   color: var(--muted);
   font-family: var(--font-meta);
-}
-
-.circle-card-posts h3 {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  margin: 0 0 0.75rem;
-}
-
-.circle-card-quote {
-  margin: 0 0 1rem;
-  padding: 12px 14px;
-  border-left: 3px solid var(--line);
-  background: color-mix(in srgb, var(--faint) 35%, transparent);
-}
-
-.circle-card-quote p {
-  margin: 0 0 0.5rem;
-}
-
-.circle-card-quote footer {
-  font-size: 0.8rem;
-  color: var(--muted);
 }
 
 .card-enter-active,

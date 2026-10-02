@@ -2,8 +2,6 @@
   "circle": {
     "title": "circle",
     "closeCard": "Close",
-    "pinnedPosts": "Pinned posts",
-    "postLink": "Original post",
     "copyLead": "I'll gradually write sentences for each person here.",
     "discussInvite": "If you'd like to write me a line, use this repo's {link}. I'll put those sentences here.",
     "discussions": "disussion",

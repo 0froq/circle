@@ -12,12 +12,8 @@ export interface TimelineEntry {
   text: string
 }
 
-export interface PinnedPost {
-  url: string
-  text: string
-  date: string
-  images?: string[]
-}
+/** One string, or one array item per line. */
+export type NoteText = string | string[]
 
 export interface Person {
   name: string
@@ -32,11 +28,10 @@ export interface Person {
   ring: RingInput
   platforms: PlatformLink[]
   /** What froQ has written about this person. Empty uses a seeded waiting line. */
-  impression: string
+  impression: NoteText
   /** What this person wrote about froQ. Empty keeps that tab shut. */
-  aboutMe?: string
+  aboutMe?: NoteText
   timeline: TimelineEntry[]
-  pinnedPosts: PinnedPost[]
   interactions: number
 }
 

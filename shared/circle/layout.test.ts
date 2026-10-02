@@ -18,7 +18,6 @@ function person(overrides: Partial<Person> & Pick<Person, 'userId' | 'handle'>):
     platforms: [],
     impression: '',
     timeline: [],
-    pinnedPosts: [],
     interactions: overrides.interactions ?? 0,
   }
 }

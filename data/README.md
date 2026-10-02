@@ -30,10 +30,11 @@
 | `hidden`       | boolean                                              | `true` 则不上墙、不参与渲染                                  |
 | `ring`         | `auto` \| `1` \| `2` \| `3` \| `4`                   | 数据管线可保留。站点不读取、不展示、不参与摆放               |
 | `platforms`    | `{ name, url }[]`                                    | 其他平台链接                                                 |
-| `impression`   | string                                               | 我对这个人写下的句子。空着时笔记用按 userId 固定的等候句     |
-| `aboutMe`      | string，可省略                                       | 这个人写给我的句子。空着或没有该字段时，对应标签不可点       |
+| `impression`   | `string` \| `string[]`                               | 我对这个人写下的句子。空着时笔记用按 userId 固定的等候句     |
+| `aboutMe`      | `string` \| `string[]`，可省略                       | 这个人写给我的句子。空着或没有该字段时，对应标签不可点       |
 | `timeline`     | `{ date, text }[]`                                   | 时间线                                                       |
-| `pinnedPosts`  | `{ url, text, date, images? }[]`                     | 精选帖子静态引用                                             |
 | `interactions` | number                                               | 回复、引用、@ 的合计，从 2026-08-21 的快照累加。决定头像大小 |
+
+`impression` 和 `aboutMe` 里的换行会画出来，反引号中间的换行也一样。字符串里写 `\n` 可以。要在 JSON 里直接回车，写成字符串数组，一项一行，空字符串是空行。代码里的模板字符串直接回车。`[文字](https://…)` 画成链接，只接受 `http` 和 `https`。写在反引号里的链接保持原文。
 
 TypeScript 类型见 `shared/circle/types.ts`。每周合并逻辑见 `shared/circle/sync.ts`。

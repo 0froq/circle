@@ -99,11 +99,6 @@ const people = seeds.map((seed, index) => {
       { date: seed.firstSeen, text: '第一次在快照里出现（假）' },
       { date: '2025-01-01', text: '线下面基（虚构）' },
     ],
-    pinnedPosts: [{
-      url: `https://x.com/${seed.handle}/status/000000000000000000`,
-      text: '占位帖：一句假引用，不嵌 X 脚本。',
-      date: '2025-06-01',
-    }],
     interactions: seed.interactions,
   }
 })

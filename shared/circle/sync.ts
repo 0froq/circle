@@ -62,7 +62,6 @@ export function mergeRoster(previous: Person[], mutuals: SocialProfile[], hidden
       platforms: old?.platforms ?? [],
       impression: old?.impression ?? '',
       timeline: old?.timeline ?? [],
-      pinnedPosts: old?.pinnedPosts ?? [],
       interactions: old?.interactions ?? 0,
     }
     if (old?.aboutMe)

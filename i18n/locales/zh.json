@@ -2,8 +2,6 @@
   "circle": {
     "title": "circle",
     "closeCard": "关闭",
-    "pinnedPosts": "精选帖子",
-    "postLink": "原帖链接",
     "copyLead": "我会逐渐给这里的每一个人写下一些句子。",
     "discussInvite": "想写一句给我，就到这个仓库的 {link}。我会把这些句子放上来。",
     "discussions": "disussion",
