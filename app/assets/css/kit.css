@@ -95,21 +95,21 @@ code {
   font-size: 0.86em;
 }
 
-/* Content sits above the wash. The library paints that wash on body, an opaque canvas
-   at z-index 0. This sheet stays clear and above it, so blooms show through the type.
-   The pen canvas (z-index -1 inside each sheet) draws under the type and over the wash. */
 .l-site {
   position: relative;
   z-index: 1;
 }
 
+/* The library sheet paints an opaque --ui-bg. This site has no .ui scope and no
+   body wash, so the ground stays --bg. A transparent sheet would be sampled as
+   black and the light fibre would collapse. */
 .ui-paper {
   position: relative;
-  background: transparent;
+  background: var(--bg);
 }
 
 .l-site.ui-paper {
-  background: transparent;
+  background: var(--bg);
 }
 
 .ui-paper-grain {
