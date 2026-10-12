@@ -11,6 +11,7 @@
 .temp
 .output
 .turbo
+.cloudflare
 .wrangler
 cache
 coverage
