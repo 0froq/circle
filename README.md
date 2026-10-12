@@ -7,7 +7,7 @@
 ```bash
 pnpm install
 pnpm dev        # http://localhost:3000
-pnpm generate   # 静态导出到 dist，给 Cloudflare Pages
+pnpm generate   # 静态导出到 dist，给 Cloudflare Workers
 pnpm test       # 摆放与头像大小
 pnpm lint
 pnpm typecheck
@@ -15,7 +15,7 @@ pnpm typecheck
 
 ## 部署
 
-推 `main` 后由 Cloudflare Pages 的 GitHub 连接构建。仓库里不放 Cloudflare token。构建命令是 `pnpm generate`，发布目录是 `dist`。
+推 `main` 后由 Cloudflare Workers Builds 构建并部署。仓库里不放 Cloudflare token。构建命令是 `pnpm generate`，生产部署是 `pnpm exec cf deploy`（`cf` 会先读 `dist` 里的静态资源）。自定义域名：`https://circle.froq.me`。
 
 ## 内容在哪里
 
@@ -28,7 +28,8 @@ pnpm typecheck
 | `public/avatars/` | 这一次快照的头像。之后的名单改用远程地址 |
 | `shared/circle/` | 类型、互关合并与画板摆放 |
 | `.github/workflows/refresh-circle.yml` | 每周一重拉互关 |
-| `wrangler.jsonc` | Cloudflare Pages 的项目名和发布目录 |
+| `cloudflare.config.ts` | Worker 名与静态资源路由 |
+| `wrangler.config.ts` | 构建侧资源目录（`dist`） |
 | `app/components/circle/` | 画板、纸条、名单 |
 | `app/pages/index.vue` | 首页。英文 `/`，中文 `/zh`，日文 `/ja` |
 

@@ -9,6 +9,7 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
+    "deploy": "pnpm generate && cf deploy",
     "preview": "nuxt preview",
     "lint": "eslint . --cache",
     "lint:fix": "eslint . --cache --fix",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:dev",
     "@nuxt/eslint": "catalog:dev",
+    "cf": "catalog:dev",
     "eslint": "catalog:dev",
     "eslint-plugin-format": "catalog:dev",
     "lint-staged": "catalog:dev",
