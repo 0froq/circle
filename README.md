@@ -15,7 +15,9 @@ pnpm typecheck
 
 ## 部署
 
-推 `main` 后由 Cloudflare Workers Builds 构建并部署。仓库里不放 Cloudflare token。构建命令是 `pnpm generate`，生产部署是 `pnpm exec cf deploy`（`cf` 会先读 `dist` 里的静态资源）。自定义域名：`https://circle.froq.me`。
+推 `main` 后由 Cloudflare Workers Builds 构建并部署。仓库里不放 Cloudflare token。`pnpm generate` 产出 `dist/`。Worker 配置在 `cloudflare.config.ts`，静态资源目录在 `wrangler.config.ts`。本地一次发布用 `pnpm deploy`。自定义域名：`https://circle.froq.me`。
+
+Workers Builds（GitHub 连接）：`NODE_VERSION=22`，构建 `pnpm generate`，生产 `pnpm exec cf deploy`，预览 `pnpm exec cf previews deploy`。
 
 ## 内容在哪里
 

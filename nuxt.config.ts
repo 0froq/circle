@@ -68,6 +68,9 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    // Workers Builds sets WORKERS_CI; without this Nitro picks a Cloudflare
+    // preset instead of writing a static dist for `cf deploy`.
+    preset: 'static',
     output: {
       publicDir: 'dist',
     },
