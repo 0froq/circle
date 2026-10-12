@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Paper } from '@froq/ui'
+
 const { product } = useAppConfig()
 const { t } = useI18n()
 const installed = useInstalled()
@@ -19,8 +21,7 @@ onBeforeUnmount(() => removeEventListener('keydown', onKey))
 </script>
 
 <template>
-  <div class="l-site">
-    <PaperGrain />
+  <Paper class="l-site">
     <a
       class="l-skip"
       href="#main"
@@ -34,5 +35,5 @@ onBeforeUnmount(() => removeEventListener('keydown', onKey))
     </main>
     <SiteFooter :inert="hidden" />
     <Installed v-if="!product.install.href" />
-  </div>
+  </Paper>
 </template>
