@@ -40,4 +40,4 @@ pnpm typecheck
 
 ## 许可
 
-手写字体 EMS Allure（SIL OFL 1.1），见 `app/kit/hand-font.ts`。
+手写字体 EMS Allure（SIL OFL 1.1），见 `vendor/ui/src/core/signature/hand-font.ts`。
