@@ -32,7 +32,9 @@ onBeforeUnmount(() => {
 useHead({
   title: t('circle.title'),
 })
-useSeoMeta({ description: () => t('circle.copyLead') })
+useShareMeta({
+  description: () => t('circle.copyLead'),
+})
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 import { keepEmptyTitle } from './shared/empty-title'
 import { markFinalStop } from './shared/final-mark'
+import { SITE_ORIGIN } from './shared/site'
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-19',
@@ -65,6 +66,7 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false,
+    baseUrl: SITE_ORIGIN,
   },
 
   nitro: {
