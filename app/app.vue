@@ -34,8 +34,6 @@ useHead({
     return t('site.title') || 'paper-landing'
   },
 })
-
-useShareMeta()
 </script>
 
 <template>
