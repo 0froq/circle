@@ -32,8 +32,16 @@ onBeforeUnmount(() => {
 useHead({
   title: t('circle.title'),
 })
+defineOgImage('Paper', {
+  title: () => t('circle.title'),
+  words: 0,
+}, {
+  alt: () => t('circle.title'),
+})
 useShareMeta({
+  title: () => t('circle.title'),
   description: () => t('circle.copyLead'),
+  image: false,
 })
 </script>
 

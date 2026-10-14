@@ -1,52 +1,73 @@
+import type { MaybeRefOrGetter } from 'vue'
 import {
+  absoluteImageUrl,
   canonicalUrl,
   OG_IMAGE_HEIGHT,
-  OG_IMAGE_URL,
+  OG_IMAGE_PATH,
   OG_IMAGE_WIDTH,
 } from '#shared/site'
 
-type ShareType = 'website' | 'article'
+export interface ShareMetaInput {
+  title?: MaybeRefOrGetter<string | undefined>
+  description?: MaybeRefOrGetter<string | undefined>
+  type?: MaybeRefOrGetter<'website' | 'article' | undefined>
+  /**
+   * Share image path or https URL.
+   * `false` when defineOgImage owns `og:image`.
+   * Omitted routes use `/og.png`.
+   */
+  image?: MaybeRefOrGetter<string | false | undefined>
+}
 
-function filled(value: string | undefined | null): string | undefined {
+function filled(value: string | undefined, fallback: string): string {
   const text = value?.trim()
-  return text || undefined
+  return text || fallback
 }
 
 /**
- * Open Graph / Twitter tags for a page. Call from `app.vue` for site-wide
- * defaults; pages pass their own title and description to override.
+ * Open Graph / Twitter tags for the current route.
+ * `og:url` stays on the site origin. Image URLs use the Worker origin.
  */
-export function useShareMeta(options: {
-  title?: MaybeRefOrGetter<string | undefined | null>
-  description?: MaybeRefOrGetter<string | undefined | null>
-  type?: MaybeRefOrGetter<ShareType | undefined>
-} = {}): void {
+export function useShareMeta(input: ShareMetaInput = {}): void {
   const route = useRoute()
   const { t } = useI18n()
+  const { product } = useAppConfig()
 
-  const title = computed(() => filled(toValue(options.title)) ?? t('site.title'))
-  const description = computed(() => filled(toValue(options.description)) ?? t('circle.copyLead'))
-  const type = computed(() => toValue(options.type) ?? 'website')
+  const title = computed(() => filled(toValue(input.title), t('site.title')))
+  const description = computed(() => filled(toValue(input.description), t('circle.copyLead')))
+  const type = computed(() => toValue(input.type) ?? 'website')
   const url = computed(() => canonicalUrl(route.path))
+  const skipImage = toValue(input.image) === false
+  const image = computed(() => {
+    const value = toValue(input.image)
+    if (value === false || !value)
+      return absoluteImageUrl(OG_IMAGE_PATH)
+    return absoluteImageUrl(value)
+  })
 
   useSeoMeta({
     description: () => description.value,
     ogTitle: () => title.value,
     ogDescription: () => description.value,
-    ogType: () => type.value,
-    ogSiteName: () => t('site.title'),
     ogUrl: () => url.value,
-    ogImage: OG_IMAGE_URL,
-    ogImageSecureUrl: OG_IMAGE_URL,
-    ogImageType: 'image/png',
-    ogImageWidth: OG_IMAGE_WIDTH,
-    ogImageHeight: OG_IMAGE_HEIGHT,
-    ogImageAlt: () => t('site.title'),
+    ogType: () => type.value,
+    ogSiteName: product.name,
     twitterCard: 'summary_large_image',
     twitterTitle: () => title.value,
     twitterDescription: () => description.value,
-    twitterImage: OG_IMAGE_URL,
   })
+
+  if (!skipImage) {
+    useSeoMeta({
+      ogImage: () => image.value,
+      ogImageType: 'image/png',
+      ogImageWidth: OG_IMAGE_WIDTH,
+      ogImageHeight: OG_IMAGE_HEIGHT,
+      ogImageAlt: () => title.value,
+      twitterImage: () => image.value,
+      twitterImageAlt: () => title.value,
+    })
+  }
 
   useHead({
     link: [{ rel: 'canonical', href: () => url.value }],

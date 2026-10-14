@@ -1,16 +1,30 @@
-/** Production origin from README. Share tags need an absolute https URL. */
+/** Canonical origin (`og:url`). Matches the site URL in README. */
 export const SITE_ORIGIN = 'https://circle.froq.me'
 
+/**
+ * Share-image origin. X refuses to fetch froq.me, so `og:image` and
+ * `twitter:image` use the Worker URL.
+ */
+export const IMAGE_ORIGIN = 'https://circle.sayhola.workers.dev'
+
 export const OG_IMAGE_PATH = '/og.png'
-export const OG_IMAGE_URL = `${SITE_ORIGIN}${OG_IMAGE_PATH}`
+export const OG_IMAGE_URL = absoluteImageUrl(OG_IMAGE_PATH)
 export const OG_IMAGE_WIDTH = 1200
 export const OG_IMAGE_HEIGHT = 630
 
-/** Absolute canonical URL. Trailing slashes drop, matching the Worker. */
+/** Absolute canonical URL for a route path (`/` or `/zh/docs`). */
 export function canonicalUrl(path: string): string {
   const url = new URL(path || '/', `${SITE_ORIGIN}/`)
   const pathname = url.pathname.length > 1 && url.pathname.endsWith('/')
     ? url.pathname.replace(/\/+$/, '')
     : url.pathname
   return pathname === '/' ? SITE_ORIGIN : `${SITE_ORIGIN}${pathname}`
+}
+
+/** Absolute https URL for a share image. Already-absolute https URLs pass through. */
+export function absoluteImageUrl(src: string): string {
+  if (/^https:\/\//i.test(src))
+    return src
+  const path = src.startsWith('/') ? src : `/${src}`
+  return `${IMAGE_ORIGIN}${path}`
 }

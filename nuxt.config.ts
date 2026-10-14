@@ -1,8 +1,14 @@
+import { countCardWords } from '@froq/og-covers-layer/card-words'
 import { keepEmptyTitle } from './shared/empty-title'
 import { markFinalStop } from './shared/final-mark'
-import { SITE_ORIGIN } from './shared/site'
+import { listPublicShareImages } from './shared/public-files'
+import { IMAGE_ORIGIN } from './shared/site'
 
 export default defineNuxtConfig({
+  extends: [
+    ['github:0froq/og-layer#v0.1.0', { install: true }],
+  ],
+
   compatibilityDate: '2026-09-19',
 
   hooks: {
@@ -10,8 +16,16 @@ export default defineNuxtConfig({
     // An explicit `title: ''` must stay empty: Content otherwise names the page after the file.
     'content:file:afterParse': ({ file, content, collection }) => {
       keepEmptyTitle(content, file.body)
+      if (typeof file.body === 'string')
+        (content as { words?: number }).words = countCardWords(file.body)
       if (collection.name === 'notes' || collection.name === 'docs')
         markFinalStop(content.body)
+    },
+  },
+
+  runtimeConfig: {
+    public: {
+      publicFiles: listPublicShareImages(),
     },
   },
 
@@ -22,6 +36,16 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxt/eslint',
   ],
+
+  // DevTools hosts the OG Image tab (template hot reload). The host package is not a module.
+  devtools: { enabled: true },
+
+  // `og:image` is absolute on this origin. `og:url` stays on circle.froq.me via useShareMeta.
+  // X does not fetch images from froq.me.
+  site: {
+    url: IMAGE_ORIGIN,
+    name: 'circle',
+  },
 
   css: [
     '@fontsource-variable/geist/index.css',
@@ -66,7 +90,8 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false,
-    baseUrl: SITE_ORIGIN,
+    // Matches `site.url` so site-config does not error. Canonical links are set in useShareMeta.
+    baseUrl: IMAGE_ORIGIN,
   },
 
   nitro: {
