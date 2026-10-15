@@ -34,6 +34,7 @@ useHead({
 })
 defineOgImage('Paper', {
   title: () => t('circle.title'),
+  description: () => t('circle.copyLead'),
   words: 0,
 }, {
   alt: () => t('circle.title'),
