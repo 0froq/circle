@@ -19,7 +19,8 @@ const pieces = computed(() => notePieces(props.text))
       :href="piece.url"
       target="_blank"
       rel="noopener noreferrer"
-    >{{ piece.text }}</a>
+      >{{ piece.text }}</a
+    >
     <template v-else>
       {{ piece.text }}
     </template>

@@ -9,7 +9,7 @@ export interface BoardNode {
 
 export interface BoardLayout {
   nodes: BoardNode[]
-  viewBox: { minX: number, minY: number, width: number, height: number }
+  viewBox: { minX: number; minY: number; width: number; height: number }
 }
 
 /** Same face size for everyone. Position never encodes worth. */
@@ -54,8 +54,7 @@ export function layoutBoard(people: Person[]): BoardLayout {
       const clearOthers = nodes.every(node => Math.hypot(node.x - nextX, node.y - nextY) >= minGap)
       x = nextX
       y = nextY
-      if (clearMark && clearOthers)
-        break
+      if (clearMark && clearOthers) break
     }
     nodes.push({ person, x, y, size: AVATAR_SIZE })
   }
