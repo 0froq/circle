@@ -1,7 +1,6 @@
-/* eslint-disable test/no-import-node-test */
 import type { Person } from './types.ts'
 import assert from 'node:assert/strict'
-import { describe, it } from 'node:test'
+import { describe, it } from 'vite-plus/test'
 import { AVATAR_SIZE, layoutBoard, visiblePeople } from './layout.ts'
 
 function person(overrides: Partial<Person> & Pick<Person, 'userId' | 'handle'>): Person {
@@ -38,24 +37,31 @@ describe('board layout', () => {
       person({ userId: 'u', handle: 'u', status: 'unfollowed' }),
       person({ userId: 'f', handle: 'f', status: 'followsMe' }),
     ])
-    assert.deepEqual(people.map(person => person.userId), ['a'])
+    assert.deepEqual(
+      people.map(person => person.userId),
+      ['a'],
+    )
   })
 
   it('does not move a person when score-like fields change', () => {
-    const quiet = layoutBoard([person({
-      userId: 'same',
-      handle: 'same',
-      interactions: 0,
-      firstSeen: '2024-12-01',
-      ring: 3,
-    })])
-    const loud = layoutBoard([person({
-      userId: 'same',
-      handle: 'same',
-      interactions: 999,
-      firstSeen: '2016-01-01',
-      ring: 1,
-    })])
+    const quiet = layoutBoard([
+      person({
+        userId: 'same',
+        handle: 'same',
+        interactions: 0,
+        firstSeen: '2024-12-01',
+        ring: 3,
+      }),
+    ])
+    const loud = layoutBoard([
+      person({
+        userId: 'same',
+        handle: 'same',
+        interactions: 999,
+        firstSeen: '2016-01-01',
+        ring: 1,
+      }),
+    ])
     assert.equal(quiet.nodes[0]!.x, loud.nodes[0]!.x)
     assert.equal(quiet.nodes[0]!.y, loud.nodes[0]!.y)
     assert.equal(quiet.nodes[0]!.size, loud.nodes[0]!.size)
@@ -70,10 +76,7 @@ describe('board layout', () => {
   })
 
   it('is stable for the same ids', () => {
-    const people = [
-      person({ userId: 'b', handle: 'b' }),
-      person({ userId: 'a', handle: 'a' }),
-    ]
+    const people = [person({ userId: 'b', handle: 'b' }), person({ userId: 'a', handle: 'a' })]
     const first = layoutBoard(people)
     const second = layoutBoard([...people].reverse())
     assert.deepEqual(

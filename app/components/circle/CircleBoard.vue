@@ -27,7 +27,10 @@ interface Face {
 
 const packed = computed(() => {
   const peak = props.people.reduce((max, person) => Math.max(max, person.interactions), 0)
-  const discs = props.people.map(person => ({ id: person.userId, r: faceRadius(person.interactions, peak) }))
+  const discs = props.people.map(person => ({
+    id: person.userId,
+    r: faceRadius(person.interactions, peak),
+  }))
   const layout = packCircles(discs)
   const bounds = packBounds(layout)
   const at = new Map(layout.map(disc => [disc.id, disc]))
@@ -58,7 +61,7 @@ const stage = ref<HTMLElement>()
 const boardWidth = ref(0)
 const boardHeight = ref(0)
 const facesReady = ref(false)
-const hovered = ref<{ name: string, handle: string } | null>(null)
+const hovered = ref<{ name: string; handle: string } | null>(null)
 const coarse = ref(false)
 const pickedId = ref<string | null>(null)
 const dragging = ref(false)
@@ -66,7 +69,7 @@ const view = ref<BoardView>({ zoom: MIN_ZOOM, x: 0, y: 0 })
 const settling = ref(false)
 const tracking = ref(false)
 const focusMoving = ref(false)
-const focusFrame = ref<{ x: number, y: number, size: number } | null>(null)
+const focusFrame = ref<{ x: number; y: number; size: number } | null>(null)
 const focusedId = ref<string | null>(null)
 const heldScale = ref(1)
 
@@ -77,9 +80,17 @@ let framing = false
 
 let boardObserver: ResizeObserver | undefined
 let coarseMedia: MediaQueryList | undefined
-const pointers = new Map<number, { x: number, y: number }>()
-let drag: { id: number, x: number, y: number, panX: number, panY: number, moved: boolean } | null = null
-let pinch: { zoom: number, x: number, y: number, dist: number, originX: number, originY: number } | null = null
+const pointers = new Map<number, { x: number; y: number }>()
+let drag: { id: number; x: number; y: number; panX: number; panY: number; moved: boolean } | null =
+  null
+let pinch: {
+  zoom: number
+  x: number
+  y: number
+  dist: number
+  originX: number
+  originY: number
+} | null = null
 let ignoreClick = false
 
 const stageStyle = computed(() => ({
@@ -115,14 +126,12 @@ onMounted(() => {
   let pending = images.length
   const done = (): void => {
     pending -= 1
-    if (pending <= 0)
-      facesReady.value = true
+    if (pending <= 0) facesReady.value = true
   }
   for (const img of images) {
     if (img.complete) {
       done()
-    }
-    else {
+    } else {
       img.addEventListener('load', done, { once: true })
       img.addEventListener('error', done, { once: true })
     }
@@ -138,24 +147,26 @@ onBeforeUnmount(() => {
   window.clearTimeout(settleTimer)
 })
 
-watch(() => props.activeId, (id) => {
-  window.clearTimeout(settleTimer)
-  alignGeneration += 1
-  const generation = alignGeneration
-  if (!id) {
-    releaseFocus(generation)
-    return
-  }
-  if (!restView)
-    restView = { ...view.value }
-  void alignToCard(id, generation)
-})
+watch(
+  () => props.activeId,
+  id => {
+    window.clearTimeout(settleTimer)
+    alignGeneration += 1
+    const generation = alignGeneration
+    if (!id) {
+      releaseFocus(generation)
+      return
+    }
+    if (!restView) restView = { ...view.value }
+    void alignToCard(id, generation)
+  },
+)
 
 function syncStored(): void {
   coarse.value = coarseMedia?.matches ?? false
 }
 
-function frame(): { width: number, height: number } {
+function frame(): { width: number; height: number } {
   return {
     width: board.value?.clientWidth ?? boardWidth.value,
     height: board.value?.clientHeight ?? boardHeight.value,
@@ -197,12 +208,11 @@ function place(face: Face): Record<string, string> {
   }
 }
 
-function layoutOf(face: Face): { cx: number, cy: number, d: number } | null {
+function layoutOf(face: Face): { cx: number; cy: number; d: number } | null {
   const box = packed.value.bounds
   const boardW = boardWidth.value
   const boardH = boardHeight.value || boardW
-  if (boardW <= 0 || boardH <= 0 || box.width <= 0 || box.height <= 0)
-    return null
+  if (boardW <= 0 || boardH <= 0 || box.width <= 0 || box.height <= 0) return null
   const scale = Math.min(boardW / box.width, boardH / box.height)
   return {
     d: face.d * scale,
@@ -213,8 +223,7 @@ function layoutOf(face: Face): { cx: number, cy: number, d: number } | null {
 
 function imageScale(diameter: number, zoom: number): number {
   const rendered = diameter * zoom
-  if (rendered <= 0)
-    return 1
+  if (rendered <= 0) return 1
   return Math.max(1, HOVER_MIN / rendered)
 }
 
@@ -222,14 +231,13 @@ function waitFrame(): Promise<void> {
   return new Promise(resolve => requestAnimationFrame(() => resolve()))
 }
 
-function cardAvatarFrame(avatar: HTMLElement): { x: number, y: number, size: number } {
+function cardAvatarFrame(avatar: HTMLElement): { x: number; y: number; size: number } {
   const rect = avatar.getBoundingClientRect()
   const card = avatar.closest('.circle-card')
   let shiftY = 0
   if (card) {
     const transform = getComputedStyle(card).transform
-    if (transform && transform !== 'none')
-      shiftY = new DOMMatrix(transform).m42
+    if (transform && transform !== 'none') shiftY = new DOMMatrix(transform).m42
   }
   return {
     x: rect.left + rect.width / 2,
@@ -241,16 +249,14 @@ function cardAvatarFrame(avatar: HTMLElement): { x: number, y: number, size: num
 async function alignToCard(id: string, generation: number, attempt = 0): Promise<void> {
   await nextTick()
   await waitFrame()
-  if (generation !== alignGeneration || props.activeId !== id)
-    return
+  if (generation !== alignGeneration || props.activeId !== id) return
   const face = packed.value.faces.find(item => item.id === id)
   const node = board.value
   const avatar = document.querySelector<HTMLElement>('.circle-card-avatar')
   const layout = face ? layoutOf(face) : null
   const rest = restView
   if (!face || !node || !layout || !avatar || !rest || layout.d <= 0) {
-    if (attempt < 8)
-      void alignToCard(id, generation, attempt + 1)
+    if (attempt < 8) void alignToCard(id, generation, attempt + 1)
     return
   }
   const rect = node.getBoundingClientRect()
@@ -311,8 +317,7 @@ async function alignToCard(id: string, generation: number, attempt = 0): Promise
 }
 
 function onScroll(): void {
-  if (framing || !props.activeId || !focusFrame.value)
-    return
+  if (framing || !props.activeId || !focusFrame.value) return
   alignGeneration += 1
   void alignToCard(props.activeId, alignGeneration)
 }
@@ -352,13 +357,11 @@ function releaseFocus(generation: number): void {
     rest,
   )
   settleTimer = window.setTimeout(() => {
-    if (generation !== alignGeneration)
-      return
+    if (generation !== alignGeneration) return
     focusFrame.value = null
     focusMoving.value = false
     requestAnimationFrame(() => {
-      if (generation !== alignGeneration)
-        return
+      if (generation !== alignGeneration) return
       settling.value = false
       focusedId.value = null
       restView = null
@@ -366,12 +369,13 @@ function releaseFocus(generation: number): void {
   }, FOCUS_MS)
 }
 
-const focusFace = computed(() => packed.value.faces.find(face => face.id === focusedId.value) ?? null)
+const focusFace = computed(
+  () => packed.value.faces.find(face => face.id === focusedId.value) ?? null,
+)
 
 const focusStyle = computed(() => {
   const frame = focusFrame.value
-  if (!frame)
-    return {}
+  if (!frame) return {}
   return {
     left: `${frame.x - frame.size / 2}px`,
     top: `${frame.y - frame.size / 2}px`,
@@ -380,10 +384,9 @@ const focusStyle = computed(() => {
   }
 })
 
-function centerOf(clientX: number, clientY: number): { x: number, y: number } | null {
+function centerOf(clientX: number, clientY: number): { x: number; y: number } | null {
   const rect = board.value?.getBoundingClientRect()
-  if (!rect)
-    return null
+  if (!rect) return null
   return {
     x: clientX - rect.left - rect.width / 2,
     y: clientY - rect.top - rect.height / 2,
@@ -404,14 +407,12 @@ function choose(person: Person): void {
 }
 
 function show(face: Face): void {
-  if (dragging.value)
-    return
+  if (dragging.value) return
   hovered.value = { name: face.name, handle: face.handle }
 }
 
 function hide(): void {
-  if (coarse.value && pickedId.value)
-    return
+  if (coarse.value && pickedId.value) return
   hovered.value = null
 }
 
@@ -419,17 +420,15 @@ function rememberPointer(event: PointerEvent): void {
   pointers.set(event.pointerId, { x: event.clientX, y: event.clientY })
 }
 
-function pinchGeometry(): { dist: number, originX: number, originY: number } | null {
+function pinchGeometry(): { dist: number; originX: number; originY: number } | null {
   const points = [...pointers.values()]
   const first = points[0]
   const second = points[1]
-  if (!first || !second)
-    return null
+  if (!first || !second) return null
   const midX = (first.x + second.x) / 2
   const midY = (first.y + second.y) / 2
   const origin = centerOf(midX, midY)
-  if (!origin)
-    return null
+  if (!origin) return null
   return {
     dist: Math.hypot(first.x - second.x, first.y - second.y),
     originX: origin.x,
@@ -438,8 +437,7 @@ function pinchGeometry(): { dist: number, originX: number, originY: number } | n
 }
 
 function onPointerDown(event: PointerEvent): void {
-  if (event.button !== 0 || props.activeId)
-    return
+  if (event.button !== 0 || props.activeId) return
   rememberPointer(event)
   if (pointers.size >= 2) {
     drag = null
@@ -451,8 +449,7 @@ function onPointerDown(event: PointerEvent): void {
     board.value?.setPointerCapture(event.pointerId)
     return
   }
-  if (coarse.value)
-    return
+  if (coarse.value) return
   drag = {
     id: event.pointerId,
     x: event.clientX,
@@ -464,13 +461,11 @@ function onPointerDown(event: PointerEvent): void {
 }
 
 function onPointerMove(event: PointerEvent): void {
-  if (!pointers.has(event.pointerId))
-    return
+  if (!pointers.has(event.pointerId)) return
   rememberPointer(event)
   if (pointers.size >= 2 && pinch) {
     const geometry = pinchGeometry()
-    if (!geometry || pinch.dist <= 0)
-      return
+    if (!geometry || pinch.dist <= 0) return
     view.value = zoomToward(
       pinch,
       pinch.originX,
@@ -483,17 +478,14 @@ function onPointerMove(event: PointerEvent): void {
     dragging.value = true
     return
   }
-  if (!drag || drag.id !== event.pointerId)
-    return
+  if (!drag || drag.id !== event.pointerId) return
   const dx = event.clientX - drag.x
   const dy = event.clientY - drag.y
-  if (!drag.moved && Math.hypot(dx, dy) < TAP_SLOP)
-    return
+  if (!drag.moved && Math.hypot(dx, dy) < TAP_SLOP) return
   drag.moved = true
   dragging.value = true
   board.value?.setPointerCapture(event.pointerId)
-  if (view.value.zoom <= MIN_ZOOM)
-    return
+  if (view.value.zoom <= MIN_ZOOM) return
   const { width, height } = frame()
   view.value = {
     zoom: view.value.zoom,
@@ -503,8 +495,7 @@ function onPointerMove(event: PointerEvent): void {
 }
 
 function endGesture(moved: boolean): void {
-  if (!moved)
-    return
+  if (!moved) return
   ignoreClick = true
   window.setTimeout(() => {
     ignoreClick = false
@@ -514,12 +505,9 @@ function endGesture(moved: boolean): void {
 function onPointerUp(event: PointerEvent): void {
   const moved = (drag?.id === event.pointerId && drag.moved) || pinch !== null
   pointers.delete(event.pointerId)
-  if (drag?.id === event.pointerId)
-    drag = null
-  if (pointers.size < 2)
-    pinch = null
-  if (pointers.size === 0)
-    dragging.value = false
+  if (drag?.id === event.pointerId) drag = null
+  if (pointers.size < 2) pinch = null
+  if (pointers.size === 0) dragging.value = false
   endGesture(moved)
 }
 
@@ -529,20 +517,25 @@ function onPointerCancel(event: PointerEvent): void {
 
 function onWheel(event: WheelEvent): void {
   // A normal scroll moves the page. Pinch on a trackpad arrives as a wheel event with ctrlKey.
-  if (!event.ctrlKey || props.activeId)
-    return
+  if (!event.ctrlKey || props.activeId) return
   event.preventDefault()
   const delta = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? event.deltaY * 16 : event.deltaY
   const factor = Math.exp(-delta * 0.0016)
   const origin = centerOf(event.clientX, event.clientY)
-  if (!origin)
-    return
-  view.value = zoomToward(view.value, origin.x, origin.y, origin.x, origin.y, view.value.zoom * factor, frame())
+  if (!origin) return
+  view.value = zoomToward(
+    view.value,
+    origin.x,
+    origin.y,
+    origin.x,
+    origin.y,
+    view.value.zoom * factor,
+    frame(),
+  )
 }
 
 function onTouchMove(event: TouchEvent): void {
-  if (event.touches.length >= 2)
-    event.preventDefault()
+  if (event.touches.length >= 2) event.preventDefault()
 }
 </script>
 
@@ -551,7 +544,14 @@ function onTouchMove(event: TouchEvent): void {
     <div
       ref="board"
       class="board"
-      :class="{ 'is-ready': facesReady, 'is-dragging': dragging, 'is-coarse': coarse, 'is-open': activeId, 'is-settling': settling, 'is-tracking': tracking }"
+      :class="{
+        'is-ready': facesReady,
+        'is-dragging': dragging,
+        'is-coarse': coarse,
+        'is-open': activeId,
+        'is-settling': settling,
+        'is-tracking': tracking,
+      }"
       @pointerdown="onPointerDown"
       @pointermove="onPointerMove"
       @pointerup="onPointerUp"
@@ -569,7 +569,13 @@ function onTouchMove(event: TouchEvent): void {
           <button
             type="button"
             class="board-face"
-            :class="{ 'is-unfollowed': face.unfollowed, 'is-picked': coarse && pickedId === face.id, 'is-active': activeId === face.id, 'is-held': focusedId === face.id, 'is-lifted': focusFrame && focusedId === face.id }"
+            :class="{
+              'is-unfollowed': face.unfollowed,
+              'is-picked': coarse && pickedId === face.id,
+              'is-active': activeId === face.id,
+              'is-held': focusedId === face.id,
+              'is-lifted': focusFrame && focusedId === face.id,
+            }"
             :style="place(face)"
             :aria-label="`${face.name} @${face.handle}`"
             @click="choose(face.person)"
@@ -585,7 +591,7 @@ function onTouchMove(event: TouchEvent): void {
               height="64"
               draggable="false"
               referrerpolicy="no-referrer"
-            >
+            />
           </button>
         </template>
       </div>
@@ -613,7 +619,7 @@ function onTouchMove(event: TouchEvent): void {
         alt=""
         draggable="false"
         referrerpolicy="no-referrer"
-      >
+      />
     </div>
   </Teleport>
 </template>
@@ -642,12 +648,36 @@ function onTouchMove(event: TouchEvent): void {
   -webkit-user-select: none;
   cursor: grab;
   mask-image:
-    linear-gradient(to right, transparent, #000 var(--edge-x), #000 calc(100% - var(--edge-x)), transparent),
-    linear-gradient(to bottom, transparent, #000 var(--edge-y), #000 calc(100% - var(--edge-y)), transparent);
+    linear-gradient(
+      to right,
+      transparent,
+      #000 var(--edge-x),
+      #000 calc(100% - var(--edge-x)),
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 var(--edge-y),
+      #000 calc(100% - var(--edge-y)),
+      transparent
+    );
   mask-composite: intersect;
   -webkit-mask-image:
-    linear-gradient(to right, transparent, #000 var(--edge-x), #000 calc(100% - var(--edge-x)), transparent),
-    linear-gradient(to bottom, transparent, #000 var(--edge-y), #000 calc(100% - var(--edge-y)), transparent);
+    linear-gradient(
+      to right,
+      transparent,
+      #000 var(--edge-x),
+      #000 calc(100% - var(--edge-x)),
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 var(--edge-y),
+      #000 calc(100% - var(--edge-y)),
+      transparent
+    );
   -webkit-mask-composite: source-in;
 }
 
@@ -660,12 +690,36 @@ function onTouchMove(event: TouchEvent): void {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   mask-image:
-    linear-gradient(to right, #000, transparent var(--edge-x), transparent calc(100% - var(--edge-x)), #000),
-    linear-gradient(to bottom, #000, transparent var(--edge-y), transparent calc(100% - var(--edge-y)), #000);
+    linear-gradient(
+      to right,
+      #000,
+      transparent var(--edge-x),
+      transparent calc(100% - var(--edge-x)),
+      #000
+    ),
+    linear-gradient(
+      to bottom,
+      #000,
+      transparent var(--edge-y),
+      transparent calc(100% - var(--edge-y)),
+      #000
+    );
   mask-composite: add;
   -webkit-mask-image:
-    linear-gradient(to right, #000, transparent var(--edge-x), transparent calc(100% - var(--edge-x)), #000),
-    linear-gradient(to bottom, #000, transparent var(--edge-y), transparent calc(100% - var(--edge-y)), #000);
+    linear-gradient(
+      to right,
+      #000,
+      transparent var(--edge-x),
+      transparent calc(100% - var(--edge-x)),
+      #000
+    ),
+    linear-gradient(
+      to bottom,
+      #000,
+      transparent var(--edge-y),
+      transparent calc(100% - var(--edge-y)),
+      #000
+    );
   -webkit-mask-composite: source-over;
 }
 

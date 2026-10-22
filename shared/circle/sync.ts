@@ -19,8 +19,7 @@ export interface TweetRef {
 
 /** X serves a small default. Ask for the 400px file instead of storing a copy. */
 export function profileAvatar(url: string): string {
-  if (!url)
-    return ''
+  if (!url) return ''
   return url.replace('_normal.', '_400x400.')
 }
 
@@ -30,8 +29,7 @@ export function mutualOf(followers: SocialProfile[], following: SocialProfile[])
   const seen = new Set<string>()
   const mutuals: SocialProfile[] = []
   for (const follower of followers) {
-    if (!followed.has(follower.userId) || seen.has(follower.userId))
-      continue
+    if (!followed.has(follower.userId) || seen.has(follower.userId)) continue
     seen.add(follower.userId)
     mutuals.push(follower)
   }
@@ -42,12 +40,16 @@ export function mutualOf(followers: SocialProfile[], following: SocialProfile[])
  * Keep sentences already written. Drop anyone who is no longer a mutual.
  * Hidden ids never come back.
  */
-export function mergeRoster(previous: Person[], mutuals: SocialProfile[], hidden: ReadonlySet<string>, today: string): Person[] {
+export function mergeRoster(
+  previous: Person[],
+  mutuals: SocialProfile[],
+  hidden: ReadonlySet<string>,
+  today: string,
+): Person[] {
   const prior = new Map(previous.map(person => [person.userId, person]))
   const next: Person[] = []
   for (const profile of mutuals) {
-    if (hidden.has(profile.userId))
-      continue
+    if (hidden.has(profile.userId)) continue
     const old = prior.get(profile.userId)
     const person: Person = {
       name: profile.name || old?.name || profile.handle,
@@ -64,8 +66,7 @@ export function mergeRoster(previous: Person[], mutuals: SocialProfile[], hidden
       timeline: old?.timeline ?? [],
       interactions: old?.interactions ?? 0,
     }
-    if (old?.aboutMe)
-      person.aboutMe = old.aboutMe
+    if (old?.aboutMe) person.aboutMe = old.aboutMe
     next.push(person)
   }
   next.sort((a, b) => a.handle.localeCompare(b.handle) || a.userId.localeCompare(b.userId))
@@ -78,44 +79,47 @@ export interface InteractionHit {
 }
 
 /** New reply, quote, or @ between froQ and a mutual. Already counted tweets are skipped. */
-export function interactionHits(tweets: TweetRef[], mutualIds: ReadonlySet<string>, hostId: string, hostHandle: string, seen: ReadonlySet<string>): InteractionHit[] {
+export function interactionHits(
+  tweets: TweetRef[],
+  mutualIds: ReadonlySet<string>,
+  hostId: string,
+  hostHandle: string,
+  seen: ReadonlySet<string>,
+): InteractionHit[] {
   const hits: InteractionHit[] = []
   const host = hostHandle.toLowerCase()
   for (const tweet of tweets) {
-    if (!tweet.id || tweet.isRetweet || seen.has(tweet.id))
-      continue
+    if (!tweet.id || tweet.isRetweet || seen.has(tweet.id)) continue
     const users = new Set<string>()
     if (tweet.authorId === hostId) {
       for (const id of tweet.mentionIds) {
-        if (mutualIds.has(id))
-          users.add(id)
+        if (mutualIds.has(id)) users.add(id)
       }
-      if (tweet.replyToId && mutualIds.has(tweet.replyToId))
-        users.add(tweet.replyToId)
-      if (tweet.quoteAuthorId && mutualIds.has(tweet.quoteAuthorId))
-        users.add(tweet.quoteAuthorId)
-    }
-    else if (mutualIds.has(tweet.authorId)) {
-      const mentionsHost = tweet.mentionIds.includes(hostId)
-        || tweet.mentionHandles.some(handle => handle.toLowerCase() === host)
+      if (tweet.replyToId && mutualIds.has(tweet.replyToId)) users.add(tweet.replyToId)
+      if (tweet.quoteAuthorId && mutualIds.has(tweet.quoteAuthorId)) users.add(tweet.quoteAuthorId)
+    } else if (mutualIds.has(tweet.authorId)) {
+      const mentionsHost =
+        tweet.mentionIds.includes(hostId) ||
+        tweet.mentionHandles.some(handle => handle.toLowerCase() === host)
       const repliesHost = tweet.replyToId === hostId
       const quotesHost = tweet.quoteAuthorId === hostId
-      if (mentionsHost || repliesHost || quotesHost)
-        users.add(tweet.authorId)
+      if (mentionsHost || repliesHost || quotesHost) users.add(tweet.authorId)
     }
-    for (const userId of users)
-      hits.push({ tweetId: tweet.id, userId })
+    for (const userId of users) hits.push({ tweetId: tweet.id, userId })
   }
   return hits
 }
 
 /** Tweet ids already counted, newest last. A later week will not count them again. */
-export function rememberTweets(previous: readonly string[], tweetIds: readonly string[], limit = 8000): string[] {
+export function rememberTweets(
+  previous: readonly string[],
+  tweetIds: readonly string[],
+  limit = 8000,
+): string[] {
   const seen = new Set(previous)
   const next = [...previous]
   for (const id of tweetIds) {
-    if (!id || seen.has(id))
-      continue
+    if (!id || seen.has(id)) continue
     seen.add(id)
     next.push(id)
   }
@@ -123,12 +127,10 @@ export function rememberTweets(previous: readonly string[], tweetIds: readonly s
 }
 
 export function addHits(people: Person[], hits: InteractionHit[]): Person[] {
-  if (hits.length === 0)
-    return people
+  if (hits.length === 0) return people
   const extra = new Map<string, number>()
-  for (const hit of hits)
-    extra.set(hit.userId, (extra.get(hit.userId) ?? 0) + 1)
-  return people.map((person) => {
+  for (const hit of hits) extra.set(hit.userId, (extra.get(hit.userId) ?? 0) + 1)
+  return people.map(person => {
     const more = extra.get(person.userId) ?? 0
     return more === 0 ? person : { ...person, interactions: person.interactions + more }
   })

@@ -36,6 +36,12 @@ export default defineAppConfig({
     },
     install: { href: '/' },
     nav: [],
-    signature: { paper: true, line: false, hand: false, bloom: false, pointer: { dwell: false, click: false, dwellAfter: 0 } },
-  } satisfies ProductConfig,
+    signature: {
+      paper: true,
+      line: false,
+      hand: false,
+      bloom: false,
+      pointer: { dwell: false, click: false, dwellAfter: 0 },
+    },
+  } as ProductConfig,
 })

@@ -15,16 +15,16 @@ export const OG_IMAGE_HEIGHT = 630
 /** Absolute canonical URL for a route path (`/` or `/zh/docs`). */
 export function canonicalUrl(path: string): string {
   const url = new URL(path || '/', `${SITE_ORIGIN}/`)
-  const pathname = url.pathname.length > 1 && url.pathname.endsWith('/')
-    ? url.pathname.replace(/\/+$/, '')
-    : url.pathname
+  const pathname =
+    url.pathname.length > 1 && url.pathname.endsWith('/')
+      ? url.pathname.replace(/\/+$/, '')
+      : url.pathname
   return pathname === '/' ? SITE_ORIGIN : `${SITE_ORIGIN}${pathname}`
 }
 
 /** Absolute https URL for a share image. Already-absolute https URLs pass through. */
 export function absoluteImageUrl(src: string): string {
-  if (/^https:\/\//i.test(src))
-    return src
+  if (/^https:\/\//i.test(src)) return src
   const path = src.startsWith('/') ? src : `/${src}`
   return `${IMAGE_ORIGIN}${path}`
 }

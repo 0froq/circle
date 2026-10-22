@@ -21,7 +21,8 @@ const { t } = useI18n()
           href="https://github.com/0froq/circle/discussions"
           target="_blank"
           rel="noopener noreferrer"
-        >{{ t('circle.discussions') }}</a>
+          >{{ t('circle.discussions') }}</a
+        >
       </template>
     </i18n-t>
   </section>
