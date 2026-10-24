@@ -1,43 +1,194 @@
-# circle
+# @froq/ui
 
-一张纸上的朋友画板。底是 paper-landing 的纸面，鼠标不着墨。圆可以缩放和拖动，缩放停在 1 倍和 3 倍之间。头像齐了才一起出现，也不能被选中。悬停时其余头像降低饱和度并变淡；当前头像小于 96px 才把图片放大到这个尺寸，热区仍是原来的圆。点头像，屏幕中间摊开一张纸条：「我想说的」和「TA 想说的」。还没写过的，按 id 固定显示一句等候的话。在纸条外滚动鼠标会收起，在纸条里滚动则翻笔记本身。暗色纸面只有斑点，没有横纹。圆排成 GitHub Sponsors 那种打包。头像大小按近 90 天的互动量：回复、引用和 @ 越多越大，最大的靠近中间。没有互动的头像一样小。画板上没有 froQ 自己的头像。点头像看纸条。画板只放互关。每周一，GitHub Action 用 SocialData 重拉名单，只写入互关，并把这一周新的回复、引用和 @ 加进互动数。secret 是 `SOCIALDATA_API_KEY`。头像用 X 的图片地址，每周任务不提交新的图片文件。最早那批文件还在 `public/avatars/`。
+Shared logic, a token contract, and the components.
+`core` and `vue` have no project styles.
+Components live in `src/components`.
 
-## 本地运行
-
-```bash
-pnpm install
-pnpm dev        # http://localhost:3000
-pnpm generate   # 静态导出到 dist，给 Cloudflare Pages
-pnpm test       # 摆放与头像大小
-pnpm lint
-pnpm typecheck
+```
+src/
+  core/         TypeScript. No framework. Tokens, keyboard, strokes, reduced motion
+  vue/          Vue behavior without styles
+  components/   One directory per concept, such as radio/ or toggle/
+  index.ts      Components exported from @froq/ui
+  style.css
+  tokens.css
+docs/           Docs site. It depends on this package. Component and docs changes ship together
 ```
 
-## 部署
+## Components
 
-推 `main` 后由 Cloudflare Pages 的 GitHub 连接构建。仓库里不放 Cloudflare token。构建命令是 `pnpm generate`，发布目录是 `dist`。
+> [!NOTE]
+> Design status is `ai-draft`, `reviewed`, or `stable`.
+> Most notes are still `ai-draft`. A working component is not a finished design.
+> Menu and Select lists are `reviewed`.
+> The docs site shows the mark on each note.
 
-## 内容在哪里
+Everything below is exported from `@froq/ui`.
 
-| 路径 | 作用 |
+| Component | Role |
 | --- | --- |
-| `data/people.json` | 成员数据（构建时读取，页面只画互关） |
-| `data/hidden.json` | 不要再出现的 user id |
-| `data/sync.json` | 每周任务写下的时间与已计帖子 id（第一次跑之后才有） |
-| `data/README.md` | JSON 字段说明 |
-| `public/avatars/` | 这一次快照的头像。之后的名单改用远程地址 |
-| `shared/circle/` | 类型、互关合并与画板摆放 |
-| `.github/workflows/refresh-circle.yml` | 每周一重拉互关 |
-| `wrangler.jsonc` | Cloudflare Pages 的项目名和发布目录 |
-| `app/components/circle/` | 画板、纸条、名单 |
-| `app/pages/index.vue` | 首页。英文 `/`，中文 `/zh`，日文 `/ja` |
+| Button / CopyButton | Native button. Async clipboard, stable width |
+| TextInput / TextArea / Select / Checkbox | Native fields. Attributes and events reach the control |
+| FormField / NumberInput / DateInput / Slider / FileUpload / RadioGroup | Label, error, native value. Validation stays with the caller |
+| Choice / ChoiceCircle / Toggle | Controlled choice and switch. Custom radio does not submit a form value |
+| ToggleGroup | Single or multiple. Arrow keys move focus. A selected value can be cleared |
+| Combobox | Search and multiple selection. Remote requests stay with the caller |
+| Calendar / DatePicker | One month. ISO dates, locale, range, disabled dates |
+| Navigation / Sidebar | Flat links and collapsible groups. Routing stays with the caller |
+| Breadcrumb / Pagination | Path and page links. No router and no data fetching |
+| Collapsible / Accordion / Tabs | Controlled panels. Content stays mounted |
+| Skeleton / Progress / Spinner / Alert | Loading, progress, wait, inline notice |
+| Banner | Site notice. Actions slot. The caller owns dismissal |
+| Toast / ToastRegion | Temporary notice and a shared region. The queue stays with the caller |
+| IconButton / EmptyState | Named icon button. Empty content and an actions slot |
+| Badge / Avatar / Separator / Card / AspectRatio / Table | Mark, image, rule, surface, ratio, native table |
+| Dialog / AlertDialog / Drawer / Popover / Menu / Tooltip | Dialog, confirm, side panel, anchored layer, menu, tip |
+| ContextMenu / HoverCard | Context menu and link preview. The preview is not required content |
+| Paper | Paper texture |
 
-## 占位项
+Each component has a demo, an English note, and a Chinese note.
+The docs site discovers them from the source.
+There is no second list.
+Coverage is in [docs/component-roadmap.md](docs/component-roadmap.md).
 
-- 「TA 想说的」还是空的，标签不可点。「我想说的」空着时，显示按 userId 固定的等候句
-- 互动数从 2026-08-21 起累加。每周任务第一次跑不重扫更早的帖
-- `product.install.href` 指向 `/`，避免模板「安装」遮罩
+## Tokens
 
-## 许可
+`tokens.css` defines these on `.ui`.
+Components read only these:
 
-手写字体 EMS Allure（SIL OFL 1.1），见 `vendor/ui/src/core/signature/hand-font.ts`。
+`--ui-bg` `--ui-fg` `--ui-muted` `--ui-faint` `--ui-line` `--ui-accent` `--ui-font-display` `--ui-font-text` `--ui-font-meta` `--ui-ease` `--ui-dur` `--ui-radius`
+
+Color uses `light-dark()` and follows the system.
+Set `data-theme="light"` or `data-theme="dark"` on the scope, or an ancestor, to force one.
+`.ui` is a class, not the document.
+`@froq/ui/tokens.css` is enough when a project wants the tokens without the components.
+`pnpm check:tokens` fails if a variable is missing, or if a component reads one outside this list.
+
+## Use
+
+```ts
+import '@froq/ui/style.css'
+import { Choice, Toggle } from '@froq/ui'
+```
+
+```vue
+<div class="ui">
+  <Choice v-model="tone" label="Tone" :options="[{ value: 'quiet', label: 'quiet' }, { value: 'loud', label: 'loud' }]" />
+</div>
+```
+
+Fonts are not in the package.
+Components expect Instrument Serif, Geist, and Geist Mono.
+Load them in the app, or the page falls back to system fonts.
+Those faces are SIL OFL 1.1.
+
+Nuxt:
+
+```ts
+export default defineNuxtConfig({
+  build: { transpile: ['@froq/ui'] },
+  css: ['@froq/ui/style.css'],
+})
+```
+
+The package publishes source.
+Vite compiles it.
+The root dependencies use normal version ranges, not this workspace's `catalog:`.
+A consumer that installs `file:vendor/ui` cannot see the catalog.
+Dev tools may use a named catalog.
+
+## Behavior that stays with the caller
+
+Skeleton follows an explicit `loading` prop.
+It does not wait for fonts, routes, or requests.
+Use the default slot when the layout is known.
+Use `width` and `height` when it is not.
+
+Toast renders inside `ToastRegion`.
+The queue, ids, and anything that must remain on screen stay with the caller.
+`useAutoDismiss(active, { duration, paused?, onDismiss })` is exported from `@froq/ui/vue`.
+Call it in setup.
+A pause keeps the remaining time.
+A new duration or a new activation resets it.
+A duration that is not finite and greater than zero does not auto-close.
+
+Calendar and DatePicker use a Gregorian `YYYY-MM-DD` string, or `''`.
+They do not convert that string into a zoned timestamp.
+The caller passes `locale`, `initialDate`, and `today`.
+`parseCalendarDate`, `calendarDateBounds`, and `formatCalendarDate` come from `@froq/ui/core`.
+DatePicker is a calendar button.
+Use DateInput when the form needs a native date field.
+
+Overlays use `reka-ui`.
+The default portal target is the nearest `.ui`, so the theme stays.
+`portal-to` must exist and carry the same tokens.
+Do not portal into a `body` that has none.
+A transform or clip on the scope can break a fixed layer.
+
+Dialog and Drawer include a trigger.
+For an external opener, set `:show-trigger="false"` and pass that opener's element as `return-focus`.
+`disabled` does not disable the external button.
+`useFocusReturn(open, target, captureFallback)` is exported from `@froq/ui/vue`.
+It does not trap focus.
+[docs/examples/ConsumerAdapters.vue](docs/examples/ConsumerAdapters.vue) shows the wiring.
+It is not a migrated site and it is not a visual acceptance test.
+
+`ContextMenu` exposes `close()` on the component ref.
+`useContextMenuControl(disabled)` must run under `ContextMenuRoot`.
+The menu is not a `v-model`.
+
+## In another project
+
+That project keeps its own copy in `vendor/ui` and commits it.
+Dev and the remote build compile that copy.
+The agent steps are in [AGENTS.md](AGENTS.md).
+On install, also write the push, pull, and extract steps into that project's agent markdown.
+
+## Add a component
+
+Write the behavior in `src/vue/` first.
+Then `src/components/<concept>/<Name>.vue`.
+Export it from `src/index.ts`.
+Add `<Name>.demo.vue`, `<Name>.md`, and `<Name>.zh.md` beside it.
+`/components/<concept>` shows the demos.
+`/components/<concept>/<name>` renders the note.
+Group labels in the sidebar are not pages.
+Concepts and components are.
+
+## Commands
+
+```bash
+pnpm dev             # docs at http://localhost:3000
+pnpm generate        # static files in dist/
+pnpm deploy          # generate, then cf deploy
+pnpm preview:deploy  # generate, then cf previews deploy
+pnpm check           # lint, types, token contract
+```
+
+## Docs site
+
+https://ui.froq.me
+
+`docs/` is Nuxt Content.
+The static output is `dist/` at the repo root.
+It deploys to the Cloudflare Worker `ui`.
+The Worker config is `cloudflare.config.ts`; the assets directory is in `wrangler.config.ts`.
+
+Workers Builds (GitHub connection, no API token in the repo): `NODE_VERSION=22`, build `pnpm generate`, production `pnpm exec cf deploy`, preview `pnpm exec cf previews deploy`.
+
+The docs live in the `docs/` subpackage, so root `cf deploy` does not run generate on its own.
+That is why `deploy` is `pnpm generate && cf deploy`.
+`docs` keeps `nuxt` in peerDependencies so root `cf deploy` bundles `dist/` instead of running `pnpm nuxt build`.
+
+Queries run in the browser from the bundled WASM SQLite and SQL dump.
+Do not use the `cloudflare_pages` Nitro preset.
+A passing local generate is not a verified deploy.
+See [the release audit](docs/release-audit.md).
+CI installs from the lockfile.
+
+## License
+
+This package has no root license file.
+The handwriting strokes in `src/core/signature/` are SIL OFL 1.1.
+Copyright 2010 The Allura Project Authors.
+See `OFL.txt` and `NOTICE.md` beside that data.
