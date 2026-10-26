@@ -4,7 +4,7 @@ const { t } = useI18n()
 const copy = useCopy()
 const link = useKitLink()
 const { theme, ready, toggle } = useTheme()
-const next = computed(() => theme.value === 'dark' ? 'light' : 'dark')
+const next = computed(() => (theme.value === 'dark' ? 'light' : 'dark'))
 const footer = computed(() => copy('site.footer'))
 </script>
 
@@ -13,9 +13,10 @@ const footer = computed(() => copy('site.footer'))
     class="l-foot"
     :class="{ 'is-bare': !footer }"
   >
-    <span v-if="footer"><Copy
-      k="site.footer"
-      :size="24"
+    <span v-if="footer"
+      ><Copy
+        k="site.footer"
+        :size="24"
     /></span>
     <nav
       v-if="product.nav.length"
@@ -35,7 +36,8 @@ const footer = computed(() => copy('site.footer'))
         v-if="ready"
         type="button"
         @click="toggle"
-      >{{ t(`theme.${next}`) }}</button>
+        >{{ t(`theme.${next}`) }}</button
+      >
     </span>
   </footer>
 </template>
