@@ -25,50 +25,53 @@ const written = computed(() => noteText(props.person?.impression))
 const theirsText = computed(() => noteText(props.person?.aboutMe))
 const mineText = computed(() => {
   const person = props.person
-  if (!person)
-    return ''
+  if (!person) return ''
   return written.value || t(`circle.waiting.${waitingLineIndex(person.userId)}`)
 })
 
-watch(() => props.person?.userId, () => {
-  tab.value = 'mine'
-})
+watch(
+  () => props.person?.userId,
+  () => {
+    tab.value = 'mine'
+  },
+)
 
 function chooseTab(next: NoteTab): void {
-  if (next === 'theirs' && !theirsText.value)
-    return
+  if (next === 'theirs' && !theirsText.value) return
   tab.value = next
 }
 
 function onKey(event: KeyboardEvent): void {
-  if (event.key === 'Escape')
-    emit('close')
+  if (event.key === 'Escape') emit('close')
 }
 
 function onWheel(event: WheelEvent): void {
-  if (event.deltaX === 0 && event.deltaY === 0)
-    return
+  if (event.deltaX === 0 && event.deltaY === 0) return
   const target = event.target
-  if (target instanceof Node && panel.value?.contains(target))
-    return
+  if (target instanceof Node && panel.value?.contains(target)) return
   emit('close')
 }
 
-watch(() => props.open, (isOpen) => {
-  window.clearTimeout(backdropTimer)
-  if (isOpen) {
-    // A tap both opens the note and can land on the backdrop that just appeared.
-    const coarse = window.matchMedia('(pointer: coarse)').matches
-    backdropReady.value = !coarse
-    if (coarse)
-      backdropTimer = window.setTimeout(() => { backdropReady.value = true }, 400)
-    nextTick(() => panel.value?.focus({ preventScroll: true }))
-    window.addEventListener('wheel', onWheel, { passive: true })
-    return
-  }
-  backdropReady.value = true
-  window.removeEventListener('wheel', onWheel)
-})
+watch(
+  () => props.open,
+  isOpen => {
+    window.clearTimeout(backdropTimer)
+    if (isOpen) {
+      // A tap both opens the note and can land on the backdrop that just appeared.
+      const coarse = window.matchMedia('(pointer: coarse)').matches
+      backdropReady.value = !coarse
+      if (coarse)
+        backdropTimer = window.setTimeout(() => {
+          backdropReady.value = true
+        }, 400)
+      nextTick(() => panel.value?.focus({ preventScroll: true }))
+      window.addEventListener('wheel', onWheel, { passive: true })
+      return
+    }
+    backdropReady.value = true
+    window.removeEventListener('wheel', onWheel)
+  },
+)
 
 onBeforeUnmount(() => {
   window.clearTimeout(backdropTimer)
@@ -76,8 +79,7 @@ onBeforeUnmount(() => {
 })
 
 function requestClose(): void {
-  if (!backdropReady.value)
-    return
+  if (!backdropReady.value) return
   emit('close')
 }
 </script>
@@ -113,7 +115,7 @@ function requestClose(): void {
                 width="144"
                 height="144"
                 referrerpolicy="no-referrer"
-              >
+              />
             </div>
             <div class="circle-card-main">
               <div class="circle-card-person">
@@ -138,7 +140,8 @@ function requestClose(): void {
                       :href="platform.url"
                       target="_blank"
                       rel="noopener noreferrer"
-                    >{{ platform.name }}</a>
+                      >{{ platform.name }}</a
+                    >
                   </li>
                 </ul>
               </div>

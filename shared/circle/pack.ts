@@ -18,8 +18,7 @@ const MAX_RADIUS = 62
  * set is the largest. Log scale, so one very active person does not cover the circle.
  */
 export function faceRadius(interactions: number, peak: number): number {
-  if (interactions <= 0 || peak <= 0)
-    return MIN_RADIUS
+  if (interactions <= 0 || peak <= 0) return MIN_RADIUS
   const t = Math.log1p(interactions) / Math.log1p(peak)
   return MIN_RADIUS + Math.min(1, t) * (MAX_RADIUS - MIN_RADIUS)
 }
@@ -43,14 +42,13 @@ export function packCircles(discs: PackDisc[]): PackedDisc[] {
   return placed
 }
 
-function closestFreeSpot(placed: PackedDisc[], radius: number): { x: number, y: number } {
+function closestFreeSpot(placed: PackedDisc[], radius: number): { x: number; y: number } {
   let bestX = 0
   let bestY = 0
   let bestD = Infinity
 
   const consider = (x: number, y: number): void => {
-    if (hits(placed, x, y, radius))
-      return
+    if (hits(placed, x, y, radius)) return
     const dist = Math.hypot(x, y)
     if (dist < bestD) {
       bestD = dist
@@ -67,37 +65,32 @@ function closestFreeSpot(placed: PackedDisc[], radius: number): { x: number, y: 
       consider(a.x + Math.cos(angle) * orbit, a.y + Math.sin(angle) * orbit)
     }
     for (let j = i + 1; j < placed.length; j++) {
-      for (const point of touchPair(a, placed[j]!, radius))
-        consider(point.x, point.y)
+      for (const point of touchPair(a, placed[j]!, radius)) consider(point.x, point.y)
     }
   }
 
-  if (!Number.isFinite(bestD))
-    return { x: radius * 3, y: 0 }
+  if (!Number.isFinite(bestD)) return { x: radius * 3, y: 0 }
   return { x: bestX, y: bestY }
 }
 
 function hits(placed: PackedDisc[], x: number, y: number, radius: number): boolean {
   for (const disc of placed) {
     const min = disc.r + radius + GAP - 0.05
-    if (Math.hypot(disc.x - x, disc.y - y) < min)
-      return true
+    if (Math.hypot(disc.x - x, disc.y - y) < min) return true
   }
   return false
 }
 
-function touchPair(a: PackedDisc, b: PackedDisc, radius: number): { x: number, y: number }[] {
+function touchPair(a: PackedDisc, b: PackedDisc, radius: number): { x: number; y: number }[] {
   const dx = b.x - a.x
   const dy = b.y - a.y
   const dist = Math.hypot(dx, dy)
   const reachA = a.r + radius + GAP
   const reachB = b.r + radius + GAP
-  if (dist < 0.01 || dist > reachA + reachB || dist < Math.abs(reachA - reachB))
-    return []
+  if (dist < 0.01 || dist > reachA + reachB || dist < Math.abs(reachA - reachB)) return []
   const along = (reachA * reachA - reachB * reachB + dist * dist) / (2 * dist)
   const heightSq = reachA * reachA - along * along
-  if (heightSq < 0)
-    return []
+  if (heightSq < 0) return []
   const height = Math.sqrt(heightSq)
   const midX = a.x + (along * dx) / dist
   const midY = a.y + (along * dy) / dist
@@ -109,7 +102,12 @@ function touchPair(a: PackedDisc, b: PackedDisc, radius: number): { x: number, y
   ]
 }
 
-export function packBounds(packed: PackedDisc[]): { minX: number, minY: number, width: number, height: number } {
+export function packBounds(packed: PackedDisc[]): {
+  minX: number
+  minY: number
+  width: number
+  height: number
+} {
   let minX = Infinity
   let minY = Infinity
   let maxX = -Infinity
@@ -121,8 +119,7 @@ export function packBounds(packed: PackedDisc[]): { minX: number, minY: number, 
     maxY = Math.max(maxY, disc.y + disc.r)
   }
   const pad = 10
-  if (!Number.isFinite(minX))
-    return { minX: -1, minY: -1, width: 2, height: 2 }
+  if (!Number.isFinite(minX)) return { minX: -1, minY: -1, width: 2, height: 2 }
   const side = Math.max(maxX - minX, maxY - minY) + pad * 2
   const cx = (minX + maxX) / 2
   const cy = (minY + maxY) / 2

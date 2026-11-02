@@ -19,18 +19,17 @@ const place = ref({ left: '16px', bottom: '16px' })
 
 const matches = computed(() => {
   const needle = query.value.trim().toLocaleLowerCase()
-  if (!needle)
-    return props.people
-  return props.people.filter(person =>
-    person.name.toLocaleLowerCase().includes(needle)
-    || person.handle.toLocaleLowerCase().includes(needle),
+  if (!needle) return props.people
+  return props.people.filter(
+    person =>
+      person.name.toLocaleLowerCase().includes(needle) ||
+      person.handle.toLocaleLowerCase().includes(needle),
   )
 })
 
 function measure(): void {
   const rect = trigger.value?.getBoundingClientRect()
-  if (!rect)
-    return
+  if (!rect) return
   const width = Math.min(380, window.innerWidth - 32)
   const left = Math.min(rect.left, Math.max(16, window.innerWidth - 16 - width))
   place.value = {
@@ -40,16 +39,14 @@ function measure(): void {
 }
 
 function onKey(event: KeyboardEvent): void {
-  if (event.key !== 'Escape' || !open.value)
-    return
+  if (event.key !== 'Escape' || !open.value) return
   event.preventDefault()
   open.value = false
 }
 
 async function toggle(): Promise<void> {
   open.value = !open.value
-  if (!open.value)
-    return
+  if (!open.value) return
   query.value = ''
   await nextTick()
   measure()
@@ -61,7 +58,7 @@ function choose(person: Person): void {
   emit('select', person)
 }
 
-watch(open, (isOpen) => {
+watch(open, isOpen => {
   if (isOpen) {
     window.addEventListener('keydown', onKey)
     window.addEventListener('resize', measure)
@@ -117,7 +114,7 @@ const panelStyle = computed(() => ({
           type="search"
           :placeholder="t('circle.searchNames')"
           :aria-label="t('circle.searchNames')"
-        >
+        />
         <p
           v-if="matches.length === 0"
           class="names-empty"
@@ -139,7 +136,8 @@ const panelStyle = computed(() => ({
               <span
                 v-if="person.status === 'unfollowed'"
                 class="names-handle"
-              >· {{ t('circle.unfollowedTag') }}</span>
+                >· {{ t('circle.unfollowedTag') }}</span
+              >
             </button>
           </li>
         </ul>

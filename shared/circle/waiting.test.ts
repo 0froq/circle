@@ -1,7 +1,6 @@
-/* eslint-disable test/no-import-node-test */
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { describe, it } from 'node:test'
+import { describe, it } from 'vite-plus/test'
 import { WAITING_LINE_COUNT, waitingLineIndex } from './waiting.ts'
 
 describe('waiting lines', () => {
@@ -20,7 +19,9 @@ describe('waiting lines', () => {
 
   it('gives every locale the same number of sentences', () => {
     for (const locale of ['en', 'zh', 'ja']) {
-      const file = JSON.parse(readFileSync(new URL(`../../i18n/locales/${locale}.json`, import.meta.url), 'utf8')) as {
+      const file = JSON.parse(
+        readFileSync(new URL(`../../i18n/locales/${locale}.json`, import.meta.url), 'utf8'),
+      ) as {
         circle: { waiting?: unknown }
       }
       assert.ok(Array.isArray(file.circle.waiting))

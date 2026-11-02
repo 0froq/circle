@@ -1,9 +1,15 @@
-/* eslint-disable test/no-import-node-test */
 import type { SocialProfile, TweetRef } from './sync.ts'
 import type { Person } from './types.ts'
 import assert from 'node:assert/strict'
-import { describe, it } from 'node:test'
-import { addHits, interactionHits, mergeRoster, mutualOf, profileAvatar, rememberTweets } from './sync.ts'
+import { describe, it } from 'vite-plus/test'
+import {
+  addHits,
+  interactionHits,
+  mergeRoster,
+  mutualOf,
+  profileAvatar,
+  rememberTweets,
+} from './sync.ts'
 
 function profile(userId: string, handle = userId): SocialProfile {
   return { userId, name: handle, handle, avatarUrl: '' }
@@ -43,7 +49,10 @@ describe('mutual roster', () => {
       [profile('a'), profile('b'), profile('a')],
       [profile('b'), profile('c')],
     )
-    assert.deepEqual(mutuals.map(item => item.userId), ['b'])
+    assert.deepEqual(
+      mutuals.map(item => item.userId),
+      ['b'],
+    )
   })
 
   it('preserves sentences and drops people who are no longer mutual', () => {
@@ -51,8 +60,16 @@ describe('mutual roster', () => {
       person('keep', { impression: '已写下', interactions: 4, aboutMe: '写给我' }),
       person('gone', { impression: '旧句子', status: 'followsMe' }),
     ]
-    const next = mergeRoster(previous, [profile('keep', 'kept'), profile('hidden-one')], new Set(['hidden-one']), '2026-09-30')
-    assert.deepEqual(next.map(item => item.userId), ['keep'])
+    const next = mergeRoster(
+      previous,
+      [profile('keep', 'kept'), profile('hidden-one')],
+      new Set(['hidden-one']),
+      '2026-09-30',
+    )
+    assert.deepEqual(
+      next.map(item => item.userId),
+      ['keep'],
+    )
     assert.equal(next[0]?.impression, '已写下')
     assert.equal(next[0]?.aboutMe, '写给我')
     assert.equal(next[0]?.interactions, 4)
@@ -93,7 +110,10 @@ describe('interaction hits', () => {
   it('adds hits onto the existing count', () => {
     const updated = addHits(
       [person('m', { interactions: 3 })],
-      [{ tweetId: '9', userId: 'm' }, { tweetId: '10', userId: 'm' }],
+      [
+        { tweetId: '9', userId: 'm' },
+        { tweetId: '10', userId: 'm' },
+      ],
     )
     assert.equal(updated[0]?.interactions, 5)
   })

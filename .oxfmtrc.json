@@ -1,0 +1,22 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "quoteProps": "consistent",
+  "singleAttributePerLine": true,
+  "htmlWhitespaceSensitivity": "strict",
+  "ignorePatterns": [
+    "vendor/**",
+    "content/**",
+    "data/**",
+    "i18n/**",
+    "public/**",
+    "**/generated/**",
+    "**/fixtures/**",
+    ".agents/**",
+    "docs/plans/**",
+    "AGENTS.md",
+    "pnpm-lock.yaml",
+    "skills-lock.json"
+  ]
+}

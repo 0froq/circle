@@ -5,9 +5,7 @@ import { listPublicShareImages } from './shared/public-files'
 import { IMAGE_ORIGIN } from './shared/site'
 
 export default defineNuxtConfig({
-  extends: [
-    ['github:0froq/og-layer#v0.2.1', { install: true }],
-  ],
+  extends: ['@froq/og-covers-layer'],
 
   compatibilityDate: '2026-09-19',
 
@@ -18,8 +16,7 @@ export default defineNuxtConfig({
       keepEmptyTitle(content, file.body)
       if (typeof file.body === 'string')
         (content as { words?: number }).words = countCardWords(file.body)
-      if (collection.name === 'notes' || collection.name === 'docs')
-        markFinalStop(content.body)
+      if (collection.name === 'notes' || collection.name === 'docs') markFinalStop(content.body)
     },
   },
 
@@ -31,11 +28,7 @@ export default defineNuxtConfig({
 
   build: { transpile: ['@froq/ui'] },
 
-  modules: [
-    '@nuxt/content',
-    '@nuxtjs/i18n',
-    '@nuxt/eslint',
-  ],
+  modules: ['@nuxt/content', '@nuxtjs/i18n'],
 
   // DevTools hosts the OG Image tab (template hot reload). The host package is not a module.
   devtools: { enabled: true },
@@ -62,10 +55,12 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
       meta: [{ name: 'color-scheme', content: 'light dark' }],
       // Picks the theme before first paint so the paper never flashes the wrong stock
-      script: [{
-        tagPosition: 'head',
-        innerHTML: `try{var t=localStorage.getItem('kit-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}`,
-      }],
+      script: [
+        {
+          tagPosition: 'head',
+          innerHTML: `try{var t=localStorage.getItem('kit-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}`,
+        },
+      ],
     },
   },
 
@@ -108,6 +103,4 @@ export default defineNuxtConfig({
   },
 
   typescript: { strict: true },
-
-  eslint: { config: { standalone: false } },
 })

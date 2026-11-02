@@ -40,8 +40,7 @@ export function useShareMeta(input: ShareMetaInput = {}): void {
   const skipImage = toValue(input.image) === false
   const image = computed(() => {
     const value = toValue(input.image)
-    if (value === false || !value)
-      return absoluteImageUrl(OG_IMAGE_PATH)
+    if (value === false || !value) return absoluteImageUrl(OG_IMAGE_PATH)
     return absoluteImageUrl(value)
   })
 

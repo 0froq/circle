@@ -8,15 +8,13 @@ export interface BoardView {
 }
 
 export function clampZoom(zoom: number): number {
-  if (!Number.isFinite(zoom))
-    return MIN_ZOOM
+  if (!Number.isFinite(zoom)) return MIN_ZOOM
   return Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, zoom))
 }
 
 /** Pan is zero at the minimum zoom, and cannot pull the circle off the board. */
 export function clampPan(pan: number, size: number, zoom: number): number {
-  if (!Number.isFinite(pan) || !Number.isFinite(size) || size <= 0)
-    return 0
+  if (!Number.isFinite(pan) || !Number.isFinite(size) || size <= 0) return 0
   const limit = (size / 2) * Math.max(0, clampZoom(zoom) - 1)
   return Math.min(limit, Math.max(-limit, pan))
 }
@@ -89,7 +87,7 @@ export function zoomToward(
   nextOriginX: number,
   nextOriginY: number,
   nextZoom: number,
-  size: number | { width: number, height: number },
+  size: number | { width: number; height: number },
 ): BoardView {
   const zoom = clampZoom(nextZoom)
   const safeZoom = view.zoom > 0 ? view.zoom : MIN_ZOOM
