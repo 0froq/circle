@@ -20,7 +20,9 @@ describe('waiting lines', () => {
 
   it('gives every locale the same number of sentences', () => {
     for (const locale of ['en', 'zh', 'ja']) {
-      const file = JSON.parse(readFileSync(new URL(`../../i18n/locales/${locale}.json`, import.meta.url), 'utf8')) as {
+      const file = JSON.parse(
+        readFileSync(new URL(`../../i18n/locales/${locale}.json`, import.meta.url), 'utf8'),
+      ) as {
         circle: { waiting?: unknown }
       }
       assert.ok(Array.isArray(file.circle.waiting))

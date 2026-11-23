@@ -13,11 +13,7 @@
     "searchNames": "搜索名字",
     "searchEmpty": "没有匹配的人",
     "unfollowedTag": "已取关",
-    "waiting": [
-      "等我再了解你一些。",
-      "我想多看看你。",
-      "再给我一点时间。"
-    ]
+    "waiting": ["等我再了解你一些。", "我想多看看你。", "再给我一点时间。"]
   },
   "site": {
     "title": "circle · froQ",

@@ -1,7 +1,15 @@
 /* eslint-disable test/no-import-node-test */
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
-import { clampPan, clampZoom, faceOnScreen, MAX_ZOOM, MIN_ZOOM, viewForFace, zoomToward } from './viewport.ts'
+import {
+  clampPan,
+  clampZoom,
+  faceOnScreen,
+  MAX_ZOOM,
+  MIN_ZOOM,
+  viewForFace,
+  zoomToward,
+} from './viewport.ts'
 
 describe('board zoom', () => {
   it('keeps zoom inside the fixed limits', () => {
