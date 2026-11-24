@@ -36,6 +36,13 @@ export default defineAppConfig({
     },
     install: { href: '/' },
     nav: [],
-    signature: { paper: true, line: false, hand: false, bloom: false, pointer: { dwell: false, click: false, dwellAfter: 0 } },
-  } satisfies ProductConfig,
+    signature: {
+      paper: true,
+      line: false,
+      hand: false,
+      bloom: false,
+      pointer: { dwell: false, click: false, dwellAfter: 0 },
+    },
+    // `satisfies` keeps the literal types (`nav: never[]`, `dwell: false`). nuxt typecheck then rejects ProductConfig uses. The value is unchanged.
+  } satisfies ProductConfig as ProductConfig,
 })

@@ -16,8 +16,7 @@ function closeCard(): void {
 }
 
 function onGlobalKey(event: KeyboardEvent): void {
-  if (event.key === 'Escape' && cardOpen.value)
-    closeCard()
+  if (event.key === 'Escape' && cardOpen.value) closeCard()
 }
 
 onMounted(() => {
@@ -32,13 +31,17 @@ onBeforeUnmount(() => {
 useHead({
   title: t('circle.title'),
 })
-defineOgImage('Paper', {
-  title: () => t('circle.title'),
-  description: () => t('circle.copyLead'),
-  words: 0,
-}, {
-  alt: () => t('circle.title'),
-})
+defineOgImage(
+  'Paper',
+  {
+    title: () => t('circle.title'),
+    description: () => t('circle.copyLead'),
+    words: 0,
+  },
+  {
+    alt: () => t('circle.title'),
+  },
+)
 useShareMeta({
   title: () => t('circle.title'),
   description: () => t('circle.copyLead'),
